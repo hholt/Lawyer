@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+
+    defaultConfig {
+        applicationId "com.wl.lawyer"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "ResourceType"
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        jumboMode = true
+        preDexLibraries = false
+    }
+
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // support
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["support-compat"]
+    implementation rootProject.ext.dependencies["constraint"]
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["arms"]//ArmsMVP
+    implementation(rootProject.ext.dependencies["cardview-v7"]) {
+        exclude module: 'support-annotations'
+    }
+    implementation rootProject.ext.dependencies["annotations"]
+    implementation rootProject.ext.dependencies["support-v4"]
+    // test
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation(rootProject.ext.dependencies["espresso-core"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // tools
+    implementation rootProject.ext.dependencies["lombok"]
+    implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["fragmentation-core"]
+    implementation rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["autosize"]
+    implementation rootProject.ext.dependencies["lombok"]
+    implementation rootProject.ext.dependencies["jessyan-glide"]
+    implementation rootProject.ext.dependencies["tab-layout"]
+    // rxtool 基础工具 https://github.com/Tamsiree/RxTool
+    implementation rootProject.ext.dependencies["rxtool-core"]
+    implementation rootProject.ext.dependencies["rxtool-rxui"]
+    // 微信支付、支付宝支付
+    implementation rootProject.ext.dependencies["rxtool-feature"]
+    implementation rootProject.ext.dependencies["toast-utils"]
+    annotationProcessor rootProject.ext.dependencies["lombok-compiler"]
+    implementation rootProject.ext.dependencies["immersionbar"]//状态栏沉浸
+    implementation rootProject.ext.dependencies["immersionbar-components"]//状态栏沉浸
+    implementation rootProject.ext.dependencies["dagger2"]
+    implementation rootProject.ext.dependencies["dagger2-android"]
+    implementation rootProject.ext.dependencies["dagger2-android-support"]
+    provided rootProject.ext.dependencies["javax.annotation"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
+    // 腾讯IM
+    implementation rootProject.ext.dependencies["tencent-im"]
+    // 腾讯直播 腾讯视频通话 需要使用腾讯专业版（Professional）才可以
+//    implementation rootProject.ext.dependencies["tencent-live-sdk"]
+    implementation rootProject.ext.dependencies["tencent-bugly"]
+    implementation rootProject.ext.dependencies["tencent-bugly-native"]
+    implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["base-recyclerview"]
+    implementation project(":trtc")
+    implementation project(path: ':common')
+    // https://github.com/google/ExoPlayer
+//    implementation rootProject.ext.dependencies["ijkplayer-java"]
+//    implementation rootProject.ext.dependencies["ijkplayer-armv7a"]
+    implementation rootProject.ext.dependencies["GSYVideoPlayer"]
+    // RecyclerView 吸附 header https://github.com/oubowu/PinnedSectionItemDecoration
+    implementation rootProject.ext.dependencies["PinnedSectionItemDecoration"]
+    implementation rootProject.ext.dependencies["androidktx"]
+    implementation rootProject.ext.dependencies["lombok"]
+    kapt rootProject.ext.dependencies["lombok"]
+    // view占位
+    implementation rootProject.ext.dependencies["broccoli"]
+}

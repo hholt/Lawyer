@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="24dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="24dp"
+    android:layout_marginBottom="20dp"
+    android:orientation="vertical">
+
+    <com.wl.lawyer.mvp.ui.widget.PasswordEditText
+        android:id="@+id/et_psw"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_et_height"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_et_bg"
+        android:hint="输入密码"
+        android:inputType="text"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <com.wl.lawyer.mvp.ui.widget.PasswordEditText
+        android:id="@+id/et_psw_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_et_height"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_et_bg"
+        android:hint="确认密码"
+        android:inputType="text"
+        android:maxLength="16"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_psw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="密码长度8~32位，须包含数字、字母、符号至少2种
+或以上元素"
+        android:textColor="@color/app_font_gray"
+        android:textSize="14sp" />
+</LinearLayout>

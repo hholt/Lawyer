@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recommended_lawyer"
+    android:layout_width="match_parent"
+    android:layout_height="109dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_recommended_avatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_recommended_approve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_online"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_recommended_avatar"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintRight_toRightOf="@+id/iv_recommended_avatar" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="78dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="李李刚"
+        android:textColor="@color/app_font_black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toRightOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/iv_recommended_avatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$33.33"
+        android:textColor="@color/app_font_red"
+        android:textSize="15sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_recommended_avatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_job_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/shape_btn_bg"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="执业律师"
+        android:textColor="@color/app_font_white"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintLeft_toRightOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="执业1年 ｜ 广西南宁"
+        android:textColor="@color/app_font_gray"
+        android:textSize="13sp"
+        app:layout_constraintLeft_toRightOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <com.wl.lawyer.mvp.ui.widget.LabelWidget
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="3dp"
+        app:labels="@array/test"
+        app:layout_constraintLeft_toRightOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+    <View
+        android:id="@+id/dividing_line"
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@drawable/shape_dotted_line"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

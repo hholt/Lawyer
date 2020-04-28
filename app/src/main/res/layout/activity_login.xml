@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_lawyer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="欢迎来到象律师"
+        android:textColor="@color/text_color_diff_black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您身边的律师专家"
+        android:textColor="@color/text_color_gray"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_lawyer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lawyer" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="335dp"
+        android:layout_height="464dp"
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lawyer">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="26dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账号"
+                android:textColor="@color/text_color_diff_black"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.wl.lawyer.mvp.ui.widget.ClearEditText
+                android:id="@+id/et_account"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="用户名/手机号码/邮箱"
+                android:inputType="text"
+                android:textColorHint="@color/text_color_gray"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_account"
+                app:layout_constraintTop_toBottomOf="@id/tv_account" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="密码"
+                android:textColor="@color/text_color_diff_black"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_account" />
+
+            <com.wl.lawyer.mvp.ui.widget.PasswordEditText
+                android:id="@+id/et_password"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="输入密码"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:textColorHint="@color/text_color_gray"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_password"
+                app:layout_constraintTop_toBottomOf="@id/tv_password" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_quick_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机快速注册"
+                android:textColor="@color/text_color_gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_forget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="忘记密码?"
+                android:textColor="@color/text_color_gray"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+            <com.wl.lawyer.mvp.ui.widget.LawyerCheckView
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="登录"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_forget" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="54dp"
+                android:src="@drawable/ic_wechat"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/iv_qq"
+                app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_qq"
+                app:layout_constraintLeft_toRightOf="@+id/iv_wechat"
+                app:layout_constraintRight_toLeftOf="@+id/iv_weibo"
+                app:layout_constraintTop_toTopOf="@+id/iv_wechat" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_weibo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_weibo"
+                app:layout_constraintLeft_toRightOf="@+id/iv_qq"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_wechat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

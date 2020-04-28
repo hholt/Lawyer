@@ -1,0 +1,3 @@
+include ':app', ':beauty', ':trtc', ':common', ':base', ':widget', ':image'
+
+rootProject.name='Lawyer'

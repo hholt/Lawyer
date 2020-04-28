@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--状态栏颜色-->
+    <color name="status_color">#F9F9F9</color>
+    <!--文字灰色-->
+    <color name="text_color_gray">#9DACC2</color>
+    <color name="text_color_diff_black">#333333</color>
+    <color name="shape_check_view">#1264DE</color>
+    <color name="split_lint_color">#fff6f8fc</color>
+    <color name="et_bg_color">#F4F6F9</color>
+    <color name="test_blue">#338BFF</color>
+
+    <!--按钮背景色-->
+    <color name="app_btn_bg_color">#1264DE</color>
+    <!--文字颜色-->
+    <color name="app_font_white">#FFF</color>
+    <color name="app_font_gray">#7D8898</color>
+    <color name="app_font_black">#000</color>
+    <color name="app_font_red">#FB321B</color>
+    <color name="app_font_blue">#1B76FB</color>
+    <!--Banner indicator-->
+    <color name="banner_indicator_select_color">#FFFFFF</color>
+    <color name="banner_indicator_normal_color">#9AA2DF</color>
+    <color name="banner_law_under_indicator_select_color">#FFFFFF</color>
+    <color name="banner_law_under_indicator_normal_color">#C0B2A2</color>
+</resources>

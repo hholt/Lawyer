@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_amount"
+    android:layout_width="100dp"
+    android:layout_height="52dp"
+    android:layout_margin="9dp"
+    android:background="@drawable/shape_amount_un_selected"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="200"
+        android:textSize="24sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_amount_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="7dp"
+        android:text="元"
+        android:textSize="14sp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

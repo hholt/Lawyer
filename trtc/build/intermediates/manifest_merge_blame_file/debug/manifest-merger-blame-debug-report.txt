@@ -1,0 +1,41 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.tencent.liteav.demo.trtc"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+8-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+11-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:17:5-79
+11-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:17:22-76
+12
+13    <application>
+13-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:4:5-15:19
+14        <activity
+14-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:5:9-8:55
+15            android:name="com.tencent.liteav.demo.trtc.TRTCNewRoomActivity"
+15-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:6:13-48
+16            android:screenOrientation="portrait"
+16-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:7:13-49
+17            android:theme="@style/NewActivityTheme" />
+17-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:8:13-52
+18        <activity
+18-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:9:9-14:55
+19            android:name="com.tencent.liteav.demo.trtc.TRTCVideoRoomActivity"
+19-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:10:13-50
+20            android:launchMode="singleTask"
+20-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:11:13-44
+21            android:screenOrientation="portrait"
+21-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:12:13-49
+22            android:theme="@style/NewActivityTheme"
+22-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:13:13-52
+23            android:windowSoftInputMode="adjustPan" />
+23-->D:\AndroidProject\Lawyer\trtc\src\main\AndroidManifest.xml:14:13-52
+24    </application>
+25
+26</manifest>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_tab_bar_height">62dp</dimen>
+
+    <dimen name="app_padding">15dp</dimen>
+    <dimen name="app_padding_left">15dp</dimen>
+    <dimen name="app_padding_top">15dp</dimen>
+    <dimen name="app_padding_right">15dp</dimen>
+    <dimen name="app_padding_bottom">15dp</dimen>
+
+    <dimen name="app_et_height">50dp</dimen>
+    <dimen name="app_btn_height">50dp</dimen>
+    <dimen name="setting_margin_right">10dp</dimen>
+
+    <dimen name="app_padding_common">20dp</dimen>
+</resources>

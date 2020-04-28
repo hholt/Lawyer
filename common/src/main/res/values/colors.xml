@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bottom_navigation_unselected">#7C8795</color>
+    <color name="bottom_navigation_selected">#1B76FB</color>
+
+    <color name="black5">#0D000000</color>
+    <!-- 对话框确认按钮文本颜色 -->
+    <color name="colorConfirm">#007AFF</color>
+    <!-- 对话框取消按钮文本颜色 -->
+    <color name="colorCancel">#F44336</color>
+
+    <!-- 透明色 -->
+    <color name="transparent">#00000000</color>
+    <!-- 分割线的颜色 -->
+    <color name="colorLine">#ECECEC</color>
+</resources>

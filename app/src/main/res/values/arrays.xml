@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_register">
+        <item>输入手机号</item>
+        <item>输入验证码</item>
+        <item>设置密码</item>
+    </string-array>
+    <string-array name="array_forget">
+        <item>选择验证方式</item>
+        <item>安全验证</item>
+        <item>找回验证密码</item>
+    </string-array>
+    <string-array name="test" >
+        <item>婚姻家事</item>
+        <item>婚姻家事</item>
+        <item>婚姻家事</item>
+    </string-array>
+</resources>

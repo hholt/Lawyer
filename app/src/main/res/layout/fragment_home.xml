@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_status_bar" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_home_logo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="7dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_law_promotion"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="188dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_home_go"
+                android:elevation="3dp"
+                app:layout_constraintTop_toTopOf="@+id/banner">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_law_promotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="普法宣传"
+                    android:textColor="@color/app_font_black"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_law_promotion_2"
+                    app:layout_constraintHorizontal_bias="0.35"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.35" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_law_promotion_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="您身边的法律专家"
+                    android:textColor="@color/app_font_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_law_promotion"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_law_promotion" />
+
+                <View
+                    android:id="@+id/view_bg"
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/shape_go_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view_fbg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/shape_go_fbg"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_bg"
+                    app:layout_constraintLeft_toLeftOf="@+id/view_bg"
+                    app:layout_constraintRight_toRightOf="@+id/view_bg"
+                    app:layout_constraintTop_toTopOf="@+id/view_bg" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GO"
+                    android:textColor="#F9F3E5"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_bg"
+                    app:layout_constraintLeft_toLeftOf="@+id/view_bg"
+                    app:layout_constraintRight_toRightOf="@+id/view_bg"
+                    app:layout_constraintTop_toTopOf="@+id/view_bg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/cl_law_promotion">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_func"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="20dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recommended_lawyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="20dp" />
+
+                <include layout="@layout/include_dividing_line" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_law_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

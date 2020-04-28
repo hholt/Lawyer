@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">common</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_loading">加载中&#8230;</string>
+
+    <!-- 提示 -->
+    <string name="hint_layout_no_data">亲，暂无数据</string>
+    <string name="hint_layout_error_request">亲，请求出错了</string>
+    <string name="hint_layout_error_network">亲，没有网络了</string>
+
+    <!-- 图片选择 -->
+    <string name="photo_title">图片选择</string>
+    <string name="photo_all">所有图片</string>
+
+    <string name="common_permission_hint">请先授予权限</string>
+    <string name="common_permission_fail">授权失败，请手动授予权限</string>
+
+    <string name="photo_total">共 %d 张</string>
+    <string name="photo_max_hint">本次最多只能选择 %d 张图片</string>
+
+    <string name="photo_launch_fail">无法启动相机</string>
+    <string name="photo_picture_error">图片错误</string>
+
+</resources>
