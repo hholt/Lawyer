@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
 import com.vondear.rxtool.RxBarTool
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportFragment
 import com.wl.lawyer.di.component.DaggerHomeComponent
 import com.wl.lawyer.di.module.HomeModule
@@ -58,7 +60,9 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         RecommendedLawyerAdapter(recommendedData).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
                 // 律师详情
-                mPresenter?.mAppManager?.startActivity(LawyerActivity::class.java)
+//                mPresenter?.mAppManager?.startActivity(LawyerActivity::class.java)
+                ARouter.getInstance().build(RouterPath.LAWYER_ACTIVITY)
+                    .withSerializable("lawyer", getItem(position)?.lawyer).navigation()
             }
         }
     }
@@ -147,7 +151,9 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 
     override fun onStart() {
         super.onStart()
-        banner.start()
+        if (banner.adapter != null) {
+            banner.start()
+        }
     }
 
     override fun onStop() {
@@ -223,15 +229,15 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         return false
     }
 
-    override fun indexBannerData(bannerDataList: List<HomeBean.BannerListBean>) {
+    override fun indexBannerData(bannerList: List<HomeDataBean.BannerBean>) {
         var data = arrayListOf<BannerDataBean>()
-        bannerDataList?.let {
-            for (bannerListBean in it) {
+        bannerList?.let {
+            for (bannerBean in it) {
                 data.add(
                     BannerDataBean(
-                        Api.APP_DOMAIN + bannerListBean.image,
+                        Api.APP_DOMAIN + bannerBean.image,
                         null,
-                        bannerListBean
+                        bannerBean
                     )
                 )
             }
@@ -261,5 +267,27 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 
         })
         banner.setOrientation(Banner.HORIZONTAL)
+    }
+
+    override fun indexLawyerList(lawyerList: List<HomeDataBean.LawyerBean>) {
+        var data = arrayListOf<RecommendedLawyerDataBean>()
+        data.add(RecommendedLawyerDataBean(true, "推荐律师"))
+        lawyerList?.let {
+            for (lawyer in it) {
+                data.add(RecommendedLawyerDataBean(lawyer))
+            }
+        }
+        recommendedAdapter.setNewData(data)
+    }
+
+    override fun indexLawLectureList(lectureList: List<HomeDataBean.LawLectureBean>) {
+        var data = arrayListOf<LawClassDataBean>()
+        data.add(LawClassDataBean(true, "", null, null))
+        lectureList?.let {
+            for (lecture in it) {
+                data.add(LawClassDataBean(false, "", lecture.title, lecture.text, lecture))
+            }
+        }
+        lawClassAdapter.setNewData(data)
     }
 }

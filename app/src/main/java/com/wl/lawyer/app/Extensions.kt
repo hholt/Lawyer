@@ -85,6 +85,21 @@ fun ImageView.circleImage(path: String) {
         .into(this)
 }
 
+fun ImageView.circleImage(base: String, path: String) {
+    val options = RequestOptions()
+//        .placeholder(R.drawable.icon_avatar)
+//        //异常占位图(当加载异常的时候出现的图片)
+//        .error(R.drawable.icon_avatar)
+        .transform(CircleCrop())
+        //禁止Glide硬盘缓存缓存
+        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+
+    Glide.with(context)
+        .load(base + path)
+        .apply(options)
+        .into(this)
+}
+
 fun ImageView.circleImage(path: Int) {
     val options = RequestOptions()
 //        .placeholder(R.drawable.icon_avatar)

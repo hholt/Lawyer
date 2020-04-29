@@ -53,6 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="好评率"
+                        android:layout_gravity="center_horizontal"
                         android:textColor="@color/app_font_gray"
                         android:textSize="13sp" />
 
@@ -89,6 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="咨询数"
+                        android:layout_gravity="center_horizontal"
                         android:textColor="@color/app_font_gray"
                         android:textSize="13sp" />
 

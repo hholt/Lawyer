@@ -3,10 +3,12 @@ package com.wl.lawyer.mvp.ui.activity
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.immersionbar.ImmersionBar
 import com.jess.arms.di.component.AppComponent
 import com.vondear.rxtool.RxBarTool
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.image
 import com.wl.lawyer.app.onBack
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.include_status_bar.*
 /**
  * 律师详情页
  */
+@Route(path = RouterPath.LAWYER_DETAIL_ACTIVITY)
 class LawyerDetailsActivity : BaseSupportActivity<LawyerDetailsPresenter>(),
     LawyerDetailsContract.View {
 

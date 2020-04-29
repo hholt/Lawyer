@@ -9,6 +9,7 @@ import com.wl.lawyer.mvp.contract.HomeContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
 import com.wl.lawyer.mvp.model.bean.HomeBean
+import com.wl.lawyer.mvp.model.bean.HomeDataBean
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     @Inject
     lateinit var mApplication: Application
 
-    override fun indexData(): Observable<BaseResponse<HomeBean>> {
+    override fun indexData(): Observable<BaseResponse<HomeDataBean>> {
         return mRepositoryManager.obtainRetrofitService(CommonService::class.java).indexData()
     }
 

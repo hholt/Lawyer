@@ -7,6 +7,7 @@ class ServiceBean : SectionEntity<ServiceBean> {
     var title: String? = null
     var desc: String? = null
     var price: String? = null
+    var serviceBean: LawyerServiceBean? = null
 
 
 
@@ -18,5 +19,9 @@ class ServiceBean : SectionEntity<ServiceBean> {
     }
 
     constructor(isHeader: Boolean, header: String?) : super(isHeader, header)
+
+    constructor(serviceBean: LawyerServiceBean) : super(false, "") {
+        this.serviceBean = serviceBean
+    }
 
 }

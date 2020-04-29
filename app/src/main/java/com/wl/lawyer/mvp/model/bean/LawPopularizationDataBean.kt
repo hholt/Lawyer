@@ -32,4 +32,6 @@ class LawPopularizationDataBean : SectionEntity<LawPopularizationDataBean> {
         this.avatar = avatar
         this.content = content
     }
+
+    constructor(lawyerArticle: LawyerDetailBean.LawyerArticleBean) : super(false, "")
 }

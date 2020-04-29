@@ -3,13 +3,11 @@ package com.wl.lawyer.app
 import android.app.Application
 import android.content.Context
 import androidx.fragment.app.FragmentManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.base.delegate.AppLifecycles
 import com.jess.arms.di.module.GlobalConfigModule
 import com.jess.arms.integration.ConfigModule
-import com.wl.lawyer.app.global.AppLifecyclesImpl
-import com.wl.lawyer.app.global.AppLifecyclesThirdPartyImpl
-import com.wl.lawyer.app.global.GlobalHttpHandlerImpl
-import com.wl.lawyer.app.global.ResponseErrorListenerImpl
+import com.wl.lawyer.app.global.*
 import com.wl.lawyer.mvp.model.api.Api
 
 class GlobalConfiguration : ConfigModule {
@@ -33,6 +31,7 @@ class GlobalConfiguration : ConfigModule {
         lifecycles.add(AppLifecyclesImpl())
         // 第三方库组件初始化（建议每一个库新建一个单独的AppLifecycles）
         lifecycles.add(AppLifecyclesThirdPartyImpl())
+        lifecycles.add(AppArouterLifecyclesImpl())
     }
 
     override fun injectActivityLifecycle(

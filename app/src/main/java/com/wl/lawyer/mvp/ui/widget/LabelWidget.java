@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.util.Preconditions;
 
 import com.wl.lawyer.R;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class LabelWidget extends LinearLayout {
 
@@ -49,6 +53,28 @@ public class LabelWidget extends LinearLayout {
             textView.setText(textArray[i]);
             textView.setTextSize(12);
             textView.setTextColor(context.getResources().getColor(R.color.app_font_gray));
+            textView.setBackgroundDrawable(drawable);
+            addView(textView);
+        }
+    }
+
+    public void setData(List<String> data) {
+        Preconditions.checkNotNull(data);
+        removeAllViews();
+        Drawable drawable = getContext().getResources().getDrawable(R.drawable.shape_label_bg);
+        for (Iterator iterator = data.iterator(); iterator.hasNext();) {
+            AppCompatTextView textView = new AppCompatTextView(getContext());
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+            );
+            if (getChildCount() != 0) {
+                layoutParams.setMargins(20, 0, 0, 0);
+            }
+            textView.setLayoutParams(layoutParams);
+            textView.setText(iterator.next().toString());
+            textView.setTextSize(12);
+            textView.setTextColor(getContext().getResources().getColor(R.color.app_font_gray));
             textView.setBackgroundDrawable(drawable);
             addView(textView);
         }

@@ -2,11 +2,11 @@ package com.wl.lawyer.mvp.model.api.service
 
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.HomeBean
+import com.wl.lawyer.mvp.model.bean.HomeDataBean
+import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
 import io.reactivex.Observable
 import okhttp3.MultipartBody
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 interface CommonService {
     /**
@@ -24,5 +24,11 @@ interface CommonService {
      * ******************************* 首页 *******************************
      */
     @POST("/api/index/getIndexData")
-    fun indexData(): Observable<BaseResponse<HomeBean>>
+    fun indexData(): Observable<BaseResponse<HomeDataBean>>
+
+    /**
+     * ******************************* 详情 *******************************
+     */
+    @GET("/api/lawyer/getLawyerDetail")
+    fun lawyerData(@Query("id") id: Int): Observable<BaseResponse<LawyerDetailBean>>
 }

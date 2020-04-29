@@ -49,6 +49,13 @@ android {
     packagingOptions {
         pickFirst '**/libc++_shared.so'
     }
+
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
+
 }
 
 dependencies {
@@ -116,4 +123,7 @@ dependencies {
     kapt rootProject.ext.dependencies["lombok"]
     // view占位
     implementation rootProject.ext.dependencies["broccoli"]
+    // Arouter
+    implementation rootProject.ext.dependencies["arouter"]
+    kapt rootProject.ext.dependencies["arouter-compiler"]
 }

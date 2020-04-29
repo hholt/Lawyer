@@ -1,6 +1,7 @@
 package com.wl.lawyer.mvp.model.bean
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class HomeBean {
 
@@ -44,7 +45,7 @@ class HomeBean {
 
     }
 
-    class LawyerListBean {
+    class LawyerListBean : Serializable{
         /**
          * id : 4
          * lawyer_id : 15
