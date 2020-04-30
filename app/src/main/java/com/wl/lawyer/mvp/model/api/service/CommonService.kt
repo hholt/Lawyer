@@ -4,6 +4,7 @@ import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.HomeBean
 import com.wl.lawyer.mvp.model.bean.HomeDataBean
 import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
+import com.wl.lawyer.mvp.model.bean.OnlineConsultlationBean
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -31,4 +32,10 @@ interface CommonService {
      */
     @GET("/api/lawyer/getLawyerDetail")
     fun lawyerData(@Query("id") id: Int): Observable<BaseResponse<LawyerDetailBean>>
+
+    /**
+     * ******************************* 在线咨询 *******************************
+     */
+    @GET("/api/consultation/getServiceType")
+    fun serviceType(): Observable<BaseResponse<OnlineConsultlationBean>>
 }

@@ -4,8 +4,13 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterArgs
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.image
 import com.wl.lawyer.app.onBack
@@ -14,6 +19,8 @@ import com.wl.lawyer.di.component.DaggerLawyerCooperationComponent
 import com.wl.lawyer.di.module.LawyerCooperationModule
 import com.wl.lawyer.mvp.contract.LawyerCooperationContract
 import com.wl.lawyer.mvp.model.bean.CommonBean
+import com.wl.lawyer.mvp.model.bean.HomeDataBean
+import com.wl.lawyer.mvp.model.bean.ServiceBean
 import com.wl.lawyer.mvp.presenter.LawyerCooperationPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
 import kotlinx.android.synthetic.main.activity_popularization_course_details.*
@@ -22,8 +29,13 @@ import kotlinx.android.synthetic.main.include.*
 /**
  * 律师合作
  */
+@Route(path = RouterPath.SERVICE_COOPER)
 class LawyerCooperationActivity : BaseSupportActivity<LawyerCooperationPresenter>(),
     LawyerCooperationContract.View {
+
+    @Autowired(name = RouterArgs.LAWYER)
+    @JvmField
+    var lawyer: HomeDataBean.LawyerBean? = null
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerLawyerCooperationComponent //如找不到该类,请编译一下项目
@@ -71,6 +83,8 @@ class LawyerCooperationActivity : BaseSupportActivity<LawyerCooperationPresenter
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+        ARouter.getInstance().inject(this)
+
         tv_title.text = "律师合作"
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 

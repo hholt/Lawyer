@@ -5,8 +5,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.lxj.androidktx.core.logd
 import com.wl.lawyer.R
 import com.wl.lawyer.app.circleImage
+import com.wl.lawyer.app.mlog
 import com.wl.lawyer.mvp.model.api.Api
 import com.wl.lawyer.mvp.model.bean.ServiceBean
 

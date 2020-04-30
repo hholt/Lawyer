@@ -38,6 +38,15 @@ class AppConstant {
         const val REQUEST_CODE_ADDRESS: Int = 2001
 
         /**
+         * /////////////////////////////////////intent/////////////////////////////////////
+         */
+        // 律师服务类型
+        const val SERVICE_ID_CONSULTATION = 1
+        const val SERVICE_ID_COLLABORATION = 2
+        const val SERVICE_ID_COOPERATION = 3
+        const val SERVICE_ID_CASE = 4
+
+        /**
          * /////////////////////////////////////SP key/////////////////////////////////////
          */
         const val SP_USER: String = "sp_user"

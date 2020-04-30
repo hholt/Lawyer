@@ -2,8 +2,6 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -22,7 +20,6 @@ import com.wl.lawyer.mvp.presenter.LawyerPresenter
 import com.wl.lawyer.mvp.ui.adapter.LawPopularizationAdapter
 import com.wl.lawyer.mvp.ui.adapter.PopularizationCourseReviewsAdapter
 import com.wl.lawyer.mvp.ui.adapter.ServiceAdapter
-import com.wl.lawyer.mvp.ui.widget.LabelWidget
 import kotlinx.android.synthetic.main.activity_lawyer.*
 import kotlinx.android.synthetic.main.adapter_recommended_lawyer.*
 import kotlinx.android.synthetic.main.adapter_recommended_lawyer.view.*
@@ -60,21 +57,39 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
             )
         ).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
-                when (position) {
+                when (getItem(position)?.serviceBean?.id) {
                     // 这里添加header 所以这里是1
-                    1 -> {
+                    AppConstant.SERVICE_ID_CONSULTATION -> {
                         // 在线咨询
-                        mPresenter?.mAppManager?.onStartActivityWithSingleTop(OnlineConsultationActivity::class.java)
+                        ARouter.getInstance().build(RouterPath.SERVICE_CONSULTATION)
+                            .withSerializable(RouterArgs.LAWYER, lawyer)
+                            .withSerializable(RouterArgs.LAWYER_SERVICE, getItem(position)?.serviceBean)
+                            .navigation()
+//                        mPresenter?.mAppManager?.onStartActivityWithSingleTop(OnlineConsultationActivity::class.java)
                     }
-                    2 -> {
+                    AppConstant.SERVICE_ID_COLLABORATION -> {
                         // 文书协助
-                        mPresenter?.mAppManager?.onStartActivityWithSingleTop(ClericalCollaborationActivity::class.java)
+                        ARouter.getInstance().build(RouterPath.SERVICE_COLLABORATION)
+                            .withSerializable(RouterArgs.LAWYER, lawyer)
+                            .withSerializable(RouterArgs.LAWYER_SERVICE, getItem(position)?.serviceBean)
+                            .navigation()
+//                        mPresenter?.mAppManager?.onStartActivityWithSingleTop(ClericalCollaborationActivity::class.java)
                     }
-                    3 -> {
+                    AppConstant.SERVICE_ID_COOPERATION -> {
                         // 律师合作
-                        mPresenter?.mAppManager?.onStartActivityWithSingleTop(LawyerCooperationActivity::class.java)
+                        ARouter.getInstance().build(RouterPath.SERVICE_COOPER)
+                            .withSerializable(RouterArgs.LAWYER, lawyer)
+                            .withSerializable(RouterArgs.LAWYER_SERVICE, getItem(position)?.serviceBean)
+                            .navigation()
+//                        mPresenter?.mAppManager?.onStartActivityWithSingleTop(LawyerCooperationActivity::class.java)
                     }
-
+                    AppConstant.SERVICE_ID_CASE -> {
+                        // 案件委托
+                        ARouter.getInstance().build(RouterPath.SERVICE_CASE)
+                            .withSerializable(RouterArgs.LAWYER, lawyer)
+                            .withSerializable(RouterArgs.LAWYER_SERVICE, getItem(position)?.serviceBean)
+                            .navigation()
+                    }
                 }
             }
         }
@@ -125,7 +140,7 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
             arrayListOf(
                 PopularizationCourseReviewsBean(
                     true, "评论"
-                ),
+                )/*,
                 PopularizationCourseReviewsBean(
                     "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
                     "coconut",
@@ -191,7 +206,7 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
                     "coconut",
                     "2019.12.31  10:23",
                     "专业到位，直指问题所在。"
-                )
+                )*/
             )
         ).apply {
 
@@ -229,14 +244,14 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
     private fun initServiceAdapter() {
         rv_service_project.layoutManager = LinearLayoutManager(mContext)
         rv_service_project.adapter = serviceAdapter
-        lawyer?.serviceList?.let {
+        /*lawyer?.serviceList?.let {
             var data = arrayListOf<ServiceBean>()
             ServiceBean(true, "服务项目")
             for (service: LawyerServiceBean in it) {
                 data.add(ServiceBean(service))
             }
             serviceAdapter.setNewData(data)
-        }
+        }*/
         // 设置分割线
         // RVUtils.myDottedDivider(mContext, rv_service_project)
     }
@@ -283,12 +298,13 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
     }
 
     override fun initService(services: List<LawyerServiceBean>) {
-        var data = arrayListOf(
-            ServiceBean(true, "服务项目"))
+        var data = arrayListOf<ServiceBean>()
+        data.add(ServiceBean(true, "服务项目"))
         for (service: LawyerServiceBean in services) {
             data.add(ServiceBean(service))
         }
         serviceAdapter.setNewData(data)
+        serviceAdapter
     }
 
     override fun initArticle(articles: List<LawyerDetailBean.LawyerArticleBean>) {

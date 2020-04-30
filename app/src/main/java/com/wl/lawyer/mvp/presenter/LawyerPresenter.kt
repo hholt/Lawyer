@@ -40,6 +40,9 @@ constructor(model: LawyerContract.Model, rootView: LawyerContract.View) :
                         t.data?.let {
                             mRootView?.initLawyerInfo(it)
                         }
+                        t.data?.lawyer?.let {
+                            mRootView?.initService(it.serviceList)
+                        }
                         t.data?.articleList?.let {
                             mRootView?.initArticle(it)
                         }
