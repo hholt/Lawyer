@@ -1,37 +1,39 @@
 package com.wl.lawyer.mvp.ui.adapter
 
-import android.database.DataSetObserver
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.SpinnerAdapter
+import androidx.appcompat.widget.AppCompatTextView
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
+import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
+import com.skydoves.powerspinner.PowerSpinnerInterface
+import com.skydoves.powerspinner.PowerSpinnerView
+import com.wl.lawyer.R
+import com.wl.lawyer.mvp.model.bean.ConsultlationSetBean
 
-class SetSpinnerAdapter<T>(val resId: Int, data: List<T>): BaseAdapter(), SpinnerAdapter {
+class SetSpinnerAdapter<T>(powerSpinnerView: PowerSpinnerView, data: List<ConsultlationSetBean>) :
+    BaseQuickAdapter<ConsultlationSetBean, BaseViewHolder>(
+        R.layout.adapter_popview_text,
+        data
+    ),
+    PowerSpinnerInterface<ConsultlationSetBean> {
 
-    var mData: List<T>
-    var mHandler: ((T)->String)? = null
-    init {
-        mData = data
+    override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<ConsultlationSetBean>? =  null
+    override val spinnerView: PowerSpinnerView = powerSpinnerView
+
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
     }
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        convertView?.let{
-            return convertView
+
+    override fun convert(helper: BaseViewHolder, item: ConsultlationSetBean?) {
+        item?.apply {
+            helper.getView<AppCompatTextView>(R.id.tv_simple_desc).text = name
         }
-        return LayoutInflater.from(parent?.context).inflate(resId, parent, false)
     }
 
-    override fun getItem(position: Int): Any {
-        return mData.get(position) as Any
+    override fun notifyItemSelected(index: Int) {
+        spinnerView.notifyItemSelected(index, mData.get(index).name)
+        onSpinnerItemSelectedListener?.onItemSelected(index, mData.get(index))
     }
 
-    override fun getItemId(position: Int) = position as Long
-
-    override fun getCount() = mData.size
-
-
-    override fun isEmpty() = mData?.size != 0
-
-
+    override fun setItems(itemList: List<ConsultlationSetBean>) = setNewData(itemList)
 
 }

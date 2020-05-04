@@ -1,19 +1,22 @@
 package com.wl.lawyer.mvp.ui.activity
 
-import android.graphics.Color
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
+import com.wl.lawyer.app.*
 import com.wl.lawyer.app.base.BaseSupportActivity
-import com.wl.lawyer.app.onBack
 import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerPayComponent
 import com.wl.lawyer.di.module.PayModule
 import com.wl.lawyer.mvp.contract.PayContract
-import com.wl.lawyer.mvp.model.bean.CommonBean
-import com.wl.lawyer.mvp.model.bean.PaymentMethodBean
+import com.wl.lawyer.mvp.model.api.Api
+import com.wl.lawyer.mvp.model.bean.*
 import com.wl.lawyer.mvp.presenter.PayPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
 import com.wl.lawyer.mvp.ui.adapter.PaymentMethodAdapter
@@ -24,9 +27,25 @@ import kotlinx.android.synthetic.main.include.*
 /**
  * 支付费用
  */
+@Route(path = RouterPath.ORDER_COMFIRM)
 class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
 
+    @Autowired(name=RouterArgs.SERVICE_TYPE)
+    @JvmField
+    var type: Int = 0
+
+    @Autowired(name=RouterArgs.LAWYER)
+    @JvmField
+    var lawyer: HomeDataBean.LawyerBean? = null
+
+    @Autowired(name=RouterArgs.SERVICE_SET)
+    @JvmField
+    var consultlationData: ConsultlationSetBean? = null
+
+    var payMethod: String = AppConstant.PAY_WECHAT
+
     private val adapter by lazy {
+
         CommonAdapter(
             arrayListOf(
                 CommonBean(
@@ -36,7 +55,7 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
                     "http://jessehuan.fun:38080/apps/files_sharing/publicpreview/a6CPDjJDYTLTaw8?x=2880&y=732&a=true&file=img_video.png&scalingup=0"
                 ),
                 CommonBean(CommonBean.TYPE_SIMPLE, "目前你选择的套餐是：", "音视频咨询套餐"),
-                CommonBean(CommonBean.TYPE_SIMPLE_COLOR, "价格：", "¥69/次", Color.RED)
+                CommonBean(CommonBean.TYPE_SIMPLE_COLOR, "价格：", "¥69/次", ContextCompat.getColor(this, R.color.app_font_red))
             )
         ).apply {
 
@@ -72,28 +91,66 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+        ARouter.getInstance().inject(this)
+
         tv_title.text = "支付费用"
         btn_common.text = "支付费用"
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
         initRv1()
-        initRv2()
+        rbn_wechat_selected.setOnCheckedChangeListener{buttonView, isChecked ->
+            if (isChecked) {
+                rbn_alipay_selected.isChecked = false
+                payMethod = AppConstant.PAY_WECHAT
+            }
+        }
+        rbn_alipay_selected.setOnCheckedChangeListener{buttonView, isChecked ->
+            if (isChecked) {
+                rbn_wechat_selected.isChecked = false
+                payMethod = AppConstant.PAY_ALIPAY
+            }
+        }
+        rbn_wechat_selected.isChecked = true
         btn_common.setOnClickListener {
-            // 显示支付成功页面
-            PaySuccessDialog.show(this)
+            createOrder()
         }
     }
 
     private fun initRv1() {
         rv_item_1.layoutManager = LinearLayoutManager(mContext)
         rv_item_1.adapter = adapter
+        var data = arrayListOf<CommonBean>()
+        lawyer?.let {
+            data.add(CommonBean(
+                CommonBean.TYPE_SIMPLE_CIRCLE_IMAGE,
+                "目前你选择的是：",
+                "${it.username}律师",
+                Api.APP_DOMAIN + it.avatar
+            ))
+        }
+        when (type) {
+            AppConstant.SERVICE_ID_CONSULTATION -> {
+                data.add(CommonBean(
+                    CommonBean.TYPE_SIMPLE,
+                    "目前你选择的套餐是：",
+                    "${consultlationData?.name}"))
+                data.add(
+                    CommonBean(CommonBean.TYPE_SIMPLE_COLOR, "价格：", "¥${consultlationData?.price}/次", ContextCompat.getColor(this, R.color.app_font_red)))
+            }
+        }
+        adapter.setNewData(data)
 
         RVUtils.myDivider(mContext, rv_item_1)
     }
 
-    private fun initRv2() {
-        rv_item_2.layoutManager = LinearLayoutManager(mContext)
-        rv_item_2.adapter = paymentAmountAdapter
+    private fun createOrder() {
+        mPresenter?.createOrder(consultlationData!!.id, lawyer!!.lawyerId, payMethod)
+    }
+
+    override fun onOrderCreated(orderBean: CreateOrderBean) {
+        mlog("order created: ${orderBean}")
+        // 显示支付成功页面
+        PaySuccessDialog.show(this)
     }
 
 }

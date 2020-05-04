@@ -122,6 +122,7 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
     private fun initRecommendedAdapter() {
         rv_recommended_lawyer.layoutManager = LinearLayoutManager(mContext)
         rv_recommended_lawyer.adapter = recommendedAdapter
+        rv_recommended_lawyer.isNestedScrollingEnabled = false
     }
 
     private fun initBanner() {

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -43,7 +44,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/include_dividing_line"/>
+    <include layout="@layout/include_divideline_1dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +64,7 @@
 
     </LinearLayout>
 
-    <include layout="@layout/include_dividing_line"/>
+    <include layout="@layout/include_divideline_1dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -79,19 +80,20 @@
             android:textColor="@color/app_font_black"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spn_set"
+        <com.skydoves.powerspinner.PowerSpinnerView
+            android:id="@+id/psv_set"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginEnd="@dimen/dp_20"
-            android:spinnerMode="dropdown"
-            android:background="@drawable/layer_spinner"
-            />
+            android:layout_height="wrap_content"
+            android:hint="音视频咨询套餐"
+            android:paddingStart="@dimen/dp_12"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="@dimen/dp_14"
+            app:spinner_arrow_drawable="@drawable/arrow_gray"
+            app:spinner_popup_background="@color/white"/>
 
     </LinearLayout>
 
-    <include layout="@layout/include_dividing_line"/>
+    <include layout="@layout/include_divideline_1dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -112,11 +114,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:minHeight="@dimen/dp_80"
             android:background="@drawable/shape_et_feedback_bg"
             android:gravity="top|left"
             android:hint="请选择套餐"
             android:enabled="false"
-            android:padding="16dp"
+            android:padding="10dp"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -142,7 +145,8 @@
             android:layout_marginLeft="@dimen/app_padding_common"
             android:layout_marginRight="@dimen/app_padding_common"
             android:layout_weight="1"
-            android:textColor="@color/red"
+            android:hint="12"
+            android:textColorHint="@color/app_font_red"
             android:enabled="false"
             android:inputType="text"
             android:background="@null"
@@ -150,6 +154,8 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
+    <include layout="@layout/include_divideline_1dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

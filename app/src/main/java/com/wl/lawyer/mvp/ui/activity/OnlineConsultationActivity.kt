@@ -3,26 +3,27 @@ package com.wl.lawyer.mvp.ui.activity
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
+import com.lxj.androidktx.core.click
 import com.wl.lawyer.R
-import com.wl.lawyer.app.RouterArgs
-import com.wl.lawyer.app.RouterPath
+import com.wl.lawyer.app.*
 import com.wl.lawyer.app.base.BaseSupportActivity
-import com.wl.lawyer.app.circleImage
-import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerOnlineConsultationComponent
 import com.wl.lawyer.di.module.OnlineConsultationModule
 import com.wl.lawyer.mvp.contract.OnlineConsultationContract
 import com.wl.lawyer.mvp.model.api.Api
 import com.wl.lawyer.mvp.model.bean.CommonBean
+import com.wl.lawyer.mvp.model.bean.ConsultlationSetBean
 import com.wl.lawyer.mvp.model.bean.HomeDataBean
 import com.wl.lawyer.mvp.model.bean.OnlineConsultlationBean
 import com.wl.lawyer.mvp.presenter.OnlineConsultationPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
+import com.wl.lawyer.mvp.ui.adapter.SetSpinnerAdapter
 import kotlinx.android.synthetic.main.activity_online_consultation.*
 import kotlinx.android.synthetic.main.include.*
 
@@ -36,6 +37,8 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
     @Autowired(name = RouterArgs.LAWYER)
     @JvmField
     var lawyer: HomeDataBean.LawyerBean? = null
+
+    var selectSet: ConsultlationSetBean? = null
 
     private val adapter by lazy {
         CommonAdapter(
@@ -84,25 +87,49 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
 
         tv_title.text = "在线咨询"
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
+        psv_set.lifecycleOwner = this
+        psv_set.setOnSpinnerOutsideTouchListener{_, _ ->
+            psv_set.dismiss()
+        }
 
         mPresenter?.serviceType()
     }
 
-    override fun initType(typeList: List<OnlineConsultlationBean.ConsultlationSetBean>) {
-        lawyer?.let {
-            iv_lawyer_avatar.circleImage(Api.APP_DOMAIN + it.avatar)
-            et_lawyer_name.hint = "${it.username}律师"
+    override fun initType(typeList: List<ConsultlationSetBean>) {
+        lawyer?.apply {
+            iv_lawyer_avatar.circleImage(Api.APP_DOMAIN + avatar)
+            et_lawyer_name.hint = "${username}律师"
             tv_desc.text = "我们针对不同的情况，定制了不同的咨询套餐，提供了不同的咨询方式和收费标准，请按照您的需要进行选择。"
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.planets_array,
-                android.R.layout.simple_spinner_item
-            ).also { adapter ->
-                // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                // Apply the adapter to the spinner
-                spn_set.adapter = adapter
+            btn_common.click {
+                ARouter.getInstance().build(RouterPath.ORDER_COMFIRM)
+                    .withSerializable(RouterArgs.LAWYER, lawyer)
+                    .withSerializable(RouterArgs.SERVICE_TYPE, AppConstant.SERVICE_ID_CONSULTATION)
+                    .withSerializable(RouterArgs.SERVICE_SET, selectSet)
+                    .navigation()
+            }
+            selectSet = typeList[0]
+            et_set_desc.hint = typeList[0].desc
+            et_price.hint = "￥${typeList[0].price}/次"
+        }.let {
+            // Apply the adapter to the spinner
+            psv_set.apply {
+                setSpinnerAdapter(
+                    SetSpinnerAdapter<ConsultlationSetBean>(
+                        psv_set,
+                        typeList
+                    ).apply {
+                        setOnItemClickListener{adpter, view, position ->
+                            this.notifyItemSelected(position)
+                        }
+                    }
+                )
+                setOnSpinnerItemSelectedListener<ConsultlationSetBean> { position, item ->
+                    selectSet = item
+                    et_set_desc.hint = item.desc
+                    et_price.hint = "￥${item.price}/次"
+                }
             }
         }
     }
+
 }

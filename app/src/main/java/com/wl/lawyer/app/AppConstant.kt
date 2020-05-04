@@ -40,7 +40,7 @@ class AppConstant {
         /**
          * /////////////////////////////////////intent/////////////////////////////////////
          */
-        // 律师服务类型
+        // 律师服务类型 和服务器保持一致
         const val SERVICE_ID_CONSULTATION = 1
         const val SERVICE_ID_COLLABORATION = 2
         const val SERVICE_ID_COOPERATION = 3

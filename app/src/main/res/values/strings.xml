@@ -7,4 +7,6 @@
     <string name="tab_find_lawyer">找律师</string>
     <string name="tab_understanding">法律明白人</string>
     <string name="tab_my">我的</string>
+    <string name="payment_wechat">微信支付</string>
+    <string name="payment_alipay">支付宝支付</string>
 </resources>

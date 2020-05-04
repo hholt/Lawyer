@@ -123,6 +123,7 @@ dependencies {
     kapt rootProject.ext.dependencies["lombok"]
     // view占位
     implementation rootProject.ext.dependencies["broccoli"]
+    implementation rootProject.ext.dependencies["powerspinner"]
     // Arouter
     implementation rootProject.ext.dependencies["arouter"]
     kapt rootProject.ext.dependencies["arouter-compiler"]

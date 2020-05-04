@@ -244,6 +244,8 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
     private fun initServiceAdapter() {
         rv_service_project.layoutManager = LinearLayoutManager(mContext)
         rv_service_project.adapter = serviceAdapter
+        rv_service_project.isNestedScrollingEnabled = false
+        rv_service_project.isFocusable = false
         /*lawyer?.serviceList?.let {
             var data = arrayListOf<ServiceBean>()
             ServiceBean(true, "服务项目")
@@ -304,7 +306,6 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
             data.add(ServiceBean(service))
         }
         serviceAdapter.setNewData(data)
-        serviceAdapter
     }
 
     override fun initArticle(articles: List<LawyerDetailBean.LawyerArticleBean>) {

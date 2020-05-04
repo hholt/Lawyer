@@ -1,10 +1,7 @@
 package com.wl.lawyer.mvp.model.api.service
 
 import com.wl.lawyer.mvp.model.api.BaseResponse
-import com.wl.lawyer.mvp.model.bean.HomeBean
-import com.wl.lawyer.mvp.model.bean.HomeDataBean
-import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
-import com.wl.lawyer.mvp.model.bean.OnlineConsultlationBean
+import com.wl.lawyer.mvp.model.bean.*
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -38,4 +35,11 @@ interface CommonService {
      */
     @GET("/api/consultation/getServiceType")
     fun serviceType(): Observable<BaseResponse<OnlineConsultlationBean>>
+    /**
+     * ******************************* 创建订单 *******************************
+     */
+    @GET("/api/consultation/createOrder")
+    fun createOrder(@Query("package_id") serviceId: Int,
+                    @Query("invite_lawyer_id") lawyerId: Int,
+                    @Query("pay_type")payMethod: String): Observable<BaseResponse<CreateOrderBean>>
 }

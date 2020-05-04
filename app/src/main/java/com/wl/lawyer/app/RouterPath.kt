@@ -15,6 +15,7 @@ class RouterPath {
         const val ONLINE_CONSULTLATION = "/wl/online_consultlation"
         const val PAY_ACTIVITY = "/wl/pay"
         const val ORDER_STATUS = "/wl/order_status"
+        const val ORDER_COMFIRM = "/wl/order_comfirm"
         const val SETTINGS = "/wl/settings"
     }
 }
