@@ -42,4 +42,14 @@ interface CommonService {
     fun createOrder(@Query("package_id") serviceId: Int,
                     @Query("invite_lawyer_id") lawyerId: Int,
                     @Query("pay_type")payMethod: String): Observable<BaseResponse<CreateOrderBean>>
+
+    /**
+     * ******************************* 普法文章 *******************************
+     */
+    @GET("/api/popularize_law/getArticles")
+    fun getArticles(@Query("page") page: Int=1,
+                    @Query("page_size") pageSize: Int=10): Observable<BaseResponse<LatestArticlesBean>>
+
+    @GET("/api/popularize_law/getArticleDetail")
+    fun getArticleDetail(@Query("id") id: Int): Observable<BaseResponse<ArticleDetailBean>>
 }

@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
 import com.vondear.rxtool.RxBarTool
 import com.wl.lawyer.R
 import com.wl.lawyer.app.AppConstant
+import com.wl.lawyer.app.RouterArgs
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportFragment
 import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerLegalUnderstandingComponent
@@ -18,6 +21,7 @@ import com.wl.lawyer.di.module.LegalUnderstandingModule
 import com.wl.lawyer.mvp.contract.LegalUnderstandingContract
 import com.wl.lawyer.mvp.model.bean.BannerDataBean
 import com.wl.lawyer.mvp.model.bean.LawPopularizationDataBean
+import com.wl.lawyer.mvp.model.bean.LawyerArticleBean
 import com.wl.lawyer.mvp.presenter.LegalUnderstandingPresenter
 import com.wl.lawyer.mvp.ui.activity.PopularizationCourseActivity
 import com.wl.lawyer.mvp.ui.adapter.BannerImageAdapter
@@ -46,9 +50,9 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
     private val bannerImageAdapter by lazy {
         BannerImageAdapter(
             arrayListOf(
-                BannerDataBean(null, R.drawable.ic_banner_understanding,null),
-                BannerDataBean(null, R.drawable.ic_banner_understanding,null),
-                BannerDataBean(null, R.drawable.ic_banner_understanding,null)
+                BannerDataBean(null, R.drawable.ic_banner_understanding, null),
+                BannerDataBean(null, R.drawable.ic_banner_understanding, null),
+                BannerDataBean(null, R.drawable.ic_banner_understanding, null)
             )
         ).apply {
 
@@ -91,6 +95,14 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
                 )
             )
         ).apply {
+            setOnItemClickListener { _, _, position ->
+                getItem(position)?.lawyerArticle?.let {
+                    ARouter.getInstance()
+                        .build(RouterPath.LAWYER_ARTICLE)
+                        .withSerializable(RouterArgs.ARTICLE, it)
+                        .navigation()
+                }
+            }
             addFooterView(RVUtils.myFooterView(mContext, rv_law))
         }
     }
@@ -133,8 +145,11 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
 
     //普法动态
     private fun initLawPopularization() {
+        rv_law_popularization.isNestedScrollingEnabled = false
+        rv_law_popularization.isFocusable = false
         rv_law_popularization.layoutManager = LinearLayoutManager(mContext)
         rv_law_popularization.adapter = lawPopularizationAdapter
+        mPresenter?.getArticles()
     }
 
     //普法Banner
@@ -159,7 +174,16 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
     }
 
     override fun setData(data: Any?) {
+    }
 
+    override fun onGetArticles(articles: List<LawyerArticleBean>) {
+        var data = arrayListOf(
+            LawPopularizationDataBean(true, "普法动态")
+        )
+        for (article in articles) {
+            data.add(LawPopularizationDataBean(article))
+        }
+        lawPopularizationAdapter.setNewData(data)
     }
 
 }

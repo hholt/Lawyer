@@ -63,5 +63,4 @@ data class LawyerDetailBean(val id: Int, @SerializedName("group_id") val groupId
      * "country_text": "闸北区",
      * "category_list": [
      */
-    data class LawyerArticleBean(val id: Int): Serializable
 }

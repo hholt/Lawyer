@@ -6,6 +6,7 @@ class LawPopularizationDataBean : SectionEntity<LawPopularizationDataBean> {
 
     var avatar: String? = null
     var content: String? = null
+    var lawyerArticle: LawyerArticleBean? = null
 
     constructor(isHeader: Boolean, header: String) : super(isHeader, header) {}
 
@@ -33,5 +34,7 @@ class LawPopularizationDataBean : SectionEntity<LawPopularizationDataBean> {
         this.content = content
     }
 
-    constructor(lawyerArticle: LawyerDetailBean.LawyerArticleBean) : super(false, "")
+    constructor(lawyerArticle: LawyerArticleBean) : super(false, "") {
+        this.lawyerArticle = lawyerArticle
+    }
 }

@@ -30,7 +30,7 @@ constructor(model: LawyerContract.Model, rootView: LawyerContract.View) :
     @Inject
     lateinit var mAppManager: AppManager
 
-    fun indexData(id: Int) {
+    fun initData(id: Int) {
         mModel.lawyerData(id)
             .compose(RxCompose.transformer(mRootView))
             .subscribe(object :

@@ -61,8 +61,10 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
                 // 律师详情
 //                mPresenter?.mAppManager?.startActivity(LawyerActivity::class.java)
-                ARouter.getInstance().build(RouterPath.LAWYER_ACTIVITY)
-                    .withSerializable("lawyer", getItem(position)?.lawyer).navigation()
+                getItem(position)?.lawyer?.let {
+                    ARouter.getInstance().build(RouterPath.LAWYER_ACTIVITY)
+                        .withSerializable("lawyer", it).navigation()
+                }
             }
         }
     }
@@ -255,7 +257,7 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
                 ArmsUtils.dip2px(context!!, 48f)
             )
         )
-        banner.setOnBannerListener(object :OnBannerListener<BannerDataBean>{
+        banner.setOnBannerListener(object : OnBannerListener<BannerDataBean> {
             override fun onBannerChanged(position: Int) {
 
             }

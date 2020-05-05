@@ -27,4 +27,7 @@
     <color name="banner_indicator_normal_color">#9AA2DF</color>
     <color name="banner_law_under_indicator_select_color">#FFFFFF</color>
     <color name="banner_law_under_indicator_normal_color">#C0B2A2</color>
+    <color name="app_article_title">#ff333333</color>
+    <color name="app_article_sub">#ff8694a7</color>
+    <color name="app_article_content">#637388</color>
 </resources>

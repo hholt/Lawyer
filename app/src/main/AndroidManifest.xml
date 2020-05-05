@@ -43,6 +43,8 @@
         <activity android:name=".mvp.ui.activity.EditActivity" />
         <activity android:name=".mvp.ui.activity.PopularizationCourseDetailsActivity" />
         <activity android:name=".mvp.ui.activity.PopularizationCourseActivity" />
+        <activity android:name=".mvp.ui.activity.PopularizationArticleActivity" />
+        <activity android:name=".mvp.ui.activity.ArticleDetailActivity" />
         <activity android:name=".mvp.ui.activity.GCDetailsActivity" />
         <activity android:name=".mvp.ui.activity.GraphicConsultationActivity" />
         <activity android:name=".mvp.ui.activity.ConsultingOrderActivity" />

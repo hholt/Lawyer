@@ -2,10 +2,12 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
 import com.wl.lawyer.app.AppConstant
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerPopularizationCourseComponent

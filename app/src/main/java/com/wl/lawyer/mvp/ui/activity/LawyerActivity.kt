@@ -221,7 +221,7 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
         tv_title.text = "律师详情"
         tv_price.visibility = View.GONE
         lawyer?.let {
-            mPresenter?.indexData(it.lawyerId)
+            mPresenter?.initData(it.lawyerId)
         }
         recommended_lawyer.dividing_line.visibility = View.GONE
         tv_job_title.visibility = View.VISIBLE
@@ -308,10 +308,10 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
         serviceAdapter.setNewData(data)
     }
 
-    override fun initArticle(articles: List<LawyerDetailBean.LawyerArticleBean>) {
+    override fun initArticle(articles: List<LawyerArticleBean>) {
         var data = arrayListOf(
             LawPopularizationDataBean(true, "最新文章"))
-        for (article: LawyerDetailBean.LawyerArticleBean in articles) {
+        for (article: LawyerArticleBean in articles) {
             data.add(LawPopularizationDataBean(article))
         }
         latestArticlesAdapter.setNewData(data)

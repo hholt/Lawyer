@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_scoller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_220"
+                app:srcCompat="@drawable/beauty"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_200"
+                android:padding="@dimen/dp_20"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:textColor="@color/app_article_title"
+                    android:textSize="20sp"
+                    android:id="@+id/tv_article_title"
+                    tools:text="张某与李某1、李某2婚约财产纠纷案"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_17"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/app_article_sub"
+                    android:textSize="13sp"
+                    android:id="@+id/tv_author"
+                    tools:text="作者：润玉律师"
+                    app:layout_constraintTop_toBottomOf="@id/tv_article_title"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_17"
+                    android:textColor="@color/app_article_sub"
+                    android:textSize="13sp"
+                    android:id="@+id/tv_count"
+                    tools:text="浏览次数：100"
+                    app:layout_constraintTop_toTopOf="@id/tv_author"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_17"
+                    android:textColor="@color/app_article_sub"
+                    android:textSize="13sp"
+                    android:id="@+id/tv_date"
+                    tools:text="浏览次数：100"
+                    app:layout_constraintTop_toTopOf="@id/tv_author"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_40"
+                    android:id="@+id/tv_content"
+                    android:textColor="@color/app_article_content"
+                    android:textSize="14sp"
+                    tools:text="浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100浏览次数：100"
+                    app:layout_constraintTop_toBottomOf="@id/tv_author"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+                <WebView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/webview_article"
+                    app:layout_constraintTop_toBottomOf="@id/tv_author"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/include" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
