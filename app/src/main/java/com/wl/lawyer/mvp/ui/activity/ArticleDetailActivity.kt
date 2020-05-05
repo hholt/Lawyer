@@ -76,8 +76,13 @@ class ArticleDetailActivity: BaseSupportActivity<ArticleDetailPresenter>(),
             createTime.toTime("yyyy.MM.dd")
             tv_date.text = "时间：${createTime.toTime("yyyy.MM.dd")}"
             tv_count.text = "浏览次数：100${readCount}"
-            tv_content.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT)
-
+//            tv_content.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT)
+            webview_article.loadDataWithBaseURL(
+                Api.APP_DOMAIN,
+                HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT).toString(),
+                "text/html",
+                "UTF-8",
+                null)
         }
     }
 }
