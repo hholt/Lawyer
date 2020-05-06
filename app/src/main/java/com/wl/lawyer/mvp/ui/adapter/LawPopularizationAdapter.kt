@@ -20,6 +20,7 @@ class LawPopularizationAdapter(data: List<LawPopularizationDataBean>) :
         item?.header?.let {
             helper?.getView<AppCompatTextView>(R.id.tv_recommended)?.text = item?.header
         }
+        helper.addOnClickListener(R.id.tv_more)
     }
 
     override fun convert(helper: BaseViewHolder, item: LawPopularizationDataBean) {

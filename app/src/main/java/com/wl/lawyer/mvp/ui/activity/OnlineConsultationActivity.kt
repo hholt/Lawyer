@@ -114,7 +114,7 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
             // Apply the adapter to the spinner
             psv_set.apply {
                 setSpinnerAdapter(
-                    SetSpinnerAdapter<ConsultlationSetBean>(
+                    SetSpinnerAdapter(
                         psv_set,
                         typeList
                     ).apply {

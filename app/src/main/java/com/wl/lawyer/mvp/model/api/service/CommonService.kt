@@ -52,4 +52,16 @@ interface CommonService {
 
     @GET("/api/popularize_law/getArticleDetail")
     fun getArticleDetail(@Query("id") id: Int): Observable<BaseResponse<ArticleDetailBean>>
+
+    /**
+     * ******************************* 图文咨询分类 *******************************
+     */
+    @GET("/api/picture_text_consultation/getPTCCategories")
+    fun getPTCCategories(): Observable<BaseResponse<List<PtcCategoryBean>>>
+
+    /**
+     * ******************************* 直播列表 *******************************
+     */
+    @GET("/api/live/getLiveRoomList")
+    fun getLiveRoomList(): Observable<BaseResponse<LiveListBean>>
 }

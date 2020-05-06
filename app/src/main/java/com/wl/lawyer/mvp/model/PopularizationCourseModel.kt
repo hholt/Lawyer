@@ -9,6 +9,10 @@ import com.jess.arms.di.scope.ActivityScope
 import javax.inject.Inject
 
 import com.wl.lawyer.mvp.contract.PopularizationCourseContract
+import com.wl.lawyer.mvp.model.api.BaseResponse
+import com.wl.lawyer.mvp.model.api.service.CommonService
+import com.wl.lawyer.mvp.model.bean.LiveListBean
+import io.reactivex.Observable
 
 
 @ActivityScope
@@ -21,4 +25,5 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     @Inject
     lateinit var mApplication: Application
 
+    override fun loadLiveData() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getLiveRoomList()
 }

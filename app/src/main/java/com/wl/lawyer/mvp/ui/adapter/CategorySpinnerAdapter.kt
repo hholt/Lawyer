@@ -8,22 +8,23 @@ import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.skydoves.powerspinner.PowerSpinnerView
 import com.wl.lawyer.R
 import com.wl.lawyer.mvp.model.bean.ConsultlationSetBean
+import com.wl.lawyer.mvp.model.bean.PtcCategoryBean
 
-class SetSpinnerAdapter(powerSpinnerView: PowerSpinnerView, data: List<ConsultlationSetBean>) :
-    BaseQuickAdapter<ConsultlationSetBean, BaseViewHolder>(
+class CategorySpinnerAdapter(powerSpinnerView: PowerSpinnerView, data: List<PtcCategoryBean>) :
+    BaseQuickAdapter<PtcCategoryBean, BaseViewHolder>(
         R.layout.adapter_popview_text,
         data
     ),
-    PowerSpinnerInterface<ConsultlationSetBean> {
+    PowerSpinnerInterface<PtcCategoryBean> {
 
-    override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<ConsultlationSetBean>? =  null
+    override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<PtcCategoryBean>? =  null
     override val spinnerView: PowerSpinnerView = powerSpinnerView
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
     }
 
-    override fun convert(helper: BaseViewHolder, item: ConsultlationSetBean?) {
+    override fun convert(helper: BaseViewHolder, item: PtcCategoryBean?) {
         item?.apply {
             helper.getView<AppCompatTextView>(R.id.tv_simple_desc).text = name
         }
@@ -34,6 +35,6 @@ class SetSpinnerAdapter(powerSpinnerView: PowerSpinnerView, data: List<Consultla
         onSpinnerItemSelectedListener?.onItemSelected(index, mData.get(index))
     }
 
-    override fun setItems(itemList: List<ConsultlationSetBean>) = setNewData(itemList)
+    override fun setItems(itemList: List<PtcCategoryBean>) = setNewData(itemList)
 
 }

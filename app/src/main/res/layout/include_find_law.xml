@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="233dp"
+    android:layout_width="match_parent"
     android:layout_height="36dp"
-    android:layout_marginRight="20dp"
     android:background="@drawable/shape_round_grad_bg"
     android:gravity="center"
     android:orientation="horizontal">
@@ -21,6 +20,7 @@
         android:layout_weight="1"
         android:background="@null"
         android:hint="请输入律师名字"
+        android:focusedByDefault="false"
         android:maxLines="1"
         android:paddingLeft="5dp" />
 

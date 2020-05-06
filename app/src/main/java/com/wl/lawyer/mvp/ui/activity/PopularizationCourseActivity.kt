@@ -13,6 +13,7 @@ import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerPopularizationCourseComponent
 import com.wl.lawyer.di.module.PopularizationCourseModule
 import com.wl.lawyer.mvp.contract.PopularizationCourseContract
+import com.wl.lawyer.mvp.model.bean.LiveListBean
 import com.wl.lawyer.mvp.model.bean.PopularizationCourseBean
 import com.wl.lawyer.mvp.presenter.PopularizationCoursePresenter
 import com.wl.lawyer.mvp.ui.adapter.PopularizationCourseAdapter
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.include.*
 /**
  * 普法课程
  */
+
 class PopularizationCourseActivity : BaseSupportActivity<PopularizationCoursePresenter>(),
     PopularizationCourseContract.View {
 
@@ -92,6 +94,12 @@ class PopularizationCourseActivity : BaseSupportActivity<PopularizationCoursePre
 
         rv_item.layoutManager = LinearLayoutManager(mContext)
         rv_item.adapter = adapter
+
+        mPresenter?.loadData()
+    }
+
+    override fun onDataLoad(liveListBean: LiveListBean) {
+
     }
 
 }

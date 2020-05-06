@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
 import com.vondear.rxtool.RxBarTool
@@ -15,6 +16,7 @@ import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.app.RouterArgs
 import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportFragment
+import com.wl.lawyer.app.mlog
 import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerLegalUnderstandingComponent
 import com.wl.lawyer.di.module.LegalUnderstandingModule
@@ -101,6 +103,15 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
                         .build(RouterPath.LAWYER_ARTICLE)
                         .withSerializable(RouterArgs.ARTICLE, it)
                         .navigation()
+                }
+            }
+            setOnItemChildClickListener { adapter, view, position ->
+                view?.let {
+                    if (it.id == R.id.tv_more) {
+                        ARouter.getInstance()
+                            .build(RouterPath.LAWYER_ARTICLE_LIST)
+                            .navigation()
+                    }
                 }
             }
             addFooterView(RVUtils.myFooterView(mContext, rv_law))
