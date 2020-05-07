@@ -18,7 +18,7 @@ import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerPopularizationArticleComponent
 import com.wl.lawyer.di.module.PopularizationArticleModule
 import com.wl.lawyer.mvp.contract.PopularizationArticleContract
-import com.wl.lawyer.mvp.model.bean.LatestArticlesBean
+import com.wl.lawyer.mvp.model.bean.BaseListBean
 import com.wl.lawyer.mvp.model.bean.LawPopularizationDataBean
 import com.wl.lawyer.mvp.model.bean.LawyerArticleBean
 import com.wl.lawyer.mvp.presenter.PopularizationArticlePresenter
@@ -27,13 +27,12 @@ import com.wl.lawyer.mvp.ui.callback.ArticleQuickDiff
 import kotlinx.android.synthetic.main.activity_popularization_article.*
 import kotlinx.android.synthetic.main.fragment_find_lawyer.*
 import kotlinx.android.synthetic.main.include.*
-import kotlinx.android.synthetic.main.include_find_law.*
 
 @Route(path = RouterPath.LAWYER_ARTICLE_LIST)
 class PopularizationArticleActivity: BaseSupportActivity<PopularizationArticlePresenter>(),
 PopularizationArticleContract.View {
 
-    var lastData: LatestArticlesBean? = null
+    var lastData: BaseListBean<LawyerArticleBean>? = null
     var articleList: MutableList<LawyerArticleBean> = arrayListOf<LawyerArticleBean>()
     var allLoad = false
 
@@ -141,14 +140,14 @@ PopularizationArticleContract.View {
         mPresenter?.loadData()
     }
 
-    override fun onDataLoad(articles: LatestArticlesBean) {
+    override fun onDataLoad(articles: BaseListBean<LawyerArticleBean>) {
         lastData = articles
         articleList.clear()
         articleList.addAll(articles.list)
         updateAdapter()
     }
 
-    override fun onDataMore(articles: LatestArticlesBean) {
+    override fun onDataMore(articles: BaseListBean<LawyerArticleBean>) {
         lastData = articles
         articleList.addAll(articles.list)
         updateAdapter()

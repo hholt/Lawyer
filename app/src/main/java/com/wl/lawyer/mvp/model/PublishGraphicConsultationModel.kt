@@ -12,6 +12,7 @@ import com.wl.lawyer.mvp.contract.PublishGraphicConsultationContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
 import com.wl.lawyer.mvp.model.bean.CategoryBean
+import com.wl.lawyer.mvp.model.bean.PublishResultBean
 import io.reactivex.Observable
 
 
@@ -26,4 +27,11 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     lateinit var mApplication: Application
 
     override fun getCetagories() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getPTCCategories()
+
+    override fun createConsult(
+        title: String,
+        content: String,
+        imgs: String,
+        cId: Int
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).create(title, content, imgs, cId)
 }

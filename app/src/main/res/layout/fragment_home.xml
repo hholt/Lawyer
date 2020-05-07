@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include layout="@layout/include_status_bar" />
@@ -111,7 +112,8 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
                     android:paddingTop="12dp"
-                    android:paddingRight="20dp" />
+                    android:paddingRight="20dp"
+                    tools:itemCount="1"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_recommended_lawyer"
@@ -119,16 +121,14 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
                     android:paddingTop="12dp"
-                    android:paddingRight="20dp" />
+                    android:paddingRight="20dp"
+                    tools:itemCount="2"/>
 
                 <include layout="@layout/include_dividing_line" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_law_class"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp" />
+                <include layout="@layout/adapter_law_class_header"/>
+
+                <include layout="@layout/adapter_law_class"/>
 
             </LinearLayout>
 

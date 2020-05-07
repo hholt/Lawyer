@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gyf.immersionbar.ImmersionBar
 import com.jess.arms.di.component.AppComponent
+import com.lxj.androidktx.core.click
 import com.lxj.androidktx.core.getObject
 import com.lxj.androidktx.core.sp
 import com.wl.lawyer.R
 import com.wl.lawyer.app.AppConstant
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportFragment
 import com.wl.lawyer.app.circleImage
 import com.wl.lawyer.app.utils.ActivityUtils
@@ -110,6 +113,9 @@ class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View {
         tv_introduction.text = "法律明白人。。"
         constraint_avatar.setOnClickListener {
             ActivityUtils.goMyProfileActivity()
+        }
+        iv_new.click{
+            ARouter.getInstance().build(RouterPath.CHAT_LIST).navigation()
         }
         initSetting1Adapter()
         initSetting2Adapter()

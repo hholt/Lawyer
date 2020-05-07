@@ -7,33 +7,29 @@ import com.jess.arms.integration.AppManager
 import com.jess.arms.mvp.BasePresenter
 import com.wl.lawyer.app.utils.RxCompose
 import com.wl.lawyer.app.utils.RxView
-import com.wl.lawyer.mvp.contract.GraphicConsultationContract
+import com.wl.lawyer.mvp.contract.ChatListContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
-import com.wl.lawyer.mvp.model.bean.BaseListBean
-import com.wl.lawyer.mvp.model.bean.GraphicConsultationBean
 import com.wl.lawyer.mvp.model.bean.HomeDataBean
+import com.wl.lawyer.mvp.model.bean.TencentUserSignatureBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 import javax.inject.Inject
 
 
 @ActivityScope
-class GraphicConsultationPresenter
+class ChatListPresenter
 @Inject
-constructor(model: GraphicConsultationContract.Model, rootView: GraphicConsultationContract.View) :
-    BasePresenter<GraphicConsultationContract.Model, GraphicConsultationContract.View>(
-        model,
-        rootView
-    ) {
-    fun getPTCList() {
-        mModel.getPTCList()
+constructor(model: ChatListContract.Model, rootView: ChatListContract.View) :
+    BasePresenter<ChatListContract.Model, ChatListContract.View>(model, rootView) {
+    fun getUserSignature() {
+        mModel.getUserSignature()
             .compose(RxCompose.transformer(mRootView))
             .subscribe(object :
-                ErrorHandleSubscriber<BaseResponse<BaseListBean<GraphicConsultationBean>>>(mErrorHandler) {
-                override fun onNext(t: BaseResponse<BaseListBean<GraphicConsultationBean>>) {
+                ErrorHandleSubscriber<BaseResponse<TencentUserSignatureBean>>(mErrorHandler) {
+                override fun onNext(t: BaseResponse<TencentUserSignatureBean>) {
                     if (t.isSuccess) {
                         t.data?.let {
-                            mRootView?.onPTCListGet(it)
+                            mRootView?.onSignatureGet(it)
                         }
                     } else {
                         RxView.showErrorMsg(mRootView, t.msg)
@@ -44,10 +40,13 @@ constructor(model: GraphicConsultationContract.Model, rootView: GraphicConsultat
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
+
     @Inject
     lateinit var mApplication: Application
+
     @Inject
     lateinit var mImageLoader: ImageLoader
+
     @Inject
     lateinit var mAppManager: AppManager
 

@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_recommended_root"
     android:layout_width="match_parent"
-    android:layout_height="40dp">
+    android:layout_height="54dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_law_class"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
         android:src="@drawable/ic_recommended"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -42,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="换一换"
+        android:layout_marginEnd="@dimen/dp_20"
         android:textColor="@color/app_font_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

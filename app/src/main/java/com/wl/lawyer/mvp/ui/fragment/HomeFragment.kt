@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
+import com.lxj.androidktx.core.click
 import com.vondear.rxtool.RxBarTool
 import com.wl.lawyer.R
 import com.wl.lawyer.app.RouterPath
@@ -29,27 +30,42 @@ import com.youth.banner.Banner
 import com.youth.banner.config.IndicatorConfig
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.listener.OnBannerListener
+import kotlinx.android.synthetic.main.adapter_law_class.*
+import kotlinx.android.synthetic.main.adapter_law_class_header.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.include_status_bar.*
 
 
 class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 
+    var firstLawyer: HomeDataBean.LawyerBean? = null
+
+    lateinit var mLectureList: List<HomeDataBean.LawLectureBean>
+
     private val funcAdapter: HomeFuncAdapter by lazy {
         HomeFuncAdapter(funcItemData).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
                 when (position) {
                     0 -> {// 在线咨询
-                        mPresenter?.mAppManager?.startActivity(OnlineConsultationActivity::class.java)
+//                        mPresenter?.mAppManager?.startActivity(OnlineConsultationActivity::class.java)
+                        ARouter.getInstance().build(RouterPath.SERVICE_CONSULTATION)
+                            .withSerializable("lawyer", firstLawyer)
+                            .navigation()
                     }
                     1 -> {// 发布图文咨询
                         mPresenter?.mAppManager?.startActivity(PublishGraphicConsultationActivity::class.java)
                     }
                     2 -> {// 文书协作
-                        mPresenter?.mAppManager?.startActivity(ClericalCollaborationActivity::class.java)
+//                        mPresenter?.mAppManager?.startActivity(ClericalCollaborationActivity::class.java)
+                        ARouter.getInstance().build(RouterPath.SERVICE_COLLABORATION)
+                            .withSerializable("lawyer", firstLawyer)
+                            .navigation()
                     }
                     3 -> {// 委托书报价单
-                        mPresenter?.mAppManager?.startActivity(PowerAttorneyActivity::class.java)
+//                        mPresenter?.mAppManager?.startActivity(PowerAttorneyActivity::class.java)
+                        ARouter.getInstance().build(RouterPath.SERVICE_CASE)
+                            .withSerializable("lawyer", firstLawyer)
+                            .navigation()
                     }
                 }
             }
@@ -63,7 +79,8 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 //                mPresenter?.mAppManager?.startActivity(LawyerActivity::class.java)
                 getItem(position)?.lawyer?.let {
                     ARouter.getInstance().build(RouterPath.LAWYER_ACTIVITY)
-                        .withSerializable("lawyer", it).navigation()
+                        .withSerializable("lawyer", it)
+                        .navigation()
                 }
             }
         }
@@ -108,7 +125,6 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         initBanner()
         initFuncRv()
         initRecommendedAdapter()
-        initLawClassAdapter()
         initGetData()
     }
 
@@ -116,9 +132,20 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         mPresenter?.indexData()
     }
 
-    private fun initLawClassAdapter() {
-        rv_law_class.layoutManager = LinearLayoutManager(mContext)
-        rv_law_class.adapter = lawClassAdapter
+    private fun initLawClass() {
+        var index = 0
+        initLecture(mLectureList[index])
+        tv_change.click{
+            index = (index + 1) % mLectureList.size
+            initLecture(mLectureList[index])
+        }
+    }
+
+    private fun initLecture(lecture: HomeDataBean.LawLectureBean) {
+        lecture.apply {
+            tv_law_class_title.text = title
+            tv_law_class_content.text = text
+        }
     }
 
     private fun initRecommendedAdapter() {
@@ -150,6 +177,8 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
     private fun initFuncRv() {
         rv_func.layoutManager = GridLayoutManager(mContext, 4)
         rv_func.adapter = funcAdapter
+        rv_func.isNestedScrollingEnabled = false
+        rv_func.isFocusable = false
     }
 
     override fun onStart() {
@@ -279,18 +308,13 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
             for (lawyer in it) {
                 data.add(RecommendedLawyerDataBean(lawyer))
             }
+            firstLawyer = it[0]
         }
         recommendedAdapter.setNewData(data)
     }
 
     override fun indexLawLectureList(lectureList: List<HomeDataBean.LawLectureBean>) {
-        var data = arrayListOf<LawClassDataBean>()
-        data.add(LawClassDataBean(true, "", null, null))
-        lectureList?.let {
-            for (lecture in it) {
-                data.add(LawClassDataBean(false, "", lecture.title, lecture.text, lecture))
-            }
-        }
-        lawClassAdapter.setNewData(data)
+        mLectureList = lectureList
+        initLawClass()
     }
 }

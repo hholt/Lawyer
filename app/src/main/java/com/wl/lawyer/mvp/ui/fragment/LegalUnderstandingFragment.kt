@@ -142,15 +142,21 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
         initLawPopularization()
         // 普法课程
         ll_general_course.setOnClickListener {
-            val intent = Intent(mContext, PopularizationCourseActivity::class.java)
+            ARouter.getInstance().build(RouterPath.POPULARIZATION_COURSE)
+                .withString(RouterArgs.POPULARIZATION_TYPE, AppConstant.KEY_POPULARIZATION)
+                .navigation()
+            /*val intent = Intent(mContext, PopularizationCourseActivity::class.java)
             intent.putExtra(AppConstant.INTENT_POPULARIZATION, AppConstant.KEY_POPULARIZATION)
-            mPresenter?.mAppManager?.startActivity(intent)
+            mPresenter?.mAppManager?.startActivity(intent)*/
         }
         // 直播普法
         ll_live_popular_law.setOnClickListener {
-            val intent = Intent(mContext, PopularizationCourseActivity::class.java)
+            ARouter.getInstance().build(RouterPath.POPULARIZATION_COURSE)
+                .withString(RouterArgs.POPULARIZATION_TYPE, AppConstant.KEY_LIVE)
+                .navigation()
+            /*val intent = Intent(mContext, PopularizationCourseActivity::class.java)
             intent.putExtra(AppConstant.INTENT_POPULARIZATION, AppConstant.KEY_LIVE)
-            mPresenter?.mAppManager?.startActivity(intent)
+            mPresenter?.mAppManager?.startActivity(intent)*/
         }
     }
 

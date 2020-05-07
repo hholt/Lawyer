@@ -5,16 +5,19 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.wl.lawyer.R
+import com.wl.lawyer.app.*
 import com.wl.lawyer.app.base.BaseSupportActivity
-import com.wl.lawyer.app.circleImage
-import com.wl.lawyer.app.image
-import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerPopularizationCourseDetailsComponent
 import com.wl.lawyer.di.module.PopularizationCourseDetailsModule
 import com.wl.lawyer.mvp.contract.PopularizationCourseDetailsContract
+import com.wl.lawyer.mvp.model.api.Api
+import com.wl.lawyer.mvp.model.bean.LiveBean
 import com.wl.lawyer.mvp.model.bean.PopularizationCourseReviewsBean
 import com.wl.lawyer.mvp.presenter.PopularizationCourseDetailsPresenter
 import com.wl.lawyer.mvp.ui.adapter.PopularizationCourseReviewsAdapter
@@ -25,9 +28,18 @@ import kotlinx.android.synthetic.main.include_input.*
 /**
  * 普法课程详情
  */
+@Route(path=RouterPath.POPULARIZATION_COURSE_DETAIL)
 class PopularizationCourseDetailsActivity :
     BaseSupportActivity<PopularizationCourseDetailsPresenter>(),
     PopularizationCourseDetailsContract.View {
+
+    @Autowired(name=RouterArgs.LIVE)
+    @JvmField
+    var liveBean: LiveBean? = null
+
+    @Autowired(name=RouterArgs.POPULARIZATION_TYPE)
+    @JvmField
+    var type: String? = AppConstant.KEY_POPULARIZATION
 
     //    private val url = "http://jessehuan.fun:38080/s/stKB5gjfzxjJXcn"
     private val url = "http://jessehuan.fun:38080/s/stKB5gjfzxjJXcn/download"
@@ -37,7 +49,8 @@ class PopularizationCourseDetailsActivity :
             arrayListOf(
                 PopularizationCourseReviewsBean(
                     true,"评论"
-                ),
+                )
+                /*
                 PopularizationCourseReviewsBean(
                     "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
                     "coconut",
@@ -103,7 +116,7 @@ class PopularizationCourseDetailsActivity :
                     "coconut",
                     "2019.12.31  10:23",
                     "专业到位，直指问题所在。"
-                )
+                )*/
             )
         ).apply {
 
@@ -132,16 +145,29 @@ class PopularizationCourseDetailsActivity :
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        tv_title.text = "普法课程"
-        iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
+        ARouter.getInstance().inject(this)
 
-        tv_course_title.text = "李立刚委员讲解《劳动法》"
-        tv_course_time.text = "2020.02.11"
-        tv_course_desc.text =
-            "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元，见面礼300元，" +
-                    "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元"
+        tv_title.text = when (type) {
+            AppConstant.KEY_POPULARIZATION -> {
+                "法律课程"
+            }
+            AppConstant.KEY_LIVE -> {
+                "直播普法"
+            }
+            else -> {
+                "法律课程"
+            }
+        }
+
+        iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
+        liveBean?.apply {
+            tv_course_title.text = name
+            tv_course_time.text = startTimeText
+            tv_course_desc.text = desc
+        }
 
         initVideoView()
+
 
         rv_item.layoutManager = LinearLayoutManager(mContext)
         rv_item.adapter = adapter
@@ -152,11 +178,14 @@ class PopularizationCourseDetailsActivity :
     }
 
     private fun initVideoView() {
-        video_player.setUp(url, true, "测试视频")
-        val imageView = AppCompatImageView(mContext)
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        imageView.image("http://jessehuan.fun:38080/apps/files_sharing/publicpreview/a6CPDjJDYTLTaw8?x=2880&y=634&a=true&file=img_video.png&scalingup=0")
-        video_player.thumbImageView = imageView
+        liveBean?.apply {
+//            video_player.setUp("rtmp://58.200.131.2:1935/livetv/hunantv", true, name)
+            video_player.setUp(pushAddress, true, name)
+            val imageView = AppCompatImageView(mContext)
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+            imageView.image(Api.APP_DOMAIN + image)
+            video_player.thumbImageView = imageView
+        }
         video_player.backButton.visibility = View.GONE
         video_player.fullscreenButton.visibility = View.GONE
     }

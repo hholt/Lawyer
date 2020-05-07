@@ -3,9 +3,8 @@ package com.wl.lawyer.mvp.contract
 import com.jess.arms.mvp.IView
 import com.jess.arms.mvp.IModel
 import com.wl.lawyer.mvp.model.api.BaseResponse
-import com.wl.lawyer.mvp.model.bean.LatestArticlesBean
+import com.wl.lawyer.mvp.model.bean.BaseListBean
 import com.wl.lawyer.mvp.model.bean.LawyerArticleBean
-import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
 import io.reactivex.Observable
 
 
@@ -17,7 +16,7 @@ interface LegalUnderstandingContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model : IModel {
-        fun getArticles() : Observable<BaseResponse<LatestArticlesBean>>
+        fun getArticles() : Observable<BaseResponse<BaseListBean<LawyerArticleBean>>>
     }
 
 }

@@ -11,6 +11,7 @@ import com.wl.lawyer.mvp.contract.PublishGraphicConsultationContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
 import com.wl.lawyer.mvp.model.bean.PtcCategoryBean
+import com.wl.lawyer.mvp.model.bean.PublishResultBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 import javax.inject.Inject
@@ -36,6 +37,24 @@ constructor(
                     if (t.isSuccess) {
                         t.data?.let {
                             mRootView?.initCategories(it)
+                        }
+                    } else {
+                        RxView.showErrorMsg(mRootView, t.msg)
+                    }
+                }
+            })
+    }
+
+    fun createConsult(title: String, content: String, imgs: String, cId: Int) {
+        mModel.createConsult(title, content, imgs, cId)
+            .compose(RxCompose.transformer(mRootView))
+            .subscribe(object :
+                ErrorHandleSubscriber<BaseResponse<PublishResultBean>>(mErrorHandler) {
+                override fun onNext(t: BaseResponse<PublishResultBean>) {
+                    if (t.isSuccess) {
+                        t.data?.let {
+                            mRootView?.onPublishResult(it)
+                            RxView.showMsg(mRootView, "发布完成")
                         }
                     } else {
                         RxView.showErrorMsg(mRootView, t.msg)

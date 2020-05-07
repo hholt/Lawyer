@@ -30,9 +30,10 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginRight="20dp"
-                android:maxLines="1"
-                android:textColor="@color/app_font_black"
-                android:textSize="16sp" />
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/app_article_title"
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_course_time"
@@ -42,7 +43,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginRight="20dp"
                 android:maxLines="1"
-                android:textColor="@color/app_font_gray"
+                android:textColor="@color/app_article_sub"
                 android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -51,9 +52,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/dp_19"
                 android:layout_marginRight="20dp"
-                android:textColor="@color/app_font_gray"
+                android:textColor="@color/app_article_sub"
                 android:textSize="13sp" />
+
+            <include layout="@layout/include_dividing_line"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_item"
@@ -61,7 +65,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/app_padding_common"
-                android:paddingRight="@dimen/app_padding_common" />
+                android:paddingRight="@dimen/app_padding_common"
+                tools:itemCount="2"/>
 
         </LinearLayout>
 

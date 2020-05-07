@@ -108,6 +108,7 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
                     .navigation()
             }
             selectSet = typeList[0]
+            psv_set.text = typeList[0].name
             et_set_desc.hint = typeList[0].desc
             et_price.hint = "￥${typeList[0].price}/次"
         }.let {

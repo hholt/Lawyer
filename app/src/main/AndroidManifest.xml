@@ -59,6 +59,7 @@
         <activity android:name=".mvp.ui.activity.VideoCallActivity" />
         <activity android:name=".mvp.ui.activity.LiveActivity" />
         <activity android:name=".mvp.ui.activity.ChatActivity" />
+        <activity android:name=".mvp.ui.activity.ChatListActivity" />
         <activity android:name=".mvp.ui.activity.QuickRegisterActivity" />
         <activity
             android:name=".mvp.ui.activity.LoginActivity"

@@ -9,9 +9,8 @@ import com.wl.lawyer.app.utils.RxCompose
 import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.mvp.contract.PopularizationArticleContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
-import com.wl.lawyer.mvp.model.bean.LatestArticlesBean
+import com.wl.lawyer.mvp.model.bean.BaseListBean
 import com.wl.lawyer.mvp.model.bean.LawyerArticleBean
-import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 import javax.inject.Inject
@@ -32,8 +31,8 @@ constructor(
         mModel.loadData()
             .compose(RxCompose.transformer(mRootView))
             .subscribe(object :
-                ErrorHandleSubscriber<BaseResponse<LatestArticlesBean>>(mErrorHandler) {
-                override fun onNext(t: BaseResponse<LatestArticlesBean>) {
+                ErrorHandleSubscriber<BaseResponse<BaseListBean<LawyerArticleBean>>>(mErrorHandler) {
+                override fun onNext(t: BaseResponse<BaseListBean<LawyerArticleBean>>) {
                     if (t.isSuccess) {
                         t.data?.let {
                             mRootView?.onDataLoad(it)
@@ -51,8 +50,8 @@ constructor(
             mModel.loadMore(page)
                 .compose(RxCompose.transformer(mRootView))
                 .subscribe(object :
-                    ErrorHandleSubscriber<BaseResponse<LatestArticlesBean>>(mErrorHandler) {
-                    override fun onNext(t: BaseResponse<LatestArticlesBean>) {
+                    ErrorHandleSubscriber<BaseResponse<BaseListBean<LawyerArticleBean>>>(mErrorHandler) {
+                    override fun onNext(t: BaseResponse<BaseListBean<LawyerArticleBean>>) {
                         if (t.isSuccess) {
                             t.data?.let {
                                 mRootView?.onDataMore(it)

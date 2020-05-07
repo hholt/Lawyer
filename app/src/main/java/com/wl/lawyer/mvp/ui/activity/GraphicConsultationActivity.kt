@@ -2,14 +2,17 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerGraphicConsultationComponent
 import com.wl.lawyer.di.module.GraphicConsultationModule
 import com.wl.lawyer.mvp.contract.GraphicConsultationContract
+import com.wl.lawyer.mvp.model.bean.BaseListBean
 import com.wl.lawyer.mvp.model.bean.GraphicConsultationBean
 import com.wl.lawyer.mvp.presenter.GraphicConsultationPresenter
 import com.wl.lawyer.mvp.ui.adapter.GraphicConsultationAdapter
@@ -19,6 +22,8 @@ import kotlinx.android.synthetic.main.include.*
 /**
  * 图文咨询列表
  */
+
+@Route(path = RouterPath.GRAPHIC_CONSULE)
 class GraphicConsultationActivity : BaseSupportActivity<GraphicConsultationPresenter>(),
     GraphicConsultationContract.View {
 
@@ -34,27 +39,6 @@ class GraphicConsultationActivity : BaseSupportActivity<GraphicConsultationPrese
     private val adapter by lazy {
         GraphicConsultationAdapter(
             arrayListOf(
-                GraphicConsultationBean(
-                    "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
-                    "图文咨询的标题",
-                    "这里是单行的内容描述",
-                    "5条专业回复",
-                    "2020.02.11"
-                ),
-                GraphicConsultationBean(
-                    "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
-                    "图文咨询的标题",
-                    "这里是单行的内容描述",
-                    "5条专业回复",
-                    "2020.02.11"
-                ),
-                GraphicConsultationBean(
-                    "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
-                    "图文咨询的标题",
-                    "这里是单行的内容描述",
-                    "5条专业回复",
-                    "2020.02.11"
-                )
             )
         ).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
@@ -73,6 +57,13 @@ class GraphicConsultationActivity : BaseSupportActivity<GraphicConsultationPrese
 
         rv_item.layoutManager = LinearLayoutManager(mContext)
         rv_item.adapter = adapter
+
+        mPresenter?.getPTCList()
     }
+
+    override fun onPTCListGet(listBean: BaseListBean<GraphicConsultationBean>) {
+        adapter.setNewData(listBean.list)
+    }
+
 
 }

@@ -219,13 +219,13 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
 
     override fun initData(savedInstanceState: Bundle?) {
         tv_title.text = "律师详情"
+        iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
         tv_price.visibility = View.GONE
         lawyer?.let {
             mPresenter?.initData(it.lawyerId)
         }
         recommended_lawyer.dividing_line.visibility = View.GONE
         tv_job_title.visibility = View.VISIBLE
-        iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
         iv_right.visibility = View.VISIBLE
         iv_right.image(R.drawable.ic_share_it)
         iv_right.setOnClickListener { }
@@ -261,6 +261,8 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
     private fun initLatestArticlesAdapter() {
         rv_latest_articles.layoutManager = LinearLayoutManager(mContext)
         rv_latest_articles.adapter = latestArticlesAdapter
+        rv_latest_articles.isNestedScrollingEnabled = false
+        rv_latest_articles.isFocusable = false
         // 设置分割线
         // RVUtils.myDottedDivider(mContext, rv_service_project)
     }
@@ -268,6 +270,8 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
     private fun initReviewsAdapter() {
         rv_reviews.layoutManager = LinearLayoutManager(mContext)
         rv_reviews.adapter = reviewsAdapter
+        rv_reviews.isNestedScrollingEnabled = false
+        rv_reviews.isFocusable = false
         // 设置分割线
         // RVUtils.myDottedDivider(mContext, rv_reviews)
     }

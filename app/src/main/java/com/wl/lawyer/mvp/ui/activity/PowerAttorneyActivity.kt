@@ -2,8 +2,10 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.onBack
 import com.wl.lawyer.app.utils.RVUtils
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.include.*
 /**
  * 委托书报价单
  */
+@Route(path = RouterPath.SERVICE_CASE)
 class PowerAttorneyActivity : BaseSupportActivity<PowerAttorneyPresenter>(),
     PowerAttorneyContract.View {
 

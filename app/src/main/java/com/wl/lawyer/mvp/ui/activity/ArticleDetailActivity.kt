@@ -73,7 +73,7 @@ class ArticleDetailActivity: BaseSupportActivity<ArticleDetailPresenter>(),
             iv_header.image(Api.APP_DOMAIN + image)
             tv_article_title.text = title
             tv_author.text = "作者：${author}"
-            createTime.toTime("yyyy.MM.dd")
+//            createTime.toTime("yyyy.MM.dd")
             tv_date.text = "时间：${createTime.toTime("yyyy.MM.dd")}"
             tv_count.text = "浏览次数：100${readCount}"
 //            tv_content.text = HtmlCompat.fromHtml(content, HtmlCompat.FROM_HTML_MODE_COMPACT)

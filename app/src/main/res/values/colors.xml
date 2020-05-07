@@ -16,6 +16,7 @@
 
     <!--按钮背景色-->
     <color name="app_btn_bg_color">#1264DE</color>
+    <color name="app_bg_red">#F51616</color>
     <!--文字颜色-->
     <color name="app_font_white">#FFF</color>
     <color name="app_font_gray">#7D8898</color>

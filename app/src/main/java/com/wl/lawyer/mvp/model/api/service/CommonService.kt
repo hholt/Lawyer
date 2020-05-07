@@ -35,20 +35,25 @@ interface CommonService {
      */
     @GET("/api/consultation/getServiceType")
     fun serviceType(): Observable<BaseResponse<OnlineConsultlationBean>>
+
     /**
      * ******************************* 创建订单 *******************************
      */
     @GET("/api/consultation/createOrder")
-    fun createOrder(@Query("package_id") serviceId: Int,
-                    @Query("invite_lawyer_id") lawyerId: Int,
-                    @Query("pay_type")payMethod: String): Observable<BaseResponse<CreateOrderBean>>
+    fun createOrder(
+        @Query("package_id") serviceId: Int,
+        @Query("invite_lawyer_id") lawyerId: Int,
+        @Query("pay_type") payMethod: String
+    ): Observable<BaseResponse<CreateOrderBean>>
 
     /**
      * ******************************* 普法文章 *******************************
      */
     @GET("/api/popularize_law/getArticles")
-    fun getArticles(@Query("page") page: Int=1,
-                    @Query("page_size") pageSize: Int=10): Observable<BaseResponse<LatestArticlesBean>>
+    fun getArticles(
+        @Query("page") page: Int = 1,
+        @Query("page_size") pageSize: Int = 10
+    ): Observable<BaseResponse<BaseListBean<LawyerArticleBean>>>
 
     @GET("/api/popularize_law/getArticleDetail")
     fun getArticleDetail(@Query("id") id: Int): Observable<BaseResponse<ArticleDetailBean>>
@@ -58,6 +63,25 @@ interface CommonService {
      */
     @GET("/api/picture_text_consultation/getPTCCategories")
     fun getPTCCategories(): Observable<BaseResponse<List<PtcCategoryBean>>>
+
+
+    /**
+     * ******************************* 图文咨询分类 *******************************
+     */
+    @GET("/api/picture_text_consultation/getPTCList")
+    fun getPTCList(
+        @Query("page") page: Int = 1,
+        @Query("page_size") pageSize: Int = 10
+    ): Observable<BaseResponse<BaseListBean<GraphicConsultationBean>>>
+
+    /**
+     * ******************************* 创建图文咨询 *******************************
+     */
+    @GET("/api/picture_text_consultation/create")
+    fun create(@Query("title") title: String,
+               @Query("content") content: String,
+               @Query("images") imgs: String,
+               @Query("p_t_category_id") cId: Int): Observable<BaseResponse<PublishResultBean>>
 
     /**
      * ******************************* 直播列表 *******************************

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.Window
 import android.view.WindowManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.tencent.imsdk.TIMManager
 import com.tencent.trtc.TRTCCloud
@@ -12,6 +13,7 @@ import com.tencent.trtc.TRTCCloudDef.TRTC_APP_SCENE_VIDEOCALL
 import com.tencent.trtc.TRTCCloudListener
 import com.wl.lawyer.R
 import com.wl.lawyer.app.AppConstant
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.im.GenerateTestUserSig
 import com.wl.lawyer.app.mlog
@@ -24,7 +26,7 @@ import com.wl.lawyer.mvp.ui.activity.call.TRTCListener
 import kotlinx.android.synthetic.main.activity_video_call.*
 import java.util.*
 
-
+@Route(path = RouterPath.SERVICE_CASE)
 class VideoCallActivity : BaseSupportActivity<VideoCallPresenter>(), VideoCallContract.View {
 
     val KEY_ROOM_ID = "room_id"

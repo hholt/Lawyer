@@ -1,23 +1,20 @@
 package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.lxj.androidktx.core.click
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.onBack
-import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerPublishGraphicConsultationComponent
 import com.wl.lawyer.di.module.PublishGraphicConsultationModule
 import com.wl.lawyer.mvp.contract.PublishGraphicConsultationContract
-import com.wl.lawyer.mvp.model.bean.CommonBean
 import com.wl.lawyer.mvp.model.bean.PtcCategoryBean
+import com.wl.lawyer.mvp.model.bean.PublishResultBean
 import com.wl.lawyer.mvp.presenter.PublishGraphicConsultationPresenter
 import com.wl.lawyer.mvp.ui.adapter.CategorySpinnerAdapter
-import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
-import com.wl.lawyer.mvp.ui.adapter.SetSpinnerAdapter
-import kotlinx.android.synthetic.main.activity_popularization_course_details.*
 import kotlinx.android.synthetic.main.activity_publish_graphic_consultation.*
 import kotlinx.android.synthetic.main.include.*
 import kotlinx.android.synthetic.main.include.tv_title
@@ -25,6 +22,7 @@ import kotlinx.android.synthetic.main.include.tv_title
 /**
  * 发布图文咨询
  */
+@Route(path = RouterPath.PUBLISH_GRAPHIC_CONSULE)
 class PublishGraphicConsultationActivity :
     BaseSupportActivity<PublishGraphicConsultationPresenter>(),
     PublishGraphicConsultationContract.View {
@@ -50,27 +48,29 @@ class PublishGraphicConsultationActivity :
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
         psv_set.lifecycleOwner = this
-        psv_set.setOnSpinnerOutsideTouchListener{_, _ ->
+        psv_set.setOnSpinnerOutsideTouchListener { _, _ ->
             psv_set.dismiss()
         }
 
         mPresenter?.getCatagories()
 
         btn_common.click {
+            checkBeforeSubmit()
             submit()
         }
     }
 
-    override fun initCategories(list: List<PtcCategoryBean>) {
-        selectSet = list[0]
+    override fun initCategories(categoryBeans: List<PtcCategoryBean>) {
+        selectSet = categoryBeans[0]
+        psv_set.text = categoryBeans[0].name
         psv_set.apply {
-            text = list[0].name
+            text = categoryBeans[0].name
             setSpinnerAdapter(
                 CategorySpinnerAdapter(
                     psv_set,
-                    list
+                    categoryBeans
                 ).apply {
-                    setOnItemClickListener{adpter, view, position ->
+                    setOnItemClickListener { adpter, view, position ->
                         this.notifyItemSelected(position)
                     }
                 }
@@ -81,8 +81,20 @@ class PublishGraphicConsultationActivity :
         }
     }
 
+    fun checkBeforeSubmit() {
+
+    }
     fun submit() {
-//        mPresenter.create("这是标题", "这是内容", "", "")
+        mPresenter?.createConsult(
+            "这是标题",
+            "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容",
+            "/uploads/20200507/38ffd676fc8804ff7cf6daa7b83f4ab3.png",
+            selectSet!!.id
+        )
+    }
+
+    override fun onPublishResult(result: PublishResultBean) {
+
     }
 
 }

@@ -1,21 +1,41 @@
 package com.wl.lawyer.mvp.model.bean
 
-class GraphicConsultationBean {
-    var avatar: String? = null
-    var title: String? = null
-    var desc: String? = null
-    var reply: String? = null
-    var time: String? = null
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-    constructor()
-
-    constructor(avatar: String?, title: String?, desc: String?, reply: String?, time: String?) {
-        this.avatar = avatar
-        this.title = title
-        this.desc = desc
-        this.reply = reply
-        this.time = time
-    }
-
-
-}
+data class GraphicConsultationBean(
+    val id: Int,
+    @SerializedName("user_id") val uid: Int,
+    val title: String,
+    val content: String,
+    @SerializedName("p_t_category_id") val categoryId: Int,
+    val image: String,
+    val status: Int,
+    @SerializedName("createtime") val createTime: Long,
+    @SerializedName("updatetime") val updateTime: Long,
+    @SerializedName("view_count") val viewCount: Int,
+    val comments: List<String>,
+    @SerializedName("p_t_category_name") val categoryName: String,
+    val cover: Any,
+    @SerializedName("lawyer_comment_count") val lawyerCommentCount: Int
+) : Serializable
+/*
+*
+    "id": 21,
+    "user_id": 27,
+    "title": "寻求意见",
+    "content": "寻求意见寻求意见寻求意见寻求意见寻求意见寻求意见寻求意见",
+    "p_t_category_id": 1,
+    "images": "",
+    "status": "1",
+    "createtime": 1588844050,
+    "updatetime": 1588844050,
+    "deletetime": null,
+    "view_count": 0,
+    "comment_count": 0,
+    "comments": [],
+    "p_t_category_name": "民事纠纷",
+    "cover": null,
+    "lawyer_comment_count": 0
+*
+* */
