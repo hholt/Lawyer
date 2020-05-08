@@ -15,6 +15,10 @@ class ConsultingOrderPresenter
 @Inject
 constructor(model: ConsultingOrderContract.Model, rootView: ConsultingOrderContract.View) :
     BasePresenter<ConsultingOrderContract.Model, ConsultingOrderContract.View>(model, rootView) {
+    fun getMyOrderList() {
+        mModel.getMyOrderList()
+    }
+
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
     @Inject

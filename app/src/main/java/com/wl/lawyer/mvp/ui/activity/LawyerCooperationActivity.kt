@@ -19,8 +19,7 @@ import com.wl.lawyer.di.component.DaggerLawyerCooperationComponent
 import com.wl.lawyer.di.module.LawyerCooperationModule
 import com.wl.lawyer.mvp.contract.LawyerCooperationContract
 import com.wl.lawyer.mvp.model.bean.CommonBean
-import com.wl.lawyer.mvp.model.bean.HomeDataBean
-import com.wl.lawyer.mvp.model.bean.ServiceBean
+import com.wl.lawyer.mvp.model.bean.LawyerBean
 import com.wl.lawyer.mvp.presenter.LawyerCooperationPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
 import kotlinx.android.synthetic.main.activity_popularization_course_details.*
@@ -35,7 +34,7 @@ class LawyerCooperationActivity : BaseSupportActivity<LawyerCooperationPresenter
 
     @Autowired(name = RouterArgs.LAWYER)
     @JvmField
-    var lawyer: HomeDataBean.LawyerBean? = null
+    var lawyer: LawyerBean? = null
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerLawyerCooperationComponent //如找不到该类,请编译一下项目

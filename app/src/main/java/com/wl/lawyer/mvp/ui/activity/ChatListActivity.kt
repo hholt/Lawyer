@@ -2,6 +2,7 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.gyf.immersionbar.ImmersionBar
 import com.jess.arms.di.component.AppComponent
 import com.tencent.imsdk.TIMCallBack
 import com.tencent.imsdk.TIMManager
@@ -37,6 +38,13 @@ class ChatListActivity : BaseSupportActivity<ChatListPresenter>(), ChatListContr
 
         mPresenter?.getUserSignature()
 
+    }
+
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        ImmersionBar.with(this)
+            .titleBar(tab_bar)
+            .init()
     }
 
     override fun onSignatureGet(userBean: TencentUserSignatureBean) {

@@ -24,5 +24,7 @@ class RouterPath {
         const val POPULARIZATION_COURSE_DETAIL = "/wl/popularization_course_detail"
         const val PUBLISH_GRAPHIC_CONSULE = "/wl/publish_graphic_consule"
         const val GRAPHIC_CONSULE = "/wl/graphic_consule"
+        const val GRAPHIC_CONSULE_DETAIL = "/wl/graphic_consule_detail"
+        const val CONSULT_ORDER = "/wl/consult_order"
     }
 }

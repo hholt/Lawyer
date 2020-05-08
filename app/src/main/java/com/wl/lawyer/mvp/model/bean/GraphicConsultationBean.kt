@@ -14,7 +14,7 @@ data class GraphicConsultationBean(
     @SerializedName("createtime") val createTime: Long,
     @SerializedName("updatetime") val updateTime: Long,
     @SerializedName("view_count") val viewCount: Int,
-    val comments: List<String>,
+    val comments: List<ConsulationCommentBean>,
     @SerializedName("p_t_category_name") val categoryName: String,
     val cover: Any,
     @SerializedName("lawyer_comment_count") val lawyerCommentCount: Int
@@ -37,5 +37,6 @@ data class GraphicConsultationBean(
     "p_t_category_name": "民事纠纷",
     "cover": null,
     "lawyer_comment_count": 0
+
 *
 * */

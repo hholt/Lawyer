@@ -7,14 +7,18 @@ import android.os.Bundle
 import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
 import androidx.viewpager.widget.ViewPager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerConsultingOrderComponent
 import com.wl.lawyer.di.module.ConsultingOrderModule
 import com.wl.lawyer.mvp.contract.ConsultingOrderContract
+import com.wl.lawyer.mvp.model.bean.BaseListBean
+import com.wl.lawyer.mvp.model.bean.OrderInfoBean
 import com.wl.lawyer.mvp.presenter.ConsultingOrderPresenter
 import com.wl.lawyer.mvp.ui.adapter.ConsultingOrderPagerAdapter
 import kotlinx.android.synthetic.main.activity_consulting_order.*
@@ -31,6 +35,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.Simple
 /**
  * 咨询订单
  */
+@Route(path = RouterPath.CONSULT_ORDER)
 class ConsultingOrderActivity : BaseSupportActivity<ConsultingOrderPresenter>(),
     ConsultingOrderContract.View {
 
@@ -54,6 +59,8 @@ class ConsultingOrderActivity : BaseSupportActivity<ConsultingOrderPresenter>(),
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
         initMagicIndicator()
+
+        mPresenter?.getMyOrderList()
     }
 
     private fun initMagicIndicator() {
@@ -118,5 +125,7 @@ class ConsultingOrderActivity : BaseSupportActivity<ConsultingOrderPresenter>(),
         })
     }
 
-
+    override fun onOrderListGet(listBean: BaseListBean<OrderInfoBean>) {
+        arrayListOf<OrderInfoBean>()
+    }
 }

@@ -34,7 +34,7 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
 
     @Autowired(name = "lawyer")
     @JvmField
-    var lawyer: HomeDataBean.LawyerBean? = null
+    var lawyer: LawyerBean? = null
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerLawyerComponent //如找不到该类,请编译一下项目

@@ -4,6 +4,7 @@ import com.jess.arms.mvp.IModel
 import com.jess.arms.mvp.IView
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.HomeDataBean
+import com.wl.lawyer.mvp.model.bean.LawyerBean
 import io.reactivex.Observable
 
 
@@ -12,7 +13,7 @@ interface HomeContract {
     interface View : IView{
         fun indexBannerData(bannerDataList:List<HomeDataBean.BannerBean>)
 
-        fun indexLawyerList(lawyerList: List<HomeDataBean.LawyerBean>)
+        fun indexLawyerList(lawyerList: List<LawyerBean>)
 
         fun indexLawLectureList(lectureList: List<HomeDataBean.LawLectureBean>)
     }

@@ -38,7 +38,7 @@ import kotlinx.android.synthetic.main.include_status_bar.*
 
 class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 
-    var firstLawyer: HomeDataBean.LawyerBean? = null
+    var firstLawyer: LawyerBean? = null
 
     lateinit var mLectureList: List<HomeDataBean.LawLectureBean>
 
@@ -301,7 +301,7 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         banner.setOrientation(Banner.HORIZONTAL)
     }
 
-    override fun indexLawyerList(lawyerList: List<HomeDataBean.LawyerBean>) {
+    override fun indexLawyerList(lawyerList: List<LawyerBean>) {
         var data = arrayListOf<RecommendedLawyerDataBean>()
         data.add(RecommendedLawyerDataBean(true, "推荐律师"))
         lawyerList?.let {

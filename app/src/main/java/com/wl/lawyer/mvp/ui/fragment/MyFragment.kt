@@ -55,7 +55,8 @@ class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View {
                 BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
                     when (position) {
                         0 -> {//图文咨询详情
-                            mPresenter?.mAppManager?.startActivity(GraphicConsultationActivity::class.java)
+//                            mPresenter?.mAppManager?.startActivity(GraphicConsultationActivity::class.java)
+                            ARouter.getInstance().build(RouterPath.GRAPHIC_CONSULE).navigation()
                         }
                         1 -> {//咨询订单
                             mPresenter?.mAppManager?.startActivity(ConsultingOrderActivity::class.java)

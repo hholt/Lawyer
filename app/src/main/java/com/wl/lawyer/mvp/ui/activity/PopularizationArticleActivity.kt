@@ -162,7 +162,7 @@ PopularizationArticleContract.View {
         articleList?.let {
             if (it.size == lastData?.totalCount) {
                 allLoad = true
-                lawPopularizationAdapter.addFooterView(RVUtils.myFooterView(mContext, rv_law))
+                lawPopularizationAdapter.addFooterView(RVUtils.myFooterView(mContext, null))
             }
         }
     }

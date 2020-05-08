@@ -1,21 +1,49 @@
 package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
+import com.wl.lawyer.app.RouterArgs
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerGCDetailsComponent
 import com.wl.lawyer.di.module.GCDetailsModule
 import com.wl.lawyer.mvp.contract.GCDetailsContract
+import com.wl.lawyer.mvp.model.bean.CommentAdapterBean
+import com.wl.lawyer.mvp.model.bean.CommentRefreshBean
+import com.wl.lawyer.mvp.model.bean.ConsulationCommentBean
+import com.wl.lawyer.mvp.model.bean.GraphicConsultationBean
 import com.wl.lawyer.mvp.presenter.GCDetailsPresenter
+import com.wl.lawyer.mvp.ui.adapter.CommentAdapter
+import com.wl.lawyer.mvp.ui.callback.CommentQuickDiff
 import kotlinx.android.synthetic.main.activity_gcdetails.*
+import kotlinx.android.synthetic.main.adapter_recommended_lawyer_header.*
 import kotlinx.android.synthetic.main.include.*
 
 /**
  * 图文咨询详情 Graphic Consultation Details
  */
+@Route(path = RouterPath.GRAPHIC_CONSULE_DETAIL)
 class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsContract.View {
+
+    @Autowired(name = RouterArgs.GRAPHIC_CONSULATION)
+    @JvmField
+    var consulation: GraphicConsultationBean? = null
+
+    private val adapter by lazy {
+        CommentAdapter(
+            arrayListOf(
+            )
+        ).apply {
+
+        }
+    }
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerGCDetailsComponent //如找不到该类,请编译一下项目
@@ -31,14 +59,53 @@ class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsCo
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+        ARouter.getInstance().inject(this)
         tv_title.text = "图文咨询详情"
+        tv_recommended.text = "回复区"
+        tv_more.visibility = View.GONE
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
-        tv_gc_title.text = "张某与李某1、李某2婚约财产纠纷案"
-        tv_gc_desc.text =
-            "刑事辩护律师就被告人涉嫌诈骗罪，面临10年以上有期或无期徒刑，成功辩护，最终终以合同诈骗罪判处5年。案情简介：" +
-                    "被告人吴某因涉嫌诈骗80余万元被检察机关提起公诉。公诉机关指控其犯罪行为构成诈骗罪。刑法第二百六十六" +
-                    "条规定，诈骗公私财物，数额特别巨大或者有其他特别严重情节的，处十年以上有期徒刑或者无期徒刑，并处罚金或者没收财产。"
+        rv_comment.layoutManager = LinearLayoutManager(mContext)
+        rv_comment.adapter = adapter
+        rv_comment.isNestedScrollingEnabled = false
+        rv_comment.isFocusable = false
+
+        consulation?.let {
+            mPresenter?.getDetail(it.id)
+        }
+    }
+
+    override fun onDetailGet(consultationBean: GraphicConsultationBean) {
+        var data = arrayListOf<CommentAdapterBean>()
+        tv_gc_title.text = consultationBean.title
+        tv_gc_desc.text = consultationBean.content
+        consultationBean.apply {
+            comments.takeIf { comments.isNotEmpty() }?.forEach {
+                data.add(CommentAdapterBean(CommentAdapterBean.TYPE_LAWYER, it))
+                if (it.children.isNotEmpty()) {
+                    it.children.forEach {
+                        data.add(CommentAdapterBean(CommentAdapterBean.TYPE_REPLY, it))
+                    }
+                }
+            }
+        }
+        adapter.setNewDiffData(CommentQuickDiff(data))
+    }
+
+    override fun onCommentsGet(commentRefreshBean: CommentRefreshBean) {
+        var data = arrayListOf<CommentAdapterBean>()
+        commentRefreshBean.apply {
+            comments.takeIf { comments.isNotEmpty() }?.forEach {
+                data.add(CommentAdapterBean(CommentAdapterBean.TYPE_LAWYER, it))
+                if (it.children.isNotEmpty()) {
+                    it.children.forEach {
+                        data.add(CommentAdapterBean(CommentAdapterBean.TYPE_REPLY, it))
+                    }
+                }
+            }
+
+        }
+        adapter.setNewDiffData(CommentQuickDiff(data))
     }
 
 }

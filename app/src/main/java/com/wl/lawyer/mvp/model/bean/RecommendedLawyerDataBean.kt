@@ -10,7 +10,7 @@ class RecommendedLawyerDataBean : SectionEntity<RecommendedLawyerDataBean> {
     var price: String? = null
     var address: String? = null
     var type: String? = null
-    var lawyer: HomeDataBean.LawyerBean? = null
+    var lawyer: LawyerBean? = null
 
     constructor(isHeader: Boolean, header: String) : super(isHeader, header) {}
 
@@ -39,7 +39,7 @@ class RecommendedLawyerDataBean : SectionEntity<RecommendedLawyerDataBean> {
     }
 
     constructor(
-        lawyer: HomeDataBean.LawyerBean
+        lawyer: LawyerBean
     ) : this(false, "", lawyer.avatar, lawyer.username,
         lawyer.lawyerOld.toString(), lawyer.score, lawyer.cityText + lawyer.countryText, lawyer.categoryList?.get(0)?.name) {
         this.lawyer = lawyer

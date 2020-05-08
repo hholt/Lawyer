@@ -114,7 +114,7 @@ class LegalUnderstandingFragment : BaseSupportFragment<LegalUnderstandingPresent
                     }
                 }
             }
-            addFooterView(RVUtils.myFooterView(mContext, rv_law))
+            addFooterView(RVUtils.myFooterView(mContext, null))
         }
     }
 

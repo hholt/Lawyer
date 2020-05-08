@@ -25,11 +25,14 @@ constructor(model: GraphicConsultationContract.Model, rootView: GraphicConsultat
         model,
         rootView
     ) {
+    var isLoadingMore = false
     fun getPTCList() {
         mModel.getPTCList()
             .compose(RxCompose.transformer(mRootView))
             .subscribe(object :
-                ErrorHandleSubscriber<BaseResponse<BaseListBean<GraphicConsultationBean>>>(mErrorHandler) {
+                ErrorHandleSubscriber<BaseResponse<BaseListBean<GraphicConsultationBean>>>(
+                    mErrorHandler
+                ) {
                 override fun onNext(t: BaseResponse<BaseListBean<GraphicConsultationBean>>) {
                     if (t.isSuccess) {
                         t.data?.let {
@@ -42,12 +45,39 @@ constructor(model: GraphicConsultationContract.Model, rootView: GraphicConsultat
             })
     }
 
+    fun loadMore(page: Int) {
+        if (!isLoadingMore) {
+            isLoadingMore = true
+            mModel.getPTCListMore(page)
+                .compose(RxCompose.transformer(mRootView))
+                .subscribe(object :
+                    ErrorHandleSubscriber<BaseResponse<BaseListBean<GraphicConsultationBean>>>(
+                        mErrorHandler
+                    ) {
+                    override fun onNext(t: BaseResponse<BaseListBean<GraphicConsultationBean>>) {
+                        if (t.isSuccess) {
+                            t.data?.let {
+                                mRootView?.onPTCListMore(it)
+                            }
+                        } else {
+                            RxView.showErrorMsg(mRootView, t.msg)
+                        }
+                        isLoadingMore = false
+                    }
+                })
+        }
+    }
+
+
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
+
     @Inject
     lateinit var mApplication: Application
+
     @Inject
     lateinit var mImageLoader: ImageLoader
+
     @Inject
     lateinit var mAppManager: AppManager
 

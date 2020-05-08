@@ -34,7 +34,7 @@ class RecommendedLawyerAdapter(
         item?.lawyer?.let {
             helper.getView<AppCompatImageView>(R.id.iv_recommended_avatar)
                 .circleImage(Api.APP_DOMAIN + it.avatar)
-            helper.getView<AppCompatTextView>(R.id.tv_name).text = it.username
+            helper.getView<AppCompatTextView>(R.id.tv_name).text = it.nickname
             helper.getView<AppCompatTextView>(R.id.tv_time).text =
                 "执业${it.lawyerOld}年  |  ${it.cityText + it.countryText}"
             when (it.isRecommend) {

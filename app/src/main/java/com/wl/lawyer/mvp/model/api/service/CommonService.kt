@@ -66,13 +66,29 @@ interface CommonService {
 
 
     /**
-     * ******************************* 图文咨询分类 *******************************
+     * ******************************* 我的图文咨询列表 *******************************
      */
     @GET("/api/picture_text_consultation/getPTCList")
     fun getPTCList(
-        @Query("page") page: Int = 1,
-        @Query("page_size") pageSize: Int = 10
+        @Query("page") page: Int=1,
+        @Query("page_size") pageSize: Int=10
     ): Observable<BaseResponse<BaseListBean<GraphicConsultationBean>>>
+
+    /**
+     * ******************************* 图文咨询详情 *******************************
+     */
+    @GET("/api/picture_text_consultation/getDetail")
+    fun getConsulationDetail(
+        @Query("consultation_id") cid: Int
+    ): Observable<BaseResponse<GraphicConsultationBean>>
+
+    /**
+     * ******************************* 获取图文咨询评论 *******************************
+     */
+    @GET("/api/picture_text_consultation/getComments")
+    fun getComments(
+        @Query("consultation_id") cid: Int
+    ): Observable<BaseResponse<CommentRefreshBean>>
 
     /**
      * ******************************* 创建图文咨询 *******************************
@@ -82,6 +98,12 @@ interface CommonService {
                @Query("content") content: String,
                @Query("images") imgs: String,
                @Query("p_t_category_id") cId: Int): Observable<BaseResponse<PublishResultBean>>
+
+    /**
+     * ******************************* 获取我的订单列表 *******************************
+     */
+    @GET("/api/consultation/getMyOrderList")
+    fun getMyOrderList(): Observable<BaseResponse<BaseListBean<OrderInfoBean>>>
 
     /**
      * ******************************* 直播列表 *******************************

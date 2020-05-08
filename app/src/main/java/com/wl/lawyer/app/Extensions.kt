@@ -130,6 +130,8 @@ fun ImageView.roundedImage(path: String, rounder: Int) {
 //        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
 
     val options = RequestOptions()
+        .placeholder(R.drawable.ic_my_avatar)
+        .error(R.drawable.ic_mine)
         .transform(GlideRoundTransform(rounder))
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
     Glide.with(context)

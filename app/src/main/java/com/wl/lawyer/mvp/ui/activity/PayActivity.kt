@@ -36,7 +36,7 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
 
     @Autowired(name=RouterArgs.LAWYER)
     @JvmField
-    var lawyer: HomeDataBean.LawyerBean? = null
+    var lawyer: LawyerBean? = null
 
     @Autowired(name=RouterArgs.SERVICE_SET)
     @JvmField

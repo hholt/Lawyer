@@ -9,10 +9,7 @@ import com.jess.arms.di.scope.ActivityScope
 import javax.inject.Inject
 
 import com.wl.lawyer.mvp.contract.GraphicConsultationContract
-import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
-import com.wl.lawyer.mvp.model.bean.GraphicConsultationBean
-import io.reactivex.Observable
 
 
 @ActivityScope
@@ -26,4 +23,5 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     lateinit var mApplication: Application
 
     override fun getPTCList() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getPTCList()
+    override fun getPTCListMore(page: Int) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getPTCList(page)
 }

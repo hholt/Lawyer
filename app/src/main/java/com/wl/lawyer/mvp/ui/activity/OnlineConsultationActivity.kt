@@ -17,10 +17,7 @@ import com.wl.lawyer.di.component.DaggerOnlineConsultationComponent
 import com.wl.lawyer.di.module.OnlineConsultationModule
 import com.wl.lawyer.mvp.contract.OnlineConsultationContract
 import com.wl.lawyer.mvp.model.api.Api
-import com.wl.lawyer.mvp.model.bean.CommonBean
-import com.wl.lawyer.mvp.model.bean.ConsultlationSetBean
-import com.wl.lawyer.mvp.model.bean.HomeDataBean
-import com.wl.lawyer.mvp.model.bean.OnlineConsultlationBean
+import com.wl.lawyer.mvp.model.bean.*
 import com.wl.lawyer.mvp.presenter.OnlineConsultationPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
 import com.wl.lawyer.mvp.ui.adapter.SetSpinnerAdapter
@@ -36,7 +33,7 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
 
     @Autowired(name = RouterArgs.LAWYER)
     @JvmField
-    var lawyer: HomeDataBean.LawyerBean? = null
+    var lawyer: LawyerBean? = null
 
     var selectSet: ConsultlationSetBean? = null
 
@@ -88,7 +85,7 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
         tv_title.text = "在线咨询"
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
         psv_set.lifecycleOwner = this
-        psv_set.setOnSpinnerOutsideTouchListener{_, _ ->
+        psv_set.setOnSpinnerOutsideTouchListener { _, _ ->
             psv_set.dismiss()
         }
 
@@ -98,7 +95,7 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
     override fun initType(typeList: List<ConsultlationSetBean>) {
         lawyer?.apply {
             iv_lawyer_avatar.circleImage(Api.APP_DOMAIN + avatar)
-            et_lawyer_name.hint = "${username}律师"
+            et_lawyer_name.hint = "${nickname}律师"
             tv_desc.text = "我们针对不同的情况，定制了不同的咨询套餐，提供了不同的咨询方式和收费标准，请按照您的需要进行选择。"
             btn_common.click {
                 ARouter.getInstance().build(RouterPath.ORDER_COMFIRM)
@@ -119,7 +116,7 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
                         psv_set,
                         typeList
                     ).apply {
-                        setOnItemClickListener{adpter, view, position ->
+                        setOnItemClickListener { adpter, view, position ->
                             this.notifyItemSelected(position)
                         }
                     }

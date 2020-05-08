@@ -43,7 +43,7 @@ class PersonalInformationActivity : BaseSupportActivity<PersonalInformationPrese
     }
 
     private var userBean: UserBean? = null
-    private val mIsChangeAvatar = false
+    private var mIsChangeAvatar = false
 
     private fun getAdapterData(): ArrayList<SettingDataBean> {
         userBean = sp().getObject<UserBean>(AppConstant.SP_USER)
@@ -123,6 +123,7 @@ class PersonalInformationActivity : BaseSupportActivity<PersonalInformationPrese
                                     override fun onSelect(data: MutableList<String>?) {
                                         data?.get(0)?.let {
                                             setAvatar(1, it)
+                                            mIsChangeAvatar = true
                                             mlog("选择图片 $it")
                                         }
                                     }

@@ -5,7 +5,7 @@ import java.io.Serializable
 
 class UserBean : Serializable {
 
-    var userinfo: UserinfoBean? = null
+    @SerializedName("user_info") var userinfo: UserinfoBean? = null
 
     class UserinfoBean : Serializable {
         var id: Int = 0

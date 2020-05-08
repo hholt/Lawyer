@@ -19,7 +19,7 @@ class GraphicConsultationAdapter(data: List<GraphicConsultationBean>) :
 
     override fun convert(helper: BaseViewHolder, item: GraphicConsultationBean?) {
         item?.apply {
-            helper?.getView<AppCompatImageView>(R.id.iv_avatar).roundedImage(Api.Companion.APP_DOMAIN + image, 10)
+            helper?.getView<AppCompatImageView>(R.id.iv_avatar).roundedImage(Api.APP_DOMAIN + cover, 10)
             helper?.getView<AppCompatTextView>(R.id.tv_title).text = title
             helper?.getView<AppCompatTextView>(R.id.tv_desc).text = content
             helper?.getView<AppCompatTextView>(R.id.tv_reply).text = "${lawyerCommentCount}条专业回复"
