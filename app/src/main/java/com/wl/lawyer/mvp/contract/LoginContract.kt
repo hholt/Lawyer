@@ -3,6 +3,7 @@ package com.wl.lawyer.mvp.contract
 import com.jess.arms.mvp.IModel
 import com.jess.arms.mvp.IView
 import com.wl.lawyer.mvp.model.api.BaseResponse
+import com.wl.lawyer.mvp.model.bean.TencentUserSignatureBean
 import com.wl.lawyer.mvp.model.bean.UserBean
 import io.reactivex.Observable
 
@@ -20,6 +21,8 @@ interface LoginContract {
         fun loginUser(
             mobile: String?, password: String?
         ): Observable<BaseResponse<UserBean>>
+
+        fun generateUserSig(): Observable<BaseResponse<TencentUserSignatureBean>>
     }
 
 }

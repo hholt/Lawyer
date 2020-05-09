@@ -74,6 +74,13 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
 
     private val recommendedAdapter: RecommendedLawyerAdapter by lazy {
         RecommendedLawyerAdapter(recommendedData).apply {
+            setOnItemChildClickListener { adapter, view, position ->
+                view?.let {
+                    if (it.id == R.id.tv_more) {
+                        mPresenter?.goToFindLawyer()
+                    }
+                }
+            }
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
                 // 律师详情
 //                mPresenter?.mAppManager?.startActivity(LawyerActivity::class.java)
@@ -126,6 +133,9 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         initFuncRv()
         initRecommendedAdapter()
         initGetData()
+        view_fbg.click {
+            mPresenter?.goToLawUnderstanding()
+        }
     }
 
     private fun initGetData() {
@@ -135,7 +145,7 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
     private fun initLawClass() {
         var index = 0
         initLecture(mLectureList[index])
-        tv_change.click{
+        tv_change.click {
             index = (index + 1) % mLectureList.size
             initLecture(mLectureList[index])
         }
@@ -317,4 +327,7 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
         mLectureList = lectureList
         initLawClass()
     }
+
+    override fun getParentBottomBar() =
+        (parentFragment as MainfFragment).getBottomBar()
 }

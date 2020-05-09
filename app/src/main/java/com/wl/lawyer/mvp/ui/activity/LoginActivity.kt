@@ -2,6 +2,7 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
 import com.lxj.androidktx.core.getObject
 import com.lxj.androidktx.core.sp
@@ -9,6 +10,7 @@ import com.vondear.rxtool.RxAppTool
 import com.vondear.rxtool.RxKeyboardTool
 import com.wl.lawyer.R
 import com.wl.lawyer.app.AppConstant
+import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.utils.ActivityUtils
 import com.wl.lawyer.di.component.DaggerLoginComponent
@@ -21,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 /**
  * 登录界面
  */
+@Route(path = RouterPath.LOGIN_ACTIVITY)
 class LoginActivity : BaseSupportActivity<LoginPresenter>(), LoginContract.View,
     View.OnClickListener {
 

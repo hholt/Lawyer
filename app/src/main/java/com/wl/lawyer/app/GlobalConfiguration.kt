@@ -32,6 +32,7 @@ class GlobalConfiguration : ConfigModule {
         // 第三方库组件初始化（建议每一个库新建一个单独的AppLifecycles）
         lifecycles.add(AppLifecyclesThirdPartyImpl())
         lifecycles.add(AppArouterLifecyclesImpl())
+        lifecycles.add(TIMImpl())
     }
 
     override fun injectActivityLifecycle(

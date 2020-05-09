@@ -9,7 +9,7 @@ data class GraphicConsultationBean(
     val title: String,
     val content: String,
     @SerializedName("p_t_category_id") val categoryId: Int,
-    val image: String,
+    val images: String,
     val status: Int,
     @SerializedName("createtime") val createTime: Long,
     @SerializedName("updatetime") val updateTime: Long,

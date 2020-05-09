@@ -224,3 +224,7 @@ fun Long.toTime(): String {
 fun Long.toTime(sdf: String): String {
     return SimpleDateFormat(sdf).format(Date(this * 1000))
 }
+
+fun Long.isNotExpired(): Boolean {
+    return Date().time < (this * 1000)
+}

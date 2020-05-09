@@ -87,7 +87,7 @@ constructor(model: PersonalInformationContract.Model, rootView: PersonalInformat
             .subscribe(object : ErrorHandleSubscriber<BaseResponse<UserBean>>(mErrorHandler) {
                 override fun onNext(t: BaseResponse<UserBean>) {
                     if (t.isSuccess) {
-                        mUserInfoBean = t?.data?.userinfo
+//                        mUserInfoBean = t?.data?.userinfo
                         mlog("获取用户信息 $mUserInfoBean")
                     } else {
                         RxView.showErrorMsg(mRootView, t.msg)

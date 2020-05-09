@@ -44,6 +44,14 @@ constructor(model: HomeContract.Model, rootView: HomeContract.View) :
             })
     }
 
+    fun goToLawUnderstanding() {
+        mRootView.getParentBottomBar().setCurrentItem(2)
+    }
+
+    fun goToFindLawyer() {
+        mRootView.getParentBottomBar().setCurrentItem(1)
+    }
+
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
     @Inject

@@ -22,7 +22,7 @@
         android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:background="@drawable/shape_et_bg"
-        android:hint="发表评论"
+        android:hint="输入你想说的话"
         android:inputType="text"
         android:maxLines="1"
         android:paddingLeft="14dp"

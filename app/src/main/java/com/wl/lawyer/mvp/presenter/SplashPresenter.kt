@@ -14,11 +14,13 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import com.tencent.qcloud.tim.uikit.TUIKit
 import com.tencent.qcloud.tim.uikit.base.IUIKitCallBack
 import com.wl.lawyer.app.AppConstant
-import com.wl.lawyer.app.im.GenerateTestUserSig
+import com.wl.lawyer.app.isNotExpired
 import com.wl.lawyer.app.mlog
 import com.wl.lawyer.app.utils.ActivityUtils
 import com.wl.lawyer.app.utils.RxCompose
+import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.mvp.contract.SplashContract
+import com.wl.lawyer.mvp.model.bean.TencentUserSignatureBean
 import com.wl.lawyer.mvp.model.bean.UserBean
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -36,10 +38,13 @@ constructor(model: SplashContract.Model, rootView: SplashContract.View) :
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
+
     @Inject
     lateinit var mApplication: Application
+
     @Inject
     lateinit var mImageLoader: ImageLoader
+
     @Inject
     lateinit var mAppManager: AppManager
 
@@ -103,9 +108,16 @@ constructor(model: SplashContract.Model, rootView: SplashContract.View) :
             .compose(RxCompose.transformer())
             .subscribe(object : Observer<Long> {
                 override fun onComplete() {
+                    val userInfo = sp().getObject<UserBean>(AppConstant.SP_USER)?.userinfo
+                    val userSig = sp().getObject<TencentUserSignatureBean>(AppConstant.SP_SIG)
+                    if (userInfo != null && userSig != null && userInfo.expiretime.isNotExpired()) {
+                        tuikitLogin(userSig)
+                    } else {
+                        ActivityUtils.goLoginActivity()
+                    }
 //                    mAppManager.startActivity()
 //                    mAppManager.startActivity(LoginActivity::class.java)
-                    var userSig = GenerateTestUserSig.genTestUserSig(AppConstant.USER_ID)
+                    /*var userSig = GenerateTestUserSig.genTestUserSig(AppConstant.USER_ID)
                     TUIKit.login(AppConstant.USER_ID, userSig, object : IUIKitCallBack {
 
                         override fun onError(module: String?, errCode: Int, errMsg: String?) {
@@ -123,7 +135,7 @@ constructor(model: SplashContract.Model, rootView: SplashContract.View) :
                             }
                         }
 
-                    })
+                    })*/
                 }
 
                 override fun onSubscribe(d: Disposable) {
@@ -138,6 +150,26 @@ constructor(model: SplashContract.Model, rootView: SplashContract.View) :
 
                 }
             })
+    }
+
+    private fun tuikitLogin(userSig: TencentUserSignatureBean) {
+
+        TUIKit.login(userSig.nickname, userSig.sig, object : IUIKitCallBack {
+
+            override fun onError(module: String?, errCode: Int, errMsg: String?) {
+                mlog("module:$module err code:$errCode msg:$errMsg")
+                ActivityUtils.goMainActivity()
+                RxView.showMsg(mRootView, "$errMsg")
+            }
+
+            override fun onSuccess(data: Any?) {
+//                            mAppManager.startActivity(LiveActivity::class.java)
+//                            mAppManager.startActivity(ChatActivity::class.java)
+
+                ActivityUtils.goMainActivity()
+            }
+
+        })
     }
 
 }

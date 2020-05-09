@@ -5,7 +5,7 @@ class AppConstant {
         const val TENCENT_LIVE_LICENCE_KEY: String = "9a3719044e68b75b59089a2f88b610e0"
         const val TENCENT_LIVE_LICENCE_URL: String =
             "http://license.vod2.myqcloud.com/license/v1/0dc38e01207e313a66523e3d0a0ad123/TXLiveSDK.licence"
-        const val TENCENT_IM_SDK_ID: Int = 1400307065
+        const val TENCENT_IM_SDK_ID: Int = 1400321741
         //应用包名
         const val PACKAGE_NAME_QQ: String = "com.tencent.mobileqq"
         const val PACKAGE_NAME_WEIBO: String = "com.sina.weibo"
@@ -50,6 +50,8 @@ class AppConstant {
          * /////////////////////////////////////SP key/////////////////////////////////////
          */
         const val SP_USER: String = "sp_user"
+        // 腾讯云sig
+        const val SP_SIG: String = "sp_sig"
 
         /**
          * /////////////////////////////////////Exception key/////////////////////////////////////

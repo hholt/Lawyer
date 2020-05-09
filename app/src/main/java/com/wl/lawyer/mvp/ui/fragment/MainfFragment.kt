@@ -49,6 +49,8 @@ class MainfFragment : BaseSupportFragment<MainfPresenter>(), MainfContract.View 
 
     }
 
+    fun getBottomBar() = bottom_bar
+
     companion object {
         fun newInstance(): MainfFragment {
             val fragment = MainfFragment()
@@ -123,4 +125,7 @@ class MainfFragment : BaseSupportFragment<MainfPresenter>(), MainfContract.View 
     }
 
 
+    override fun onNewBundle(args: Bundle) {
+        super.onNewBundle(args)
+    }
 }

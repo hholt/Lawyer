@@ -2,12 +2,10 @@ package com.wl.lawyer.mvp.model.api.service
 
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.Type
+import com.wl.lawyer.mvp.model.bean.TencentUserSignatureBean
 import com.wl.lawyer.mvp.model.bean.UserBean
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserService {
     /**
@@ -96,4 +94,15 @@ interface UserService {
     @FormUrlEncoded
     @POST("/api/user/profile")
     fun updateProfileUser(@Body userBean: UserBean.UserinfoBean): Observable<BaseResponse<Any>>
+
+    /**
+     * ******************************* TencentIM *******************************
+     */
+
+    /**
+     * 获取重置配置信息
+     */
+    @GET("/api/user/generalTencentUserSig")
+    fun generateUserSig(): Observable<BaseResponse<TencentUserSignatureBean>>
+
 }

@@ -8,11 +8,12 @@ import android.graphics.Rect
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import com.jess.arms.utils.ArmsUtils
 import com.wl.lawyer.R
 import java.util.logging.Logger
 
-class TextStatusView : TextView {
+class TextStatusView : AppCompatTextView {
 
     val logger = Logger.getLogger("TextStatusView")
 

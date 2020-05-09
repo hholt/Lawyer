@@ -38,7 +38,7 @@ class RechargeActivity : BaseSupportActivity<RechargePresenter>(), RechargeContr
     private val adapter by lazy {
         RechargeAmountAdapter(null).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
-                currentPosition = position
+                currentPosition = if (currentPosition == position) -1 else position
                 notifyDataSetChanged()
             }
         }

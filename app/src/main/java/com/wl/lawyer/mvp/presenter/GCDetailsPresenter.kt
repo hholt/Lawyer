@@ -33,6 +33,9 @@ constructor(model: GCDetailsContract.Model, rootView: GCDetailsContract.View) :
                     if (t.isSuccess) {
                         t.data?.let {
                             mRootView?.onDetailGet(it)
+                            if (it.images.isNotEmpty()) {
+                                mRootView.onGraphicGet(it.images.split(";"))
+                            }
                         }
                     } else {
                         RxView.showErrorMsg(mRootView, t.msg)
