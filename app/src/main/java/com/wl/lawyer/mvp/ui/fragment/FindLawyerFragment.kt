@@ -181,6 +181,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         initSelectorAdapter()
         initAdapter()
 
+        et_search.maxLines = 1
         et_search.setOnKeyListener(object : View.OnKeyListener{
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
                 when (keyCode) {
