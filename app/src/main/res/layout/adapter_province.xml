@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_province"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_40"
+    android:gravity="center_vertical"
+    android:textSize="14sp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:text="北京市"
+    android:textColor="@color/app_article_title"
+    android:paddingStart="@dimen/dp_20"/>

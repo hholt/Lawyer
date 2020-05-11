@@ -110,4 +110,30 @@ interface CommonService {
      */
     @GET("/api/live/getLiveRoomList")
     fun getLiveRoomList(): Observable<BaseResponse<LiveListBean>>
+    /**
+     * ******************************* 获取律师列表 *******************************
+     */
+    @GET("/api/lawyer/getLawyerList")
+    fun getLawyerList(@Query("page") page: Int = 1,
+                      @Query("keyword") keyword: String = "",
+                      @Query("province_id") pId: Int = 0,
+                      @Query("city_id") cid: Int = 0,
+                      @Query("country_id") bId: Int = 0,
+                      @Query("legal_category_id") categoryId: String = "",
+                      @Query("legal_service_id") serviceId: String = "",
+                      @Query("sort_order") sortBy: String = ""): Observable<BaseResponse<FindLawyerBean>>
+
+    /**
+     * ******************************* 获取律师搜索字段 *******************************
+     */
+    @GET("/api/lawyer/getLawyerSearchFiled")
+    fun getSearchField(): Observable<BaseResponse<SearchBean>>
+    /**
+     * ******************************* 获取地区列表 *******************************
+     */
+    @GET("/api/common/getAreaList")
+    fun getAreaList(
+        @Query("id") id: Int
+    ): Observable<BaseResponse<List<SearchBean.AreaBean>>>
+
 }

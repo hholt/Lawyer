@@ -25,13 +25,11 @@ import com.wl.lawyer.mvp.model.bean.BannerDataBean
 import com.wl.lawyer.mvp.model.bean.LawPopularizationDataBean
 import com.wl.lawyer.mvp.model.bean.LawyerArticleBean
 import com.wl.lawyer.mvp.presenter.LegalUnderstandingPresenter
-import com.wl.lawyer.mvp.ui.activity.PopularizationCourseActivity
 import com.wl.lawyer.mvp.ui.adapter.BannerImageAdapter
 import com.wl.lawyer.mvp.ui.adapter.LawPopularizationAdapter
 import com.wl.lawyer.mvp.ui.widget.RectangleIndicator
 import com.youth.banner.Banner
 import com.youth.banner.config.IndicatorConfig
-import kotlinx.android.synthetic.main.fragment_find_lawyer.*
 import kotlinx.android.synthetic.main.fragment_home.banner
 import kotlinx.android.synthetic.main.fragment_legal_understanding.*
 import kotlinx.android.synthetic.main.include_status_bar.*

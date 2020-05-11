@@ -1,6 +1,7 @@
 package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
+import android.view.WindowManager
 import com.gyf.immersionbar.ImmersionBar
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
@@ -45,6 +46,8 @@ class MainActivity : BaseSupportActivity<MainPresenter>(), MainContract.View {
     }
 
     override fun initView(savedInstanceState: Bundle?): Int {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return R.layout.activity_main
     }
 

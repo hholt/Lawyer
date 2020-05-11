@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@null"
+        android:lines="1"
         android:hint="请输入律师名字"
         android:focusedByDefault="false"
         android:maxLines="1"

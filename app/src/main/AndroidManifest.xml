@@ -29,7 +29,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".mvp.ui.activity.LawyerDetailsActivity"></activity>
+        <activity android:name=".mvp.ui.activity.LawyerDetailsActivity" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".mvp.ui.activity.ModifyPhoneActivity" />
         <activity android:name=".mvp.ui.activity.LawyerCooperationActivity" />
         <activity android:name=".mvp.ui.activity.PowerAttorneyActivity" />

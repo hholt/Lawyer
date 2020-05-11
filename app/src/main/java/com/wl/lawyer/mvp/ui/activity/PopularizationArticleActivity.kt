@@ -25,7 +25,6 @@ import com.wl.lawyer.mvp.presenter.PopularizationArticlePresenter
 import com.wl.lawyer.mvp.ui.adapter.LawPopularizationAdapter
 import com.wl.lawyer.mvp.ui.callback.ArticleQuickDiff
 import kotlinx.android.synthetic.main.activity_popularization_article.*
-import kotlinx.android.synthetic.main.fragment_find_lawyer.*
 import kotlinx.android.synthetic.main.include.*
 
 @Route(path = RouterPath.LAWYER_ARTICLE_LIST)
