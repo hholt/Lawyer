@@ -1,10 +1,10 @@
 package com.wl.lawyer.mvp.ui.fragment
 
+import android.hardware.input.InputManager
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.TextView
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
@@ -19,6 +19,7 @@ import com.wl.lawyer.R
 import com.wl.lawyer.app.RouterArgs
 import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportFragment
+import com.wl.lawyer.app.mlog
 import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerFindLawyerComponent
 import com.wl.lawyer.di.module.FindLawyerModule
@@ -53,6 +54,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
     var category: CategoryBean? = null
     var service: LawyerServiceBean? = null
     var sortBy: SearchBean.SortBean? = null
+    var selectorVisible = false
 
     override fun setupFragmentComponent(appComponent: AppComponent) {
         DaggerFindLawyerComponent //如找不到该类,请编译一下项目
@@ -175,14 +177,26 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-
+        mlog(activity?.window?.attributes?.softInputMode!!.toString())
         mPresenter?.loadData()
         initSelector()
         initSelectorAdapter()
         initAdapter()
 
+        iv_clear.click {
+            et_search.setText("")
+        }
+
         et_search.maxLines = 1
-        et_search.setOnKeyListener(object : View.OnKeyListener{
+        et_search.setOnEditorActionListener { _, actionId, event ->
+            if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+                mPresenter?.search()
+                hideSoftInput()
+            }
+            event.keyCode == KeyEvent.KEYCODE_ENTER
+
+        }
+        /*et_search.setOnKeyListener(object : View.OnKeyListener{
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
                 when (keyCode) {
                     KeyEvent.KEYCODE_ENTER, KeyEvent.KEYCODE_NUMPAD_ENTER -> {
@@ -194,7 +208,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
                 }
                 return false
             }
-        })
+        })*/
 
         btn_reset.click {
             provinceAdapter.reset()
@@ -215,7 +229,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
             mPresenter?.search()
             dismisssSelector()
         }
-        btn_confirm.click{
+        btn_confirm.click {
             province = provinceAdapter.getSelectItem()
             city = cityAdapter.getSelectItem()
             block = blockAdapter.getSelectItem()
@@ -235,25 +249,15 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
 
     private fun initSelector() {
         tv_area.click {
-            if (layout_menu_detail.isGone) {
-                showSelector(layout_area_selector)
-            } else {
-                dismisssSelector()
-            }
+            showSelector(layout_area_selector)
+
         }
         tv_category.click {
-            if (layout_menu_detail.isGone) {
-                showSelector(layout_category_selector)
-            } else {
-                dismisssSelector()
-            }
+            showSelector(layout_category_selector)
+
         }
         tv_sort.click {
-            if (layout_menu_detail.isGone) {
-                showSelector(layout_sort_selector)
-            } else {
-                dismisssSelector()
-            }
+            showSelector(layout_sort_selector)
         }
     }
 
@@ -263,6 +267,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         layout_sort_selector.gone()
         layout_menu_detail.visible()
         v.visible()
+        selectorVisible = true
     }
 
     private fun dismisssSelector() {
@@ -270,6 +275,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         layout_category_selector.gone()
         layout_sort_selector.gone()
         layout_menu_detail.gone()
+        selectorVisible = false
     }
 
     private fun initSelectorAdapter() {
@@ -296,6 +302,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         rv_law.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+                if (selectorVisible) dismisssSelector()
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -306,7 +313,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
                         var position = recyclerView.getChildViewHolder(it).adapterPosition
                         lastData?.let {
                             if (position + manager.childCount == dataList.size) {
-                                mPresenter?.loadMore(dataList.size / it.perPage + 1)
+                                mPresenter?.loadMore(dataList.size / 10 + 2)
                             }
                         }
                     }
@@ -337,14 +344,26 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         lastData = findLawyerBean
         dataList.clear()
         dataList.addAll(findLawyerBean.lawyerList)
-        if (dataList.size == findLawyerBean.total) allLoad = true else false
+        if (dataList.size == findLawyerBean.total) {
+            allLoad = true
+            lawAdapter.addFooterView(RVUtils.myFooterView(mContext, null))
+        } else {
+            allLoad = false
+            lawAdapter.removeAllFooterView()
+        }
     }
 
     override fun onMoreData(findLawyerBean: FindLawyerBean) {
         lastData = findLawyerBean
         dataList.addAll(findLawyerBean.lawyerList)
         lawAdapter.setNewDiffData(LawyerQuickDiff(dataList))
-        if (dataList.size == findLawyerBean.total) allLoad = true else false
+        if (dataList.size == findLawyerBean.total) {
+            allLoad = true
+            lawAdapter.addFooterView(RVUtils.myFooterView(mContext, null))
+        } else {
+            allLoad = false
+            lawAdapter.removeAllFooterView()
+        }
     }
 
     override fun onSearchFieldGet(searchBean: SearchBean) {

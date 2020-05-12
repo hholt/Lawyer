@@ -42,6 +42,10 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
     @JvmField
     var consultlationData: ConsultlationSetBean? = null
 
+    @Autowired(name=RouterArgs.CLERICAL_ORDER)
+    @JvmField
+    var clericalOrder: ClericalOrderBean? = null
+
     var payMethod: String = AppConstant.PAY_WECHAT
 
     private val adapter by lazy {
@@ -152,5 +156,7 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
         // 显示支付成功页面
         PaySuccessDialog.show(this)
     }
+
+
 
 }

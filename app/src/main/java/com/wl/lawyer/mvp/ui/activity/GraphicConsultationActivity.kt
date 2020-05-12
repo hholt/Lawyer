@@ -83,7 +83,7 @@ class GraphicConsultationActivity : BaseSupportActivity<GraphicConsultationPrese
                         var position = recyclerView.getChildViewHolder(it).adapterPosition
 
                         if (position + manager.childCount == consultList.size) {
-                            mPresenter?.loadMore(consultList.size / 10 + 1)
+                            mPresenter?.loadMore(consultList.size / 10 + 2)
                         }
                     }
                 }

@@ -99,8 +99,8 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
             tv_desc.text = "我们针对不同的情况，定制了不同的咨询套餐，提供了不同的咨询方式和收费标准，请按照您的需要进行选择。"
             btn_common.click {
                 ARouter.getInstance().build(RouterPath.ORDER_COMFIRM)
+                    .withInt(RouterArgs.SERVICE_TYPE, AppConstant.SERVICE_ID_CONSULTATION)
                     .withSerializable(RouterArgs.LAWYER, lawyer)
-                    .withSerializable(RouterArgs.SERVICE_TYPE, AppConstant.SERVICE_ID_CONSULTATION)
                     .withSerializable(RouterArgs.SERVICE_SET, selectSet)
                     .navigation()
             }

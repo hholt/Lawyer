@@ -130,7 +130,7 @@ PopularizationArticleContract.View {
                         var position = recyclerView.getChildViewHolder(it).adapterPosition
 
                         if (position + manager.childCount == articleList.size) {
-                            mPresenter?.loadMore(articleList.size / 10 + 1)
+                            mPresenter?.loadMore(articleList.size / 10 + 2)
                         }
                     }
                 }

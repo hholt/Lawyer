@@ -28,8 +28,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".mvp.ui.activity.LawyerDetailsActivity" android:windowSoftInputMode="adjustPan"></activity>
+        tools:ignore="GoogleAppIndexingWarning"
+        >
+        <activity android:name=".mvp.ui.activity.LawyerDetailsActivity"/>
         <activity android:name=".mvp.ui.activity.ModifyPhoneActivity" />
         <activity android:name=".mvp.ui.activity.LawyerCooperationActivity" />
         <activity android:name=".mvp.ui.activity.PowerAttorneyActivity" />
@@ -54,7 +55,7 @@
         <activity android:name=".mvp.ui.activity.PersonalInformationActivity" />
         <activity android:name=".mvp.ui.activity.AccountSecurityActivity" />
         <activity android:name=".mvp.ui.activity.SettingActivity" />
-        <activity android:name=".mvp.ui.activity.MainActivity" />
+        <activity android:name=".mvp.ui.activity.MainActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".mvp.ui.activity.ForgetActivity" />
         <activity android:name=".mvp.ui.activity.VideoCallActivity" />
         <activity android:name=".mvp.ui.activity.LiveActivity" />
@@ -73,6 +74,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            tools:replace="android:authorities"
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                tools:replace="android:resource"
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <meta-data
             android:name="design_width_in_dp"

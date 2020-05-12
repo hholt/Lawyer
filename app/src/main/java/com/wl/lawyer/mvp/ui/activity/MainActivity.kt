@@ -46,8 +46,6 @@ class MainActivity : BaseSupportActivity<MainPresenter>(), MainContract.View {
     }
 
     override fun initView(savedInstanceState: Bundle?): Int {
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return R.layout.activity_main
     }
 

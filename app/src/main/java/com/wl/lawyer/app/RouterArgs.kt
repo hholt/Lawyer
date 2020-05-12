@@ -11,5 +11,6 @@ class RouterArgs {
         const val SERVICE_SET = "service_set"
 
         const val SERVICE_TYPE = "service_type"
+        const val CLERICAL_ORDER = "clerical_order"
     }
 }

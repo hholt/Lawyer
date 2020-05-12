@@ -60,5 +60,10 @@ class AppConstant {
         const val E_TOKEN_EXPRIED = 3
         // 请求失败
         const val E_FAILED = 2
+
+        /**
+         * /////////////////////////////////////Request Code/////////////////////////////////////
+         */
+        const val REQUEST_CODE_FILE = 1002
     }
 }

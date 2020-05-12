@@ -67,6 +67,9 @@ class HomeFragment : BaseSupportFragment<HomePresenter>(), HomeContract.View {
                             .withSerializable("lawyer", firstLawyer)
                             .navigation()
                     }
+                    else -> {
+                        showMessage("暂未实现")
+                    }
                 }
             }
         }
