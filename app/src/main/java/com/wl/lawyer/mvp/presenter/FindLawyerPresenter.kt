@@ -65,7 +65,7 @@ constructor(model: FindLawyerContract.Model, rootView: FindLawyerContract.View) 
             isLoadingMore = true
             val keyWord = mRootView.getKeyWord()
             mModel.search(
-                1, keyWord,
+                page, keyWord,
                 mRootView.getProvinceId(),
                 mRootView.getCityId(),
                 mRootView.getBlockId(),

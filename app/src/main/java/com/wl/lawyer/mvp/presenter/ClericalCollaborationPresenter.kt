@@ -14,6 +14,7 @@ import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.ClericalOrderBean
 import com.wl.lawyer.mvp.model.bean.SpecBean
 import com.wl.lawyer.mvp.model.bean.SpecPriceBean
+import com.wl.lawyer.mvp.model.bean.UploadBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 import java.io.File
@@ -74,11 +75,14 @@ constructor(
         } else {
             CommonPresenter(mApplication, null).uploadFile(
                 File(filePath),
-                object : CommonPresenter.OnListener<String> {
-                    override fun onSuccess(msg: String?, data: String?) {
+                mRootView,
+                object : CommonPresenter.OnListener<UploadBean> {
+                    override fun onSuccess(msg: String?, data: UploadBean?) {
                         data?.apply {
-                            mlog(data)
-                            createRealClericalOrder(lawyerId, specId, memo, this)
+                            mlog(data.toString())
+                            data?.apply {
+                                createRealClericalOrder(lawyerId, specId, memo, url)
+                            }
                         }
                     }
 
@@ -110,10 +114,13 @@ constructor(
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
+
     @Inject
     lateinit var mApplication: Application
+
     @Inject
     lateinit var mImageLoader: ImageLoader
+
     @Inject
     lateinit var mAppManager: AppManager
 

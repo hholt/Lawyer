@@ -11,7 +11,7 @@ import javax.inject.Inject
 import com.wl.lawyer.mvp.contract.OnlineConsultationContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
-import com.wl.lawyer.mvp.model.bean.OnlineConsultlationBean
+import com.wl.lawyer.mvp.model.bean.ConsultOrderBean
 import io.reactivex.Observable
 
 
@@ -26,4 +26,10 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     lateinit var mApplication: Application
 
     override fun getServiceType() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).serviceType()
+
+    override fun createOrder(
+        serviceId: Int,
+        lawyerId: Int
+    ): Observable<BaseResponse<ConsultOrderBean>> =
+        mRepositoryManager.obtainRetrofitService(CommonService::class.java).createOrder(serviceId, lawyerId)
 }

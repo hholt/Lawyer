@@ -15,6 +15,7 @@ class AppConstant {
         const val FRIEND_ID: String = "4"
         const val PAY_ALIPAY = "alipay"
         const val PAY_WECHAT = "wechat"
+        const val PAGE_COUNT = 10
 
         /**
          * /////////////////////////////////////intent/////////////////////////////////////
@@ -65,5 +66,7 @@ class AppConstant {
          * /////////////////////////////////////Request Code/////////////////////////////////////
          */
         const val REQUEST_CODE_FILE = 1002
+
+        const val ORDER_STATUS_PAID = "paid"
     }
 }

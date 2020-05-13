@@ -80,37 +80,8 @@ class RechargeActivity : BaseSupportActivity<RechargePresenter>(), RechargeContr
     }
 
     private fun updateRechargeTypeAdp(moneyConfigBean: MoneyConfigBean?) {
-        val payTypes = ArrayList<PaymentMethodBean>()
-        moneyConfigBean?.payTypeList?.let {
-            for (payType in it) {
-                payTypes.add(
-                    when (payType?.value) {
-                        AppConstant.PAY_WECHAT -> {
-                            PaymentMethodBean(
-                                R.drawable.ic_payment_wechat,
-                                "微信支付",
-                                payType.isDefaultX
-                            )
-                        }
-                        AppConstant.PAY_ALIPAY -> {
-                            PaymentMethodBean(
-                                R.drawable.ic_payment_alipay,
-                                "支付宝支付",
-                                payType.isDefaultX
-                            )
-                        }
-                        else -> {
-                            PaymentMethodBean(
-                                R.drawable.ic_payment_wechat,
-                                "微信支付",
-                                payType.isDefaultX
-                            )
-                        }
-                    }
-                )
-            }
-        }
-        paymentAmountAdapter.setNewData(payTypes)
+
+        paymentAmountAdapter.setNewData(moneyConfigBean?.payTypeList)
     }
 
     private fun updateRechargeMoneyConfigAdp(moneyConfigBean: MoneyConfigBean?) {

@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.jess.arms.di.component.AppComponent
 import com.wl.lawyer.R
+import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.app.RouterArgs
 import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
@@ -77,13 +78,13 @@ class GraphicConsultationActivity : BaseSupportActivity<GraphicConsultationPrese
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!mPresenter!!.isLoadingMore && !allLoad) {
+                if (!allLoad && !mPresenter!!.isLoadingMore) {
                     var manager = recyclerView.layoutManager
                     manager?.getChildAt(0)?.let {
                         var position = recyclerView.getChildViewHolder(it).adapterPosition
 
                         if (position + manager.childCount == consultList.size) {
-                            mPresenter?.loadMore(consultList.size / 10 + 2)
+                            mPresenter?.loadMore(consultList.size / AppConstant.PAGE_COUNT + 1)
                         }
                     }
                 }

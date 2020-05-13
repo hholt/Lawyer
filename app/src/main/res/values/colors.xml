@@ -23,6 +23,7 @@
     <color name="app_font_black">#000</color>
     <color name="app_font_red">#FB321B</color>
     <color name="app_font_blue">#1B76FB</color>
+    <color name="app_pay">#74849B</color>
     <!--Banner indicator-->
     <color name="banner_indicator_select_color">#FFFFFF</color>
     <color name="banner_indicator_normal_color">#9AA2DF</color>

@@ -85,10 +85,11 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
                     }
                     AppConstant.SERVICE_ID_CASE -> {
                         // 案件委托
-                        ARouter.getInstance().build(RouterPath.SERVICE_CASE)
+                        showMessage("暂未开放")
+                        /*ARouter.getInstance().build(RouterPath.SERVICE_CASE)
                             .withSerializable(RouterArgs.LAWYER, lawyer)
                             .withSerializable(RouterArgs.LAWYER_SERVICE, getItem(position)?.serviceBean)
-                            .navigation()
+                            .navigation()*/
                     }
                 }
             }
@@ -132,6 +133,23 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
             )
         ).apply {
             // addFooterView(RVUtils.myFooterView(mContext, rv_law))
+            onItemClickListener = BaseQuickAdapter.OnItemClickListener{ _, _, position ->
+                getItem(position)?.lawyerArticle?.let {
+                    ARouter.getInstance()
+                        .build(RouterPath.LAWYER_ARTICLE)
+                        .withSerializable(RouterArgs.ARTICLE, it)
+                        .navigation()
+                }
+            }
+            setOnItemChildClickListener { adapter, view, position ->
+                view?.let {
+                    if (it.id == R.id.tv_more) {
+                        ARouter.getInstance()
+                            .build(RouterPath.POPULARIZATION_ARTICLE_LIST)
+                            .navigation()
+                    }
+                }
+            }
         }
     }
 

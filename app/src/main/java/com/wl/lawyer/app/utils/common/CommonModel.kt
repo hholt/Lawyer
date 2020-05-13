@@ -4,6 +4,7 @@ import android.app.Application
 import com.wl.lawyer.mvp.contract.CommonContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
+import com.wl.lawyer.mvp.model.bean.UploadBean
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 
@@ -14,7 +15,11 @@ class CommonModel(applicationContext: Application, view: CommonContract.View) :
     BaseCommonModel(applicationContext),
     CommonContract.Model {
 
-    override fun uploadFile(file: MultipartBody.Part): Observable<BaseResponse<String>> {
+    override fun uploadPic(file: MultipartBody.Part): Observable<BaseResponse<UploadBean>> {
+        return mIRepositoryManager.obtainRetrofitService(CommonService::class.java).uploadPic(file)
+    }
+
+    override fun uploadFile(file: MultipartBody.Part): Observable<BaseResponse<UploadBean>> {
         return mIRepositoryManager.obtainRetrofitService(CommonService::class.java).uploadFile(file)
     }
 

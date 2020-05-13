@@ -2,8 +2,6 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.graphics.Color
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -98,11 +96,9 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
             et_lawyer_name.hint = "${nickname}律师"
             tv_desc.text = "我们针对不同的情况，定制了不同的咨询套餐，提供了不同的咨询方式和收费标准，请按照您的需要进行选择。"
             btn_common.click {
-                ARouter.getInstance().build(RouterPath.ORDER_COMFIRM)
-                    .withInt(RouterArgs.SERVICE_TYPE, AppConstant.SERVICE_ID_CONSULTATION)
-                    .withSerializable(RouterArgs.LAWYER, lawyer)
-                    .withSerializable(RouterArgs.SERVICE_SET, selectSet)
-                    .navigation()
+
+                mPresenter?.createOrder(selectSet!!.id, lawyer!!.lawyerId)
+
             }
             selectSet = typeList[0]
             psv_set.text = typeList[0].name
@@ -128,6 +124,15 @@ class OnlineConsultationActivity : BaseSupportActivity<OnlineConsultationPresent
                 }
             }
         }
+    }
+
+    override fun onOrderCreated(orderBean: ConsultOrderBean) {
+        mlog("order created: ${orderBean}")
+        ARouter.getInstance().build(RouterPath.ORDER_COMFIRM)
+                    .withInt(RouterArgs.SERVICE_TYPE, AppConstant.SERVICE_ID_CONSULTATION)
+                    .withSerializable(RouterArgs.LAWYER, lawyer)
+                    .withSerializable(RouterArgs.CONSULT_ORDER, orderBean)
+                    .navigation()
     }
 
 }

@@ -8,20 +8,23 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
+import com.lxj.androidktx.core.click
 import com.wl.lawyer.R
-import com.wl.lawyer.app.RouterArgs
-import com.wl.lawyer.app.RouterPath
+import com.wl.lawyer.app.*
 import com.wl.lawyer.app.base.BaseSupportActivity
-import com.wl.lawyer.app.image
-import com.wl.lawyer.app.onBack
 import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerLawyerCooperationComponent
 import com.wl.lawyer.di.module.LawyerCooperationModule
 import com.wl.lawyer.mvp.contract.LawyerCooperationContract
+import com.wl.lawyer.mvp.model.api.Api
 import com.wl.lawyer.mvp.model.bean.CommonBean
+import com.wl.lawyer.mvp.model.bean.CooperateOrderBean
+import com.wl.lawyer.mvp.model.bean.CooperateServiceBean
 import com.wl.lawyer.mvp.model.bean.LawyerBean
 import com.wl.lawyer.mvp.presenter.LawyerCooperationPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
+import com.wl.lawyer.mvp.ui.adapter.CooperateSpinnerAdapter
+import kotlinx.android.synthetic.main.activity_lawyer_cooperation.*
 import kotlinx.android.synthetic.main.activity_popularization_course_details.*
 import kotlinx.android.synthetic.main.include.*
 
@@ -35,6 +38,8 @@ class LawyerCooperationActivity : BaseSupportActivity<LawyerCooperationPresenter
     @Autowired(name = RouterArgs.LAWYER)
     @JvmField
     var lawyer: LawyerBean? = null
+
+    var selectSet: CooperateServiceBean? = null
 
     override fun setupActivityComponent(appComponent: AppComponent) {
         DaggerLawyerCooperationComponent //如找不到该类,请编译一下项目
@@ -87,8 +92,13 @@ class LawyerCooperationActivity : BaseSupportActivity<LawyerCooperationPresenter
         tv_title.text = "律师合作"
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
-        initParamsRv()
+//        initParamsRv()
         initRightShare()
+        psv_service_type.lifecycleOwner = this
+        psv_service_type.setOnSpinnerOutsideTouchListener { _, _ ->
+            psv_service_type.dismiss()
+        }
+        mPresenter?.getServiceType()
     }
 
     // 设置head分享按钮
@@ -104,4 +114,50 @@ class LawyerCooperationActivity : BaseSupportActivity<LawyerCooperationPresenter
         RVUtils.myDivider(mContext, rv_item)
     }
 
+    override fun onServiceTypeGet(serviceList: List<CooperateServiceBean>) {
+        lawyer?.apply {
+            iv_lawyer_avatar.circleImage(Api.APP_DOMAIN + avatar)
+            et_lawyer_name.text = "${nickname}律师"
+
+            btn_confirm.click {
+                mPresenter?.createCooperateOrder(lawyerId, selectSet!!.id)
+            }
+
+            if (serviceList.isNotEmpty()) {
+                selectSet = serviceList[0]
+                psv_service_type.text = serviceList[0].name
+                tv_price.text = "￥${serviceList[0].price}/次"
+            }
+            psv_service_type.apply {
+                setSpinnerAdapter(
+                    CooperateSpinnerAdapter(
+                        this,
+                        serviceList
+                    ).apply {
+                            setOnItemClickListener { adpter, view, position ->
+                                this.notifyItemSelected(position)
+                            }
+                        }
+                )
+                setOnSpinnerItemSelectedListener<CooperateServiceBean> { position, item ->
+                    selectSet = item
+                    psv_service_type.text = item.name
+                    tv_price.text = "￥${item.price}/次"
+                }
+
+            }
+        }
+    }
+
+    override fun getAddress() = et_address.text.toString()
+
+    override fun getDesc() = et_desc.text.toString()
+
+    override fun onCooperateOrderCreate(orderBean: CooperateOrderBean) {
+        ARouter.getInstance().build(RouterPath.ORDER_COMFIRM)
+            .withInt(RouterArgs.SERVICE_TYPE, AppConstant.SERVICE_ID_COOPERATION)
+            .withSerializable(RouterArgs.LAWYER, lawyer)
+            .withSerializable(RouterArgs.COOPERATE_ORDER, orderBean)
+            .navigation()
+    }
 }

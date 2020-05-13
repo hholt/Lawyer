@@ -11,6 +11,7 @@ import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.app.utils.common.CommonPresenter
 import com.wl.lawyer.mvp.contract.PersonalInformationContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
+import com.wl.lawyer.mvp.model.bean.UploadBean
 import com.wl.lawyer.mvp.model.bean.UserBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
@@ -43,11 +44,12 @@ constructor(model: PersonalInformationContract.Model, rootView: PersonalInformat
         val profileUserBeanInfo = mRootView?.getProfileUserBean(mUserInfoBean)
         // 如果修改头像了需要先上传图像
         if (mRootView.isChangeAvatar()) {
-            CommonPresenter(mApplication, null).uploadFile(
+            CommonPresenter(mApplication, null).uploadPic(
                 File(profileUserBeanInfo?.avatar),
-                object : CommonPresenter.OnListener<String> {
-                    override fun onSuccess(msg: String?, data: String?) {
-                        profileUserBeanInfo?.avatar = data
+                mRootView,
+                object : CommonPresenter.OnListener<UploadBean> {
+                    override fun onSuccess(msg: String?, data: UploadBean?) {
+                        profileUserBeanInfo?.avatar = data?.url
                         updateProfileUser(profileUserBeanInfo)
                     }
 

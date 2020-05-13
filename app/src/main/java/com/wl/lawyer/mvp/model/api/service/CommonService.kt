@@ -1,5 +1,6 @@
 package com.wl.lawyer.mvp.model.api.service
 
+import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.*
 import io.reactivex.Observable
@@ -16,7 +17,13 @@ interface CommonService {
      */
     @Multipart
     @POST("/api/common/upload")
-    fun uploadFile(@Part file: MultipartBody.Part): Observable<BaseResponse<String>>
+    fun uploadPic(@Part file: MultipartBody.Part): Observable<BaseResponse<UploadBean>>
+    /**
+     * 上传文件
+     */
+    @Multipart
+    @POST("/api/common/uploadFile")
+    fun uploadFile(@Part file: MultipartBody.Part): Observable<BaseResponse<UploadBean>>
 
     /**
      * ******************************* 首页 *******************************
@@ -37,14 +44,13 @@ interface CommonService {
     fun serviceType(): Observable<BaseResponse<OnlineConsultlationBean>>
 
     /**
-     * ******************************* 创建订单 *******************************
+     * ******************************* 创建咨询订单 *******************************
      */
     @GET("/api/consultation/createOrder")
     fun createOrder(
         @Query("package_id") serviceId: Int,
-        @Query("invite_lawyer_id") lawyerId: Int,
-        @Query("pay_type") payMethod: String
-    ): Observable<BaseResponse<CreateOrderBean>>
+        @Query("invite_lawyer_id") lawyerId: Int
+    ): Observable<BaseResponse<ConsultOrderBean>>
 
     /**
      * ******************************* 普法文章 *******************************
@@ -52,7 +58,7 @@ interface CommonService {
     @GET("/api/popularize_law/getArticles")
     fun getArticles(
         @Query("page") page: Int = 1,
-        @Query("page_size") pageSize: Int = 10
+        @Query("page_size") pageSize: Int = AppConstant.PAGE_COUNT
     ): Observable<BaseResponse<BaseListBean<LawyerArticleBean>>>
 
     @GET("/api/popularize_law/getArticleDetail")
@@ -71,7 +77,7 @@ interface CommonService {
     @GET("/api/picture_text_consultation/getPTCList")
     fun getPTCList(
         @Query("page") page: Int = 1,
-        @Query("page_size") pageSize: Int = 10
+        @Query("page_size") pageSize: Int = AppConstant.PAGE_COUNT
     ): Observable<BaseResponse<BaseListBean<GraphicConsultationBean>>>
 
     /**
@@ -165,5 +171,52 @@ interface CommonService {
         @Query("file_path") filePath: String
     ): Observable<BaseResponse<ClericalOrderBean>>
 
+    /**
+     * ******************************* 获取支付方式 *******************************
+     */
+    @GET("/api/common/getPayWays")
+    fun getPayType(): Observable<BaseResponse<PayTypeListBean>>
 
+    /**
+     * ******************************* 获取律师合作服务类型 *******************************
+     */
+    @GET("/api/lawyer_cooperate/getCooperateService")
+    fun getCooperateService(): Observable<BaseResponse<List<CooperateServiceBean>>>
+
+    /**
+     * *******************************  创建律师合作订单 *******************************
+     */
+    @GET("/api/lawyer_cooperate/addLawyerCooperateOrder")
+    fun createCooperateOrder(
+        @Query("lawyer_id") lawyerId: Int,
+        @Query("service_id") serciceId: Int,
+        @Query("service_content") serviceContent: String
+    ): Observable<BaseResponse<CooperateOrderBean>>
+
+    /**
+     * *******************************  支付咨询套餐的订单 *******************************
+     */
+    @GET("/api/consultation/payConsultationOrder")
+    fun payConsultOrder(
+        @Query("id") orderId: Int,
+        @Query("pay_way") payWay: String
+    ): Observable<BaseResponse<PayOrderBean<RealConsultOrderBean>>>
+
+    /**
+     * *******************************  支付文书协作订单 *******************************
+     */
+    @GET("/api/essay_writing/payEssayWritingOrder")
+    fun payClericalOrder(
+        @Query("id") orderId: Int,
+        @Query("pay_way") payWay: String
+    ): Observable<BaseResponse<PayOrderBean<RealClericalOrderBean>>>
+
+    /**
+     * *******************************  支付律师合作订单 *******************************
+     */
+    @GET("/api/lawyer_cooperate/payLawyerCooperateOrder")
+    fun payCooperateOrder(
+        @Query("id") orderId: Int,
+        @Query("pay_way") payWay: String
+    ): Observable<BaseResponse<PayOrderBean<RealCooperateOrderBean>>>
 }

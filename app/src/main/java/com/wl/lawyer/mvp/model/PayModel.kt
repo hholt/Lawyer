@@ -11,7 +11,7 @@ import javax.inject.Inject
 import com.wl.lawyer.mvp.contract.PayContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
-import com.wl.lawyer.mvp.model.bean.CreateOrderBean
+import com.wl.lawyer.mvp.model.bean.*
 import io.reactivex.Observable
 
 
@@ -20,17 +20,26 @@ class PayModel
 @Inject
 constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager),
     PayContract.Model {
-    override fun createOrder(
-        serviceId: Int,
-        lawyerId: Int,
-        payMethod: String
-    ): Observable<BaseResponse<CreateOrderBean>> =
-        mRepositoryManager.obtainRetrofitService(CommonService::class.java).createOrder(serviceId, lawyerId, payMethod)
-
 
     @Inject
     lateinit var mGson: Gson
     @Inject
     lateinit var mApplication: Application
 
+    override fun getPayType() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getPayType()
+
+    override fun payConsultOrder(
+        orderId: Int,
+        payWay: String
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).payConsultOrder(orderId, payWay)
+
+    override fun payClericalOrder(
+        orderId: Int,
+        payWay: String
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).payClericalOrder(orderId, payWay)
+
+    override fun payCooperateOrder(
+        orderId: Int,
+        payWay: String
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).payCooperateOrder(orderId, payWay)
 }

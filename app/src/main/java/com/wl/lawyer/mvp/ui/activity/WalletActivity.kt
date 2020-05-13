@@ -72,9 +72,9 @@ class WalletActivity : BaseSupportActivity<WalletPresenter>(), WalletContract.Vi
                 val difference =
                     ((bean.after?.toDouble() ?: 0.0) - (bean.before?.toDouble() ?: 0.0))
                 val balance = if (difference > 0) {
-                    "+${difference}"
+                    "+${bean.money}"
                 } else {
-                    "-${difference}"
+                    "${bean.money}"
                 }
                 datas.add(BalanceDetailBean(bean?.memo ?: "", bean.createtime.toTime(), balance))
             }

@@ -10,7 +10,7 @@ class MoneyConfigBean {
     @SerializedName("money_list")
     var moneyList: List<MoneyListBean>? = null
     @SerializedName("pay_type_list")
-    var payTypeList: List<PayTypeListBean>? = null
+    var payTypeList: List<PayTypeBean>? = null
 
     class MoneyListBean {
         var value: String? = null
@@ -20,18 +20,6 @@ class MoneyConfigBean {
 
         override fun toString(): String {
             return "MoneyListBean(value=$value, text=$text, isDefaultX=$isDefaultX)"
-        }
-
-    }
-
-    class PayTypeListBean {
-        var value: String? = null
-        var image: String? = null
-        @SerializedName("default")
-        var isDefaultX = false
-
-        override fun toString(): String {
-            return "PayTypeListBean(value=$value, image=$image, isDefaultX=$isDefaultX)"
         }
 
     }

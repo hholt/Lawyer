@@ -12,5 +12,7 @@ class RouterArgs {
 
         const val SERVICE_TYPE = "service_type"
         const val CLERICAL_ORDER = "clerical_order"
+        const val CONSULT_ORDER = "consult_order"
+        const val COOPERATE_ORDER = "cooperate_order"
     }
 }

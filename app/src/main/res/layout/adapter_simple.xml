@@ -28,6 +28,7 @@
         android:layout_marginRight="@dimen/app_padding_common"
         android:layout_weight="1"
         android:enabled="false"
+        android:focusable="false"
         android:inputType="text"
         android:background="@null"
         android:maxLines="1"

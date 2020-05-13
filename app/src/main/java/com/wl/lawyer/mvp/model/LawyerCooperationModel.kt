@@ -9,6 +9,11 @@ import com.jess.arms.di.scope.ActivityScope
 import javax.inject.Inject
 
 import com.wl.lawyer.mvp.contract.LawyerCooperationContract
+import com.wl.lawyer.mvp.model.api.BaseResponse
+import com.wl.lawyer.mvp.model.api.service.CommonService
+import com.wl.lawyer.mvp.model.bean.CooperateOrderBean
+import com.wl.lawyer.mvp.model.bean.CooperateServiceBean
+import io.reactivex.Observable
 
 
 @ActivityScope
@@ -21,4 +26,11 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     @Inject
     lateinit var mApplication: Application
 
+    override fun getServiceType() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getCooperateService()
+
+    override fun createCooperateOrder(
+        lawyerId: Int,
+        serviceId: Int,
+        desc: String
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).createCooperateOrder(lawyerId, serviceId, desc)
 }

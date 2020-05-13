@@ -15,6 +15,8 @@ import com.wl.common.widget.MenuDialog
 import com.wl.lawyer.BuildConfig
 import com.wl.lawyer.R
 import com.wl.lawyer.app.utils.GlideRoundTransform
+import com.wl.lawyer.mvp.ui.activity.PayActivity
+import com.wl.lawyer.mvp.ui.dialog.PaySuccessDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -73,6 +75,8 @@ fun ImageView.image(path: String) {
 
 fun ImageView.circleImage(path: String) {
     val options = RequestOptions()
+        .placeholder(R.drawable.ic_my_avatar)
+        .error(R.drawable.ic_mine)
 //        .placeholder(R.drawable.icon_avatar)
 //        //异常占位图(当加载异常的时候出现的图片)
 //        .error(R.drawable.icon_avatar)
@@ -228,4 +232,13 @@ fun Long.toTime(sdf: String): String {
 
 fun Long.isNotExpired(): Boolean {
     return Date().time < (this * 1000)
+}
+
+fun PayActivity.showDialag(title: String, listen: () -> Unit) {
+    PaySuccessDialog.Builder(this)
+        .setCancel(title)
+        .setListener{
+            listen.invoke()
+        }
+        .show()
 }

@@ -25,6 +25,15 @@
         android:textColor="@color/app_font_black"
         android:textSize="18sp" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@null"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20"
+        tools:itemCount="0"/>
+<!--
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -111,7 +120,7 @@
             android:background="#F5F5F9"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <com.wl.lawyer.mvp.ui.widget.LawyerCheckView
         android:id="@+id/btn_common"

@@ -9,11 +9,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
 import com.vondear.rxtool.RxKeyboardTool
 import com.wl.lawyer.R
-import com.wl.lawyer.app.RouterArgs
-import com.wl.lawyer.app.RouterPath
+import com.wl.lawyer.app.*
 import com.wl.lawyer.app.base.BaseSupportActivity
-import com.wl.lawyer.app.image
-import com.wl.lawyer.app.onBack
 import com.wl.lawyer.app.utils.RVUtils
 import com.wl.lawyer.di.component.DaggerPopularizationArticleComponent
 import com.wl.lawyer.di.module.PopularizationArticleModule
@@ -27,7 +24,7 @@ import com.wl.lawyer.mvp.ui.callback.ArticleQuickDiff
 import kotlinx.android.synthetic.main.activity_popularization_article.*
 import kotlinx.android.synthetic.main.include.*
 
-@Route(path = RouterPath.LAWYER_ARTICLE_LIST)
+@Route(path = RouterPath.POPULARIZATION_ARTICLE_LIST)
 class PopularizationArticleActivity: BaseSupportActivity<PopularizationArticlePresenter>(),
 PopularizationArticleContract.View {
 
@@ -124,13 +121,12 @@ PopularizationArticleContract.View {
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!mPresenter!!.isLoadingMore && !allLoad) {
-                    var manager = recyclerView.layoutManager
+                if (!allLoad && !mPresenter!!.isLoadingMore) {
+                    val manager = recyclerView.layoutManager
                     manager?.getChildAt(0)?.let {
-                        var position = recyclerView.getChildViewHolder(it).adapterPosition
-
+                        val position = recyclerView.getChildViewHolder(it).adapterPosition
                         if (position + manager.childCount == articleList.size) {
-                            mPresenter?.loadMore(articleList.size / 10 + 2)
+                            mPresenter?.loadMore(articleList.size / AppConstant.PAGE_COUNT + 1)
                         }
                     }
                 }

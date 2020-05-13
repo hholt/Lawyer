@@ -16,6 +16,7 @@ import com.lxj.androidktx.core.gone
 import com.lxj.androidktx.core.isGone
 import com.lxj.androidktx.core.visible
 import com.wl.lawyer.R
+import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.app.RouterArgs
 import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportFragment
@@ -48,6 +49,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
     var lastData: FindLawyerBean? = null
     var dataList: MutableList<LawyerBean> = arrayListOf<LawyerBean>()
     var allLoad = false
+    var keyword = ""
     var province: SearchBean.AreaBean? = null
     var city: SearchBean.AreaBean? = null
     var block: SearchBean.AreaBean? = null
@@ -55,6 +57,9 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
     var service: LawyerServiceBean? = null
     var sortBy: SearchBean.SortBean? = null
     var selectorVisible = false
+    val mFooterView: View by lazy {
+        RVUtils.myFooterView(mContext, null)
+    }
 
     override fun setupFragmentComponent(appComponent: AppComponent) {
         DaggerFindLawyerComponent //如找不到该类,请编译一下项目
@@ -190,25 +195,14 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         et_search.maxLines = 1
         et_search.setOnEditorActionListener { _, actionId, event ->
             if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+                keyword = et_search.text.toString()
                 mPresenter?.search()
                 hideSoftInput()
             }
             event.keyCode == KeyEvent.KEYCODE_ENTER
 
         }
-        /*et_search.setOnKeyListener(object : View.OnKeyListener{
-            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
-                when (keyCode) {
-                    KeyEvent.KEYCODE_ENTER, KeyEvent.KEYCODE_NUMPAD_ENTER -> {
-                        if (event?.action == KeyEvent.ACTION_UP) {
-                            mPresenter?.search()
-                            return true
-                        }
-                    }
-                }
-                return false
-            }
-        })*/
+
 
         btn_reset.click {
             provinceAdapter.reset()
@@ -307,13 +301,13 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (!mPresenter!!.isLoadingMore && !allLoad) {
+                if (!allLoad && !mPresenter!!.isLoadingMore) {
                     var manager = recyclerView.layoutManager
                     manager?.getChildAt(0)?.let {
                         var position = recyclerView.getChildViewHolder(it).adapterPosition
                         lastData?.let {
                             if (position + manager.childCount == dataList.size) {
-                                mPresenter?.loadMore(dataList.size / 10 + 2)
+                                mPresenter?.loadMore(it.currentPage + 1)
                             }
                         }
                     }
@@ -344,26 +338,19 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         lastData = findLawyerBean
         dataList.clear()
         dataList.addAll(findLawyerBean.lawyerList)
-        if (dataList.size == findLawyerBean.total) {
-            allLoad = true
-            lawAdapter.addFooterView(RVUtils.myFooterView(mContext, null))
-        } else {
-            allLoad = false
-            lawAdapter.removeAllFooterView()
-        }
+        handleFooterView(findLawyerBean)
     }
 
     override fun onMoreData(findLawyerBean: FindLawyerBean) {
         lastData = findLawyerBean
         dataList.addAll(findLawyerBean.lawyerList)
         lawAdapter.setNewDiffData(LawyerQuickDiff(dataList))
-        if (dataList.size == findLawyerBean.total) {
-            allLoad = true
-            lawAdapter.addFooterView(RVUtils.myFooterView(mContext, null))
-        } else {
-            allLoad = false
-            lawAdapter.removeAllFooterView()
-        }
+        handleFooterView(findLawyerBean)
+    }
+
+    fun handleFooterView(findLawyerBean: FindLawyerBean) {
+        allLoad = findLawyerBean.currentPage == findLawyerBean.lastPage
+        if (allLoad) lawAdapter.addFooterView(mFooterView) else lawAdapter.removeFooterView(mFooterView)
     }
 
     override fun onSearchFieldGet(searchBean: SearchBean) {
@@ -393,7 +380,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
         lawAdapter.setNewData(findLawyerBean.lawyerList)
     }
 
-    override fun getKeyWord() = et_search.text.toString() ?: ""
+    override fun getKeyWord() = keyword
 
 
     override fun getProvinceId() = province?.id ?: 0

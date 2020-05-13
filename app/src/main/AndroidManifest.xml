@@ -37,6 +37,7 @@
         <activity android:name=".mvp.ui.activity.ConsultingOrderDetailActivity" />
         <activity android:name=".mvp.ui.activity.OrderStatusActivity" />
         <activity android:name=".mvp.ui.activity.LawyerActivity" />
+        <activity android:name=".mvp.ui.activity.LawyerArticleActivity" />
         <activity android:name=".mvp.ui.activity.ClericalCollaborationActivity" />
         <activity android:name=".mvp.ui.activity.PayActivity" />
         <activity android:name=".mvp.ui.activity.PublishGraphicConsultationActivity" />

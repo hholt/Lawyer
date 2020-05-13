@@ -9,7 +9,7 @@ import com.wl.lawyer.app.utils.RxCompose
 import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.mvp.contract.OnlineConsultationContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
-import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
+import com.wl.lawyer.mvp.model.bean.ConsultOrderBean
 import com.wl.lawyer.mvp.model.bean.OnlineConsultlationBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
@@ -42,6 +42,23 @@ constructor(model: OnlineConsultationContract.Model, rootView: OnlineConsultatio
                     if (t.isSuccess) {
                         t.data?.let {
                             mRootView?.initType(it.typeList)
+                        }
+                    } else {
+                        RxView.showErrorMsg(mRootView, t.msg)
+                    }
+                }
+            })
+    }
+
+    fun createOrder(serviceId: Int, lawyerId: Int) {
+        mModel.createOrder(serviceId, lawyerId)
+            .compose(RxCompose.transformer(mRootView))
+            .subscribe(object :
+                ErrorHandleSubscriber<BaseResponse<ConsultOrderBean>>(mErrorHandler) {
+                override fun onNext(t: BaseResponse<ConsultOrderBean>) {
+                    if (t.isSuccess) {
+                        t.data?.let {
+                            mRootView?.onOrderCreated(it)
                         }
                     } else {
                         RxView.showErrorMsg(mRootView, t.msg)
