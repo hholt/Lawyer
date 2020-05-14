@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -23,7 +24,6 @@ import com.wl.lawyer.mvp.model.api.Api
 import com.wl.lawyer.mvp.model.bean.*
 import com.wl.lawyer.mvp.presenter.GCDetailsPresenter
 import com.wl.lawyer.mvp.ui.adapter.CommentAdapter
-import com.wl.lawyer.mvp.ui.adapter.CommonAdapter
 import com.wl.lawyer.mvp.ui.adapter.GraphicAdapter
 import com.wl.lawyer.mvp.ui.callback.CommentQuickDiff
 import kotlinx.android.synthetic.main.activity_gcdetails.*
@@ -41,13 +41,19 @@ class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsCo
     @JvmField
     var consulation: GraphicConsultationBean? = null
 
+    var mSelectComment: ConsulationCommentBean? = null
+
     private val adapter by lazy {
         CommentAdapter(
             arrayListOf(
             )
         ).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
-                getItem(position)
+                mSelectComment = getItem(position)?.commentBean
+                mSelectComment?.let {
+                    btn_input_submit.text = "回复TA"
+                    et_input.requestFocus()
+                }
             }
         }
     }
@@ -85,11 +91,11 @@ class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsCo
         tv_recommended.text = "回复区"
         tv_more.visibility = View.GONE
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
-        sp().getObject<UserBean>(AppConstant.SP_USER)?.apply{
+        sp().getObject<UserBean>(AppConstant.SP_USER)?.apply {
             iv_input_avatar.circleImage(Api.APP_DOMAIN + userinfo?.avatar)
         }
         btn_input_submit.click {
-//            mPresenter.
+            mPresenter?.addComment()
         }
 
         initGraphicRecycleview()
@@ -110,8 +116,18 @@ class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsCo
     private fun initCommentRecycleview() {
         rv_comment.layoutManager = LinearLayoutManager(mContext)
         rv_comment.adapter = adapter
-        rv_comment.isNestedScrollingEnabled = false
-        rv_comment.isFocusable = false
+//        rv_comment.isNestedScrollingEnabled = false
+//        rv_comment.isFocusable = false
+        rv_comment.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                mSelectComment?.apply {
+                    hideSoftInput()
+                    btn_input_submit.text = "评论"
+                    mSelectComment = null
+                }
+            }
+        })
     }
 
     override fun onDetailGet(consultationBean: GraphicConsultationBean) {
@@ -150,4 +166,19 @@ class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsCo
     override fun onGraphicGet(data: List<String>) {
         graphicAdapter.setNewData(data)
     }
+
+    override fun onCommentAdded(it: CommentResultBean) {
+//        刷新评论
+        consulation?.let {
+            mPresenter?.getComment(it.id)
+        }
+        hideSoftInput()
+    }
+
+    override fun getGCId() = consulation?.id ?: 0
+
+    override fun getCommentId() =
+        if (mSelectComment == null) "" else mSelectComment?.id.toString()
+
+    override fun getComment() = et_input.text.toString()
 }

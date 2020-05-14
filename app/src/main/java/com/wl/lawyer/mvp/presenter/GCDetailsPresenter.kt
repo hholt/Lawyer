@@ -10,7 +10,7 @@ import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.mvp.contract.GCDetailsContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.CommentRefreshBean
-import com.wl.lawyer.mvp.model.bean.ConsulationCommentBean
+import com.wl.lawyer.mvp.model.bean.CommentResultBean
 import com.wl.lawyer.mvp.model.bean.GraphicConsultationBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
@@ -62,6 +62,29 @@ constructor(model: GCDetailsContract.Model, rootView: GCDetailsContract.View) :
                 }
             })
 
+    }
+
+    fun addComment() {
+        val id = mRootView.getGCId()
+        val toId = mRootView.getCommentId()
+        val comment = mRootView.getComment()
+        if (comment.isEmpty()) return
+        mModel.addComment(comment, id, toId)
+            .compose(RxCompose.transformer(mRootView))
+            .subscribe(object :
+                ErrorHandleSubscriber<BaseResponse<CommentResultBean>>(
+                    mErrorHandler
+                ) {
+                override fun onNext(t: BaseResponse<CommentResultBean>) {
+                    if (t.isSuccess) {
+                        t.data?.let {
+                            mRootView?.onCommentAdded(it)
+                        }
+                    } else {
+                        RxView.showErrorMsg(mRootView, t.msg)
+                    }
+                }
+            })
     }
 
     @Inject

@@ -35,36 +35,6 @@ PopularizationArticleContract.View {
     private val lawPopularizationAdapter by lazy {
         LawPopularizationAdapter(
             arrayListOf(
-                LawPopularizationDataBean(
-                    false,
-                    "这是标题",
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580887823981&di=a5db067cd8b4284fcaa78a1b0a6c59a7&imgtype=0&src=http%3A%2F%2Fphoto.orsoon.com%2F180320%2F180320_50%2FbughwyXT4O_small.jpg",
-                    "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元，见面礼300..."
-                ),
-                LawPopularizationDataBean(
-                    false,
-                    "这是标题",
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580887823981&di=a5db067cd8b4284fcaa78a1b0a6c59a7&imgtype=0&src=http%3A%2F%2Fphoto.orsoon.com%2F180320%2F180320_50%2FbughwyXT4O_small.jpg",
-                    "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元，见面礼300..."
-                ),
-                LawPopularizationDataBean(
-                    false,
-                    "这是标题",
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580887823981&di=a5db067cd8b4284fcaa78a1b0a6c59a7&imgtype=0&src=http%3A%2F%2Fphoto.orsoon.com%2F180320%2F180320_50%2FbughwyXT4O_small.jpg",
-                    "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元，见面礼300..."
-                ),
-                LawPopularizationDataBean(
-                    false,
-                    "这是标题",
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580887823981&di=a5db067cd8b4284fcaa78a1b0a6c59a7&imgtype=0&src=http%3A%2F%2Fphoto.orsoon.com%2F180320%2F180320_50%2FbughwyXT4O_small.jpg",
-                    "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元，见面礼300..."
-                ),
-                LawPopularizationDataBean(
-                    false,
-                    "这是标题",
-                    "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1580887823981&di=a5db067cd8b4284fcaa78a1b0a6c59a7&imgtype=0&src=http%3A%2F%2Fphoto.orsoon.com%2F180320%2F180320_50%2FbughwyXT4O_small.jpg",
-                    "原告与被告经媒人介绍认识，2018年正月初六经媒人邢某向我索要彩礼钱2万元，买东西花费1800元，见面礼300..."
-                )
             )
         ).apply {
             setOnItemClickListener { _, _, position ->
@@ -126,7 +96,7 @@ PopularizationArticleContract.View {
                     manager?.getChildAt(0)?.let {
                         val position = recyclerView.getChildViewHolder(it).adapterPosition
                         if (position + manager.childCount == articleList.size) {
-                            mPresenter?.loadMore(articleList.size / AppConstant.PAGE_COUNT + 1)
+                            mPresenter?.loadMore(articleList.size / AppConstant.PAGE_SIZE + 1)
                         }
                     }
                 }

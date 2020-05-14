@@ -174,7 +174,7 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
                         CommonBean(
                             CommonBean.TYPE_SIMPLE_COLOR,
                             "服务费用（不含差旅费）：",
-                            "¥$it.servicePrice/次",
+                            "¥${it.servicePrice}/次",
                             ContextCompat.getColor(this, R.color.app_font_red)
                         )
                     )
@@ -256,10 +256,12 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
     override fun getSelectPayType() = paymentAmountAdapter.getSelectPayType()
 
     override fun onConsultOrderPay(payOrderBean: PayOrderBean<RealConsultOrderBean>) {
-        if (payOrderBean.order.status == AppConstant.ORDER_STATUS_PAID) {
+        if (payOrderBean.order.status == AppConstant.ORDER_STATUS_PAID && payOrderBean.payWay == "money") {
             showDialag("现在前往咨询页面"){
                 mlog("跳转聊天")
             }
+        } else {
+            showMessage("打开${payOrderBean.payWay}支付")
         }
     }
 

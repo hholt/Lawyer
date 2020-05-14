@@ -34,4 +34,6 @@
     <color name="app_article_sub">#ff8694a7</color>
     <color name="app_article_content">#637388</color>
     <color name="app_reply_blue">#1B76FB</color>
+    <color name="app_order_available">#FCA728</color>
+    <color name="app_order_unavailable">#AFBAC8</color>
 </resources>

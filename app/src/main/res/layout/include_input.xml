@@ -22,9 +22,10 @@
         android:layout_marginRight="15dp"
         android:layout_weight="1"
         android:background="@drawable/shape_et_bg"
-        android:hint="输入你想说的话"
+        android:hint="@string/comment_input_hint"
         android:inputType="text"
         android:maxLines="1"
+        android:focusedByDefault="false"
         android:paddingLeft="14dp"
         android:paddingRight="14dp"
         android:textSize="14sp" />

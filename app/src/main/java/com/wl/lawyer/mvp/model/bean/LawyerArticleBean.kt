@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class LawyerArticleBean(val id: Int, val title: String, val image: String, val desc: String,
                              @SerializedName("createtime") val createTime: Long,
-                             @SerializedName("status_text") val statusText: String) : Serializable{
+                             @SerializedName("status_text") val statusText: String) : Serializable
     /*
     *
     * "id": 43,
@@ -16,4 +16,4 @@ data class LawyerArticleBean(val id: Int, val title: String, val image: String, 
     * "status_text": ""
     *
     * */
-}
+

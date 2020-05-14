@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="62dp"
     android:gravity="center"
@@ -11,20 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/app_padding_common"
         android:textColor="@color/app_font_black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        tools:text="咨询律师："/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_simple_avatar"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/dp_12"
+        tools:src="@drawable/ic_my_avatar"
         android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_simple_subtext"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/app_padding_common"
+        android:layout_marginLeft="@dimen/dp_12"
         android:layout_marginRight="@dimen/app_padding_common"
         android:layout_weight="1"
         android:enabled="false"

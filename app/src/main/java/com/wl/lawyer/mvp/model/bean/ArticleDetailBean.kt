@@ -34,3 +34,5 @@ data class ArticleDetailBean(
     "deletetime": null,
     "status_text": "Status 1"
 * */
+
+

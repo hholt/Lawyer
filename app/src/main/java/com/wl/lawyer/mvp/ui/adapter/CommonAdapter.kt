@@ -105,6 +105,7 @@ class CommonAdapter :
                 item?.title?.let {
                     helper?.getView<LawyerCheckView>(R.id.btn_common).text = it
                 }
+                helper.addOnClickListener(R.id.btn_common)
             }
             CommonBean.TYPE_SIMPLE_BUTTON_HOLLOW -> {
                 item?.title?.let {

@@ -32,21 +32,6 @@ class ConsultingOrderPagerAdapter(private val mDataList: List<String>?) : PagerA
     private val adapter by lazy {
         ConsultingOrderAdapter(
             arrayListOf(
-                ConsultingOrderBean(
-                    "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
-                    "咨询律师：润玉律师", "咨询中", "咨询套餐：在线咨询'音视频咨询套餐",
-                    "2020.02.11 09:04", "2020.02.11 09:04"
-                ),
-                ConsultingOrderBean(
-                    "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
-                    "咨询律师：润玉律师", "咨询中", "咨询套餐：在线咨询'音视频咨询套餐",
-                    "2020.02.11 09:04", "2020.02.11 09:04"
-                ),
-                ConsultingOrderBean(
-                    "http://b-ssl.duitang.com/uploads/item/201901/17/20190117230425_eofqv.thumb.700_0.jpg",
-                    "咨询律师：润玉律师", "咨询中", "咨询套餐：在线咨询'音视频咨询套餐",
-                    "2020.02.11 09:04", "2020.02.11 09:04"
-                )
             )
         ).apply {
             onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->

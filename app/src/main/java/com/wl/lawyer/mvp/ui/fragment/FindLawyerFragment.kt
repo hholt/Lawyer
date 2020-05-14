@@ -190,6 +190,7 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
 
         iv_clear.click {
             et_search.setText("")
+            hideSoftInput()
         }
 
         et_search.maxLines = 1
@@ -350,7 +351,12 @@ class FindLawyerFragment : BaseSupportFragment<FindLawyerPresenter>(), FindLawye
 
     fun handleFooterView(findLawyerBean: FindLawyerBean) {
         allLoad = findLawyerBean.currentPage == findLawyerBean.lastPage
-        if (allLoad) lawAdapter.addFooterView(mFooterView) else lawAdapter.removeFooterView(mFooterView)
+        mlog(allLoad.toString())
+        if (allLoad) {
+            if (lawAdapter.footerLayoutCount==0) lawAdapter.addFooterView(mFooterView)
+        } else {
+            if (lawAdapter.footerLayoutCount==1) lawAdapter.removeFooterView(mFooterView)
+        }
     }
 
     override fun onSearchFieldGet(searchBean: SearchBean) {

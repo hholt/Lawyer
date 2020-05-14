@@ -105,7 +105,7 @@ class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_my, container, false);
+        return inflater.inflate(R.layout.fragment_my, container, false)
     }
 
     override fun initData(savedInstanceState: Bundle?) {

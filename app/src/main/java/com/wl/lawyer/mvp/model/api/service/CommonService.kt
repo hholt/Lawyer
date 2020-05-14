@@ -58,11 +58,23 @@ interface CommonService {
     @GET("/api/popularize_law/getArticles")
     fun getArticles(
         @Query("page") page: Int = 1,
-        @Query("page_size") pageSize: Int = AppConstant.PAGE_COUNT
+        @Query("page_size") pageSize: Int = AppConstant.PAGE_SIZE
     ): Observable<BaseResponse<BaseListBean<LawyerArticleBean>>>
 
     @GET("/api/popularize_law/getArticleDetail")
     fun getArticleDetail(@Query("id") id: Int): Observable<BaseResponse<ArticleDetailBean>>
+
+    /**
+     * ******************************* 律师文章 *******************************
+     */
+    @GET("/api/lawyer/getLawyerArticle")
+    fun getLawyerArticle(
+        @Query("page") page: Int = 1,
+        @Query("page_size") pageSize: Int = AppConstant.PAGE_SIZE,
+        @Query("keywords") keyword: String = "",
+        @Query("lawyer_id") lawyerId: Int,
+        @Query("type_id") typeId: Int
+    ): Observable<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>
 
     /**
      * ******************************* 图文咨询分类 *******************************
@@ -77,7 +89,7 @@ interface CommonService {
     @GET("/api/picture_text_consultation/getPTCList")
     fun getPTCList(
         @Query("page") page: Int = 1,
-        @Query("page_size") pageSize: Int = AppConstant.PAGE_COUNT
+        @Query("page_size") pageSize: Int = AppConstant.PAGE_SIZE
     ): Observable<BaseResponse<BaseListBean<GraphicConsultationBean>>>
 
     /**
@@ -219,4 +231,32 @@ interface CommonService {
         @Query("id") orderId: Int,
         @Query("pay_way") payWay: String
     ): Observable<BaseResponse<PayOrderBean<RealCooperateOrderBean>>>
+
+    /**
+     * *******************************  获取我的咨询订单 *******************************
+     */
+    @GET("/api/consultation/getMyOrderList")
+    fun getMyOrderList(
+        @Query("page") page: Int = 1,
+        @Query("page_size") pageSize: Int = AppConstant.PAGE_SIZE,
+        @Query("status") status: String = "paid"
+    ): Observable<BaseResponse<BaseListBean<MyConsultOrderBean>>>
+
+    /**
+     * *******************************  添加评论 *******************************
+     */
+    @GET("/api/picture_text_consultation/addComment")
+    fun addComment(
+        @Query("content") content: String,
+        @Query("p_t_consultation_id") gcId: Int,
+        @Query("to_comment_id") toId: String = ""
+    ): Observable<BaseResponse<CommentResultBean>>
+
+    /**
+     * *******************************  订单详情 *******************************
+     */
+    @GET("/api/consultation/getOrderDetail")
+    fun getConsultOrderDetail(
+        @Query("id") id: Int
+    ): Observable<BaseResponse<MyConsultOrderBean>>
 }

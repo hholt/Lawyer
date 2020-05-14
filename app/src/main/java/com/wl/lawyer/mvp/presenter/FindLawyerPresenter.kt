@@ -142,7 +142,7 @@ constructor(model: FindLawyerContract.Model, rootView: FindLawyerContract.View) 
                     if (t.isSuccess) {
                         // 保存用户登录信息
                         t?.data?.let {
-                            mRootView.onSearch(it)
+                            mRootView.updateAdapter(it)
                         }
                     } else {
                         RxView.showErrorMsg(mRootView, t.msg)

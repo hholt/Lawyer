@@ -145,7 +145,8 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
                 view?.let {
                     if (it.id == R.id.tv_more) {
                         ARouter.getInstance()
-                            .build(RouterPath.POPULARIZATION_ARTICLE_LIST)
+                            .build(RouterPath.LAWYER_ARTICLE_LIST)
+                            .withSerializable(RouterArgs.LAWYER, lawyer)
                             .navigation()
                     }
                 }

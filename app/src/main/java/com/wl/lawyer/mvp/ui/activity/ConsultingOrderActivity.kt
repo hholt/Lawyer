@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.jess.arms.di.component.AppComponent
@@ -20,7 +21,8 @@ import com.wl.lawyer.mvp.contract.ConsultingOrderContract
 import com.wl.lawyer.mvp.model.bean.BaseListBean
 import com.wl.lawyer.mvp.model.bean.OrderInfoBean
 import com.wl.lawyer.mvp.presenter.ConsultingOrderPresenter
-import com.wl.lawyer.mvp.ui.adapter.ConsultingOrderPagerAdapter
+import com.wl.lawyer.mvp.ui.adapter.CommonFragmentAdapter
+import com.wl.lawyer.mvp.ui.fragment.ConsultOrderFragment
 import kotlinx.android.synthetic.main.activity_consulting_order.*
 import kotlinx.android.synthetic.main.include.*
 import net.lucode.hackware.magicindicator.FragmentContainerHelper
@@ -50,6 +52,17 @@ class ConsultingOrderActivity : BaseSupportActivity<ConsultingOrderPresenter>(),
             .inject(this)
     }
 
+    private val adapter by lazy {
+        CommonFragmentAdapter(
+            arrayListOf(
+                ConsultOrderFragment.newInstance("paid"),
+                ConsultOrderFragment.newInstance("consulation"),
+                ConsultOrderFragment.newInstance("expired")
+            )
+            , supportFragmentManager
+        )
+    }
+
     override fun initView(savedInstanceState: Bundle?): Int {
         return R.layout.activity_consulting_order
     }
@@ -64,15 +77,9 @@ class ConsultingOrderActivity : BaseSupportActivity<ConsultingOrderPresenter>(),
     }
 
     private fun initMagicIndicator() {
-        val adapter = ConsultingOrderPagerAdapter(dataList)
-        // 点击事件
-        adapter.onClickListener = object : ConsultingOrderPagerAdapter.OnClickListener {
-            override fun onClick(type: Int?, position: Int?) {
-                // 订单详情
-                mPresenter?.mAppManager?.startActivity(ConsultingOrderDetailActivity::class.java)
-            }
-        }
+
         // 设置ViewPager
+        view_pager.offscreenPageLimit = 2
         view_pager.adapter = adapter
         // 设置TabLayout
         val commonNavigator = CommonNavigator(mContext)
@@ -82,7 +89,7 @@ class ConsultingOrderActivity : BaseSupportActivity<ConsultingOrderPresenter>(),
                 val simplePagerTitleView =
                     ColorTransitionPagerTitleView(mContext) as SimplePagerTitleView
                 simplePagerTitleView.normalColor = Color.BLACK
-                simplePagerTitleView.selectedColor = Color.BLUE
+                simplePagerTitleView.selectedColor = ContextCompat.getColor(mContext, R.color.app_font_blue)
                 simplePagerTitleView.text = dataList[index]
                 simplePagerTitleView.textSize = 16f
                 // Tab的宽
