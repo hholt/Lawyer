@@ -2,7 +2,7 @@ package com.wl.lawyer.di.module
 
 import com.jess.arms.di.scope.ActivityScope
 import com.wl.lawyer.mvp.contract.ChatListContract
-import com.wl.lawyer.mvp.model.ChatListModule
+import com.wl.lawyer.mvp.model.ChatListModel
 import dagger.Module
 import dagger.Provides
 
@@ -17,7 +17,7 @@ class ChatListModule(private val view: ChatListContract.View) {
 
     @ActivityScope
     @Provides
-    fun provideChatModel(model: ChatListModule): ChatListContract.Model {
+    fun provideChatModel(model: ChatListModel): ChatListContract.Model {
         return model
     }
 }

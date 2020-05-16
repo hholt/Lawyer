@@ -16,7 +16,11 @@ interface PersonalInformationContract {
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model : IModel {
-        fun updateProfileUser(userBean: UserBean.UserinfoBean): Observable<BaseResponse<Any>>
+        fun updateProfileUser(avatar: String,
+                              nickname: String,
+                              bio: String,
+                              gender: Int,
+                              address: String): Observable<BaseResponse<Any>>
         fun profileUser(): Observable<BaseResponse<UserBean>>
     }
 

@@ -135,9 +135,10 @@ class LawyerActivity : BaseSupportActivity<LawyerPresenter>(), LawyerContract.Vi
             // addFooterView(RVUtils.myFooterView(mContext, rv_law))
             onItemClickListener = BaseQuickAdapter.OnItemClickListener{ _, _, position ->
                 getItem(position)?.lawyerArticle?.let {
+                    mlog("${it.id}")
                     ARouter.getInstance()
-                        .build(RouterPath.LAWYER_ARTICLE)
-                        .withSerializable(RouterArgs.ARTICLE, it)
+                        .build(RouterPath.LAWYER_ARTICLE_DETAIL)
+                        .withSerializable(RouterArgs.LAWYER_ARTICLE, it)
                         .navigation()
                 }
             }

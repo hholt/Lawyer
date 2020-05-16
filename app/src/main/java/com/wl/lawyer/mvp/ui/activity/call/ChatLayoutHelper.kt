@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.Nullable
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
+import com.lxj.androidktx.core.gone
 import com.tencent.imsdk.TIMCustomElem
 import com.tencent.qcloud.tim.uikit.modules.chat.ChatLayout
 import com.tencent.qcloud.tim.uikit.modules.chat.base.BaseInputFragment
@@ -22,11 +24,26 @@ import com.wl.lawyer.app.mlog
 import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_1_HELLOTIM
 import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_2_ONLY_IOS_TRTC
 import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_3_ANDROID_IOS_TRTC
+import com.wl.lawyer.mvp.ui.widget.OrderWight
+import kotlinx.android.synthetic.main.activity_chat.*
 
 
 class ChatLayoutHelper(private val mContext: Context) {
+    var layoutAdded = false
 
     fun customizeChatLayout(layout: ChatLayout) {
+        layout.titleBar.gone()
+
+        if (!layoutAdded) {
+            (layout.inputLayout.getChildAt(0) as ViewGroup).addView(
+                OrderWight(mContext), 0, ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            )
+            layoutAdded = true
+        }
+
         CustomAVCallUIController.instance.setUISender(layout)
 
         //        //====== NoticeLayout使用范例 ======//
@@ -43,6 +60,19 @@ class ChatLayoutHelper(private val mContext: Context) {
         //
         //====== MessageLayout使用范例 ======//
         val messageLayout = layout.messageLayout
+
+        messageLayout.rightBubble = mContext.getDrawable(R.drawable.chat_bubble_myself)
+        messageLayout.leftBubble = mContext.getDrawable(R.drawable.chat_other_bg)
+        messageLayout.rightChatContentFontColor =
+            ContextCompat.getColor(mContext, R.color.app_chat_right)
+        messageLayout.leftChatContentFontColor =
+            ContextCompat.getColor(mContext, R.color.app_chat_left)
+        messageLayout.leftNameVisibility = View.GONE
+        messageLayout.avatarSize = intArrayOf(36, 36)
+        messageLayout.avatarRadius = 18
+        messageLayout.avatar = R.drawable.ic_my_avatar
+
+
         //        ////// 设置聊天背景 //////
         //        messageLayout.setBackground(new ColorDrawable(0xFFEFE5D4));
         //        ////// 设置头像 //////
@@ -178,6 +208,17 @@ class ChatLayoutHelper(private val mContext: Context) {
             }
         })
         inputLayout.addAction(unit)
+        val orderBill = InputMoreActionUnit()
+        orderBill.iconResId = R.drawable.ic_more_video
+        orderBill.titleId = R.string.order_bill
+        orderBill.setOnClickListener {
+            val gson = Gson()
+            val customMessage = CustomMessage()
+            val data = gson.toJson(customMessage)
+            val info = MessageInfoUtil.buildCustomMessage(data)
+            layout.sendMessage(info, false)
+        }
+
     }
 
     class CustomInputFragment : BaseInputFragment() {

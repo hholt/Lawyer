@@ -12,6 +12,7 @@ class RouterPath {
         const val SERVICE_CONSULTATION = "/wl/service_consultation"
         const val SERVICE_CASE = "/wl/service_case"
         const val LAWYER_ARTICLE = "/wl/article"
+        const val LAWYER_ARTICLE_DETAIL = "/wl/lawyer_article_detail"
         const val POPULARIZATION_ARTICLE_LIST = "/wl/popularization_article_list"
         const val LAWYER_ARTICLE_LIST = "/wl/article_list"
         const val ONLINE_CONSULTLATION = "/wl/online_consultlation"

@@ -21,8 +21,31 @@ class ArticleFragmentPresenter
 @Inject
 constructor(model: ArticleFragmentContract.Model, rootView: ArticleFragmentContract.View) :
     BasePresenter<ArticleFragmentContract.Model, ArticleFragmentContract.View>(model, rootView) {
-    fun loadMore(i: Int, status: Any) {
-        TODO("Not yet implemented")
+    var isLoadingMore = false
+
+    fun loadMore(page: Int, type: Int, lawyerId: Int) {
+        if (isLoadingMore) {
+            return
+        }
+        isLoadingMore = true
+        val keyWord = mRootView.getKeyWord()
+        mModel.getMoreArticle(page, keyWord, lawyerId, type)
+            .compose(RxCompose.transformer(mRootView))
+            .subscribe(object :
+                ErrorHandleSubscriber<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>(
+                    mErrorHandler
+                ) {
+                override fun onNext(t: BaseResponse<BaseListBean<LawyerArticleDetailBean>>) {
+                    if (t.isSuccess) {
+                        t.data?.let {
+                            mRootView?.onMoreArticleGet(it)
+                        }
+                    } else {
+                        RxView.showErrorMsg(mRootView, t.msg)
+                    }
+                    isLoadingMore = false
+                }
+            })
     }
 
     fun getLawyerArticle(type: Int, lawyerId: Int) {
@@ -30,7 +53,9 @@ constructor(model: ArticleFragmentContract.Model, rootView: ArticleFragmentContr
         mModel.getLawyerArticle(keyWord, lawyerId, type)
             .compose(RxCompose.transformer(mRootView))
             .subscribe(object :
-                ErrorHandleSubscriber<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>(mErrorHandler) {
+                ErrorHandleSubscriber<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>(
+                    mErrorHandler
+                ) {
                 override fun onNext(t: BaseResponse<BaseListBean<LawyerArticleDetailBean>>) {
                     if (t.isSuccess) {
                         t.data?.let {
@@ -43,8 +68,10 @@ constructor(model: ArticleFragmentContract.Model, rootView: ArticleFragmentContr
             })
     }
 
+    fun search(type: Int, lawyerId: Int) {
+        getLawyerArticle(type, lawyerId)
+    }
 
-    var isLoadingMore = false
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler

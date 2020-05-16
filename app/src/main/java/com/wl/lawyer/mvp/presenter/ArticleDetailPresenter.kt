@@ -10,6 +10,7 @@ import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.mvp.contract.PopularizationArticleDetailContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.bean.ArticleDetailBean
+import com.wl.lawyer.mvp.model.bean.LawyerArticleDetailBean
 import me.jessyan.rxerrorhandler.core.RxErrorHandler
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 import javax.inject.Inject
@@ -40,6 +41,7 @@ constructor(
                 }
             })
     }
+
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler

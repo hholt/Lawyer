@@ -91,9 +91,14 @@ interface UserService {
      * @param gender 性别
      * @param address 所在区域（文字）
      */
-    @FormUrlEncoded
-    @POST("/api/user/profile")
-    fun updateProfileUser(@Body userBean: UserBean.UserinfoBean): Observable<BaseResponse<Any>>
+    @GET("/api/user/profile")
+    fun updateProfileUser(
+        @Field("avatar") avatar: String,
+        @Field("nickname") nickname: String,
+        @Field("bio") bio: String,
+        @Field("gender") gender: Int,
+        @Field("address") address: String
+    ): Observable<BaseResponse<Any>>
 
     /**
      * ******************************* TencentIM *******************************

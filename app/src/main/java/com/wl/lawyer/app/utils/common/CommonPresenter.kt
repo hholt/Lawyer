@@ -9,6 +9,7 @@ import com.wl.lawyer.app.utils.RxCompose
 import com.wl.lawyer.app.utils.RxView
 import com.wl.lawyer.mvp.contract.CommonContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
+import com.wl.lawyer.mvp.model.bean.LawyerDetailBean
 import com.wl.lawyer.mvp.model.bean.UploadBean
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber
 import okhttp3.MediaType
@@ -76,6 +77,21 @@ class CommonPresenter(application: Application, view: CommonContract.View?) :
                         mlog("Abs path(${file.absolutePath}) net url(${t.data})")
                     } else {
 //                        RxView.showErrorMsg(rootView, t.msg)
+                        onListener?.onFailed(t?.msg)
+                    }
+                }
+            })
+    }
+
+    fun getLawyerInfo(lawyerId: Int, rootView: IView, onListener: CommonPresenter.OnListener<LawyerDetailBean>) {
+        mCommonModel.getLawyerInfo(lawyerId)
+            .compose(RxCompose.transformer(rootView))
+            .subscribe(object :
+                ErrorHandleSubscriber<BaseResponse<LawyerDetailBean>>(mCommonModel.mRxErrorHandler) {
+                override fun onNext(t: BaseResponse<LawyerDetailBean>) {
+                    if (t.isSuccess) {
+                        onListener?.onSuccess(t?.msg, t?.data)
+                    } else {
                         onListener?.onFailed(t?.msg)
                     }
                 }

@@ -12,7 +12,7 @@ data class LawyerArticleDetailBean(
     @SerializedName("updatetime") val updateTime: Long,
     @SerializedName("lawyer_id") val lawyerId: Int,
     @SerializedName("view_count") val viewCount: Int,
-    @SerializedName("cover_image") val coverImage: Int,
+    @SerializedName("cover_image") val coverImage: String,
     val type: String,
     val status: String,
     val author: Author,

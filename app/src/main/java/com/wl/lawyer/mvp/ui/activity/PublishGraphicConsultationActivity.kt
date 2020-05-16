@@ -8,6 +8,7 @@ import com.jess.arms.di.component.AppComponent
 import com.lxj.androidktx.core.click
 import com.wl.common.activity.PhotoActivity
 import com.wl.lawyer.R
+import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
 import com.wl.lawyer.app.mlog
@@ -47,7 +48,6 @@ class PublishGraphicConsultationActivity :
     }
 
     private val adapter by lazy {
-//        GraA()
         GraphicAddAdapter(
             arrayListOf(
                 GraphicAddBean(GraphicAddBean.TYPE_ADD)
@@ -58,11 +58,20 @@ class PublishGraphicConsultationActivity :
                     GraphicAddBean.TYPE_ADD -> {
                         PhotoActivity.start(
                             mContext,
+                            AppConstant.MAX_GRAPHIC_SIZE - data.size + 1,//可选数量
                             object : PhotoActivity.OnPhotoSelectListener {
                                 override fun onSelect(data: MutableList<String>?) {
-                                    data?.get(0)?.let {
-                                        mlog("选择图片 $it")
+                                    var adapterData = getData()
+                                    data?.let {
+                                        it.forEach{
+                                            adapterData.add(adapterData.size - 1, GraphicAddBean(filePath = it))
+                                        }
+                                        if (adapterData.size > AppConstant.MAX_GRAPHIC_SIZE) {
+                                            adapterData.removeAt(adapterData.size - 1)
+                                        }
+                                        notifyDataSetChanged()
                                     }
+
                                 }
 
                                 override fun onCancel() {
@@ -71,6 +80,13 @@ class PublishGraphicConsultationActivity :
                             })
                     }
                 }
+            }
+
+            setOnItemChildClickListener { adapter, view, position ->
+                if (view.id == R.id.iv_clear) {
+                    remove(position)
+                }
+                addItemToLast(GraphicAddBean(type = GraphicAddBean.TYPE_ADD))
             }
         }
     }
@@ -129,13 +145,25 @@ class PublishGraphicConsultationActivity :
 
     }
     fun submit() {
-        mPresenter?.createConsult(
-            "这是标题",
-            "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容",
-            "/uploads/20200507/38ffd676fc8804ff7cf6daa7b83f4ab3.png",
-            selectSet!!.id
-        )
+        mPresenter?.createConsult(selectSet!!.id)
     }
+
+    override fun getTitleText() = et_consulation_title.text.toString()
+
+    override fun getContent() = et_consulation_detail.text.toString()
+
+    override fun getImages(): List<String> {
+        val list = arrayListOf<String>()
+        adapter.data.forEach{
+            it.takeIf { it.type == GraphicAddBean.TYPE_PIC }?.apply {
+                list.add(filePath)
+            }
+        }
+        mlog(list.toString())
+        return list
+    }
+
+
 
     override fun onPublishResult(result: PublishResultBean) {
 

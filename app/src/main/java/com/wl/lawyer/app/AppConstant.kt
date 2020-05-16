@@ -16,6 +16,7 @@ class AppConstant {
         const val PAY_ALIPAY = "alipay"
         const val PAY_WECHAT = "wechat"
         const val PAGE_SIZE = 10
+        const val MAX_GRAPHIC_SIZE = 4
 
         /**
          * /////////////////////////////////////intent/////////////////////////////////////

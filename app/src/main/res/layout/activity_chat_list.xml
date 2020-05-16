@@ -9,11 +9,17 @@
 
     <include layout="@layout/include_dividing_line"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:itemCount="5"
-        tools:listitem="@layout/adapter_chatlist_item"/>
+        android:text="发送"
+        android:id="@+id/btn_send_one"
+        />
+    <com.tencent.qcloud.tim.uikit.modules.conversation.ConversationLayout
+        android:id="@+id/layout_conversation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

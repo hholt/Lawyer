@@ -103,8 +103,8 @@ constructor(model: LoginContract.Model, rootView: LoginContract.View) :
     }
 
     private fun tuikitLogin(userSig: TencentUserSignatureBean) {
-
-        TUIKit.login(userSig.nickname, userSig.sig, object : IUIKitCallBack {
+        val userinfo = sp().getObject<UserBean>(AppConstant.SP_USER)?.userinfo
+        TUIKit.login(userinfo?.userId.toString(), userSig.sig, object : IUIKitCallBack {
 
             override fun onError(module: String?, errCode: Int, errMsg: String?) {
                 mlog("module:$module err code:$errCode msg:$errMsg")

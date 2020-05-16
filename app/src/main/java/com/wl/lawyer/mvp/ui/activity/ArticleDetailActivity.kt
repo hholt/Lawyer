@@ -19,6 +19,7 @@ import com.wl.lawyer.mvp.contract.PopularizationArticleDetailContract
 import com.wl.lawyer.mvp.model.api.Api
 import com.wl.lawyer.mvp.model.bean.ArticleDetailBean
 import com.wl.lawyer.mvp.model.bean.LawyerArticleBean
+import com.wl.lawyer.mvp.model.bean.LawyerArticleDetailBean
 import com.wl.lawyer.mvp.presenter.ArticleDetailPresenter
 import kotlinx.android.synthetic.main.activity_article_detail.*
 import kotlinx.android.synthetic.main.include.*
@@ -55,8 +56,11 @@ class ArticleDetailActivity: BaseSupportActivity<ArticleDetailPresenter>(),
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
         article?.apply {
+            mlog("load article")
+            tv_article_title.text = title
             mPresenter?.getArticleDetail(id)
         }
+
     }
 
     override fun initImmersionBar() {
@@ -85,4 +89,5 @@ class ArticleDetailActivity: BaseSupportActivity<ArticleDetailPresenter>(),
                 null)
         }
     }
+
 }

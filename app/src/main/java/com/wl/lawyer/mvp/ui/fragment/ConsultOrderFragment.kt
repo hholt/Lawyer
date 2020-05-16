@@ -128,7 +128,11 @@ class ConsultOrderFragment(val status: String) : BaseSupportFragment<OrderFragme
 
     fun handleFooterView(data: BaseListBean<MyConsultOrderBean>) {
         allLoad = data.totalCount == dataList.size
-        if (allLoad) adapter.addFooterView(mFooterView) else adapter.removeFooterView(mFooterView)
+        if (allLoad) {
+            if (adapter.footerLayoutCount == 0) adapter.addFooterView(mFooterView)
+        } else {
+            if (adapter.footerLayoutCount == 1) adapter.removeFooterView(mFooterView)
+        }
     }
 
     override fun moreOrderGet(data: BaseListBean<MyConsultOrderBean>) {

@@ -1,23 +1,31 @@
 package com.wl.lawyer.mvp.ui.activity
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
+import com.alibaba.android.arouter.facade.annotation.Autowired
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
+import com.lxj.androidktx.core.gone
 import com.tencent.imsdk.TIMConversationType
 import com.tencent.qcloud.tim.uikit.component.TitleBarLayout
 import com.tencent.qcloud.tim.uikit.modules.chat.base.ChatInfo
 import com.tencent.qcloud.tim.uikit.modules.chat.layout.inputmore.InputMoreActionUnit
+import com.tencent.qcloud.tim.uikit.modules.conversation.base.ConversationInfo
 import com.wl.lawyer.R
-import com.wl.lawyer.app.AppConstant
+import com.wl.lawyer.app.*
 import com.wl.lawyer.app.base.BaseSupportActivity
-import com.wl.lawyer.app.mlog
 import com.wl.lawyer.di.component.DaggerChatComponent
 import com.wl.lawyer.di.module.ChatModule
 import com.wl.lawyer.mvp.contract.ChatContract
 import com.wl.lawyer.mvp.presenter.ChatPresenter
 import com.wl.lawyer.mvp.ui.activity.call.ChatLayoutHelper
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.include.*
 
-
+@Route(path = RouterPath.CHAT_ACTIVITY)
 class ChatActivity : BaseSupportActivity<ChatPresenter>(), ChatContract.View {
     override fun post(runnable: Runnable?) {
 
@@ -32,11 +40,25 @@ class ChatActivity : BaseSupportActivity<ChatPresenter>(), ChatContract.View {
             .inject(this)
     }
 
+    @Autowired(name = RouterArgs.LAWYER_ID)
+    @JvmField
+    var lawyerId: Int? = -1
+
     override fun initView(savedInstanceState: Bundle?): Int {
         return R.layout.activity_chat
     }
 
     override fun initData(savedInstanceState: Bundle?) {
+        ARouter.getInstance().inject(this)
+
+        lawyerId?.let {
+            tv_title.text = it.toString()
+            mPresenter?.getLawyerInfo(it)
+        }
+        iv_right.gone()
+        dividing_line.gone()
+        iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
+
         initTencentIM()
     }
 
@@ -44,14 +66,10 @@ class ChatActivity : BaseSupportActivity<ChatPresenter>(), ChatContract.View {
         chat_layout.initDefault()
         var chatInfo = ChatInfo()
         chatInfo.type = TIMConversationType.C2C
-        chatInfo.id = AppConstant.FRIEND_ID
-        chatInfo.chatName = AppConstant.FRIEND_ID
+        chatInfo.id = lawyerId.toString()
+        chatInfo.chatName = lawyerId.toString()
         chat_layout.chatInfo = chatInfo
 
-        var tabBarLayout = chat_layout.findViewById<TitleBarLayout>(R.id.chat_title_bar).also {
-            it.setRightIcon(R.drawable.ic_contact)
-            it.setLeftIcon(R.drawable.ic_back_black)
-        }
 
         var inputActionVideo = InputMoreActionUnit()
         inputActionVideo.iconResId = R.drawable.default_user_icon
@@ -61,10 +79,10 @@ class ChatActivity : BaseSupportActivity<ChatPresenter>(), ChatContract.View {
             mPresenter?.startVideoCall()
         }
         chat_layout.inputLayout.addAction(inputActionVideo)
+        ChatLayoutHelper(mContext).customizeChatLayout(chat_layout)
     }
 
     override fun onResume() {
         super.onResume()
-        ChatLayoutHelper(mContext).customizeChatLayout(chat_layout)
     }
 }

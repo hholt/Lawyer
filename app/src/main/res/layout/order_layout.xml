@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/check_order"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="查看费用单"
+        android:textSize="14sp"
+        android:textColor="#333"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/guideline"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/finish_order"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="确认完结"
+        android:textSize="14sp"
+        android:textColor="#333"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/send_file"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="发送文件"
+        android:textSize="14sp"
+        android:textColor="#333"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline2"
+        app:layout_constraintRight_toRightOf="parent"/>
+    
+    <View
+        android:layout_width="1dp"
+        android:layout_height="@dimen/dp_22"
+        android:background="#F4F4F5"
+        app:layout_constraintLeft_toLeftOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="@dimen/dp_22"
+        android:background="#F4F4F5"
+        app:layout_constraintLeft_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.66"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

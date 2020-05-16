@@ -26,9 +26,13 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     override fun profileUser(): Observable<BaseResponse<UserBean>> {
         return mRepositoryManager.obtainRetrofitService(UserService::class.java).profileUser()
     }
-    override fun updateProfileUser(userBean: UserBean.UserinfoBean): Observable<BaseResponse<Any>> {
+    override fun updateProfileUser(avatar: String,
+                                   nickname: String,
+                                   bio: String,
+                                   gender: Int,
+                                   address: String): Observable<BaseResponse<Any>> {
         return mRepositoryManager.obtainRetrofitService(UserService::class.java)
-            .updateProfileUser(userBean)
+            .updateProfileUser(avatar, nickname, bio, gender, address)
     }
 
 }

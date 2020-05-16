@@ -9,9 +9,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.gyf.immersionbar.ImmersionBar
 import com.jess.arms.di.component.AppComponent
-import com.lxj.androidktx.core.click
-import com.lxj.androidktx.core.getObject
-import com.lxj.androidktx.core.sp
+import com.lxj.androidktx.core.*
+import com.tencent.qcloud.tim.uikit.modules.conversation.ConversationManagerKit
 import com.wl.lawyer.R
 import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.app.RouterPath
@@ -26,12 +25,12 @@ import com.wl.lawyer.mvp.model.bean.SettingDataBean
 import com.wl.lawyer.mvp.model.bean.UserBean
 import com.wl.lawyer.mvp.presenter.MyPresenter
 import com.wl.lawyer.mvp.ui.activity.ConsultingOrderActivity
-import com.wl.lawyer.mvp.ui.activity.GraphicConsultationActivity
 import com.wl.lawyer.mvp.ui.adapter.SettingAdapter
 import kotlinx.android.synthetic.main.fragment_my.*
 
 
-class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View {
+class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View,
+    ConversationManagerKit.MessageUnreadWatcher {
 
     override fun setData(data: Any?) {
 
@@ -115,11 +114,15 @@ class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View {
         constraint_avatar.setOnClickListener {
             ActivityUtils.goMyProfileActivity()
         }
-        iv_new.click{
+        iv_new.click {
             ARouter.getInstance().build(RouterPath.CHAT_LIST).navigation()
         }
         initSetting1Adapter()
         initSetting2Adapter()
+
+        // 未读消息监视器
+        val conversation = ConversationManagerKit.getInstance()
+        conversation.addUnreadWatcher(this)
     }
 
     private fun initSetting1Adapter() {
@@ -149,4 +152,20 @@ class MyFragment : BaseSupportFragment<MyPresenter>(), MyContract.View {
             tv_introduction.text = it?.userinfo?.bio
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        ConversationManagerKit.getInstance().destroyConversation()
+    }
+
+    override fun updateUnread(count: Int) {
+        if (count > 0) msg_unread.visible() else msg_unread.gone()
+        var unreadStr = "$count"
+        if (count > 100) {
+            unreadStr = "99+"
+        }
+        msg_unread.text = unreadStr
+    }
+
+
 }

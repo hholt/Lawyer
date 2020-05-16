@@ -21,22 +21,7 @@ class ChatListPresenter
 @Inject
 constructor(model: ChatListContract.Model, rootView: ChatListContract.View) :
     BasePresenter<ChatListContract.Model, ChatListContract.View>(model, rootView) {
-    fun getUserSignature() {
-        mModel.getUserSignature()
-            .compose(RxCompose.transformer(mRootView))
-            .subscribe(object :
-                ErrorHandleSubscriber<BaseResponse<TencentUserSignatureBean>>(mErrorHandler) {
-                override fun onNext(t: BaseResponse<TencentUserSignatureBean>) {
-                    if (t.isSuccess) {
-                        t.data?.let {
-                            mRootView?.onSignatureGet(it)
-                        }
-                    } else {
-                        RxView.showErrorMsg(mRootView, t.msg)
-                    }
-                }
-            })
-    }
+
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler

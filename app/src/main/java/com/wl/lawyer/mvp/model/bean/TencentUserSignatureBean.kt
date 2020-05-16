@@ -3,7 +3,7 @@ package com.wl.lawyer.mvp.model.bean
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class TencentUserSignatureBean(
+data class TencentUserSignatureBean(
     @SerializedName("signature")val sig: String,
     val nickname: String) : Serializable
 /*

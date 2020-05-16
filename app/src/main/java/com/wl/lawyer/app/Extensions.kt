@@ -63,6 +63,8 @@ fun Any.mloge(any: Any) {
 
 fun ImageView.image(path: String) {
     val options = RequestOptions()
+        .placeholder(R.drawable.ic_my_avatar)
+        .error(R.drawable.ic_mine)
 //        .placeholder(R.drawable.icon_avatar)
 //        //异常占位图(当加载异常的时候出现的图片)
 //        .error(R.drawable.icon_avatar)

@@ -5,19 +5,21 @@ import com.google.gson.Gson
 import com.jess.arms.di.scope.ActivityScope
 import com.jess.arms.integration.IRepositoryManager
 import com.jess.arms.mvp.BaseModel
-import com.wl.lawyer.mvp.contract.ChatListContract
-import com.wl.lawyer.mvp.model.api.service.TencentCloudService
+import com.wl.lawyer.mvp.contract.LawyerArticleDetailContract
+import com.wl.lawyer.mvp.model.api.service.CommonService
 import javax.inject.Inject
 
 @ActivityScope
-class ChatListModule
+class LawyerArticleDetailModel
 @Inject
 constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager),
-    ChatListContract.Model {
+    LawyerArticleDetailContract.Model {
     @Inject
     lateinit var mGson: Gson
+
     @Inject
     lateinit var mApplication: Application
 
-    override fun getUserSignature() = mRepositoryManager.obtainRetrofitService(TencentCloudService::class.java).getSignature()
+    override fun getLawyerArticleDetail(id: Int) = mRepositoryManager
+        .obtainRetrofitService(CommonService::class.java).getLawyerArticleDetail(id)
 }

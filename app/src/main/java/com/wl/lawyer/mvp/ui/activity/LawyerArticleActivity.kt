@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.animation.OvershootInterpolator
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
@@ -13,10 +14,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.jess.arms.di.component.AppComponent
 import com.jess.arms.utils.ArmsUtils
+import com.lxj.androidktx.core.click
 import com.wl.lawyer.R
 import com.wl.lawyer.app.RouterArgs
 import com.wl.lawyer.app.RouterPath
 import com.wl.lawyer.app.base.BaseSupportActivity
+import com.wl.lawyer.app.hideSoftInput
 import com.wl.lawyer.app.onBack
 import com.wl.lawyer.di.component.DaggerLawyerArticleComponent
 import com.wl.lawyer.di.module.LawyerArticleModule
@@ -55,12 +58,16 @@ class LawyerArticleActivity: BaseSupportActivity<LawyerArticlePresenter>(),
 
     val dataList = arrayListOf<String>("经典案例", "普法文章")
 
+    private val fragmentList by lazy {
+        arrayListOf(
+            ArticleFragment.newInstance(1, lawyer!!),
+            ArticleFragment.newInstance(2, lawyer!!)
+        )
+    }
+
     private val adapter by lazy {
         CommonFragmentAdapter(
-            arrayListOf(
-                ArticleFragment.newInstance(1, lawyer),
-                ArticleFragment.newInstance(2, lawyer)
-            )
+            fragmentList
             , supportFragmentManager
         )
     }
@@ -76,6 +83,25 @@ class LawyerArticleActivity: BaseSupportActivity<LawyerArticlePresenter>(),
         iv_back.setOnClickListener { mPresenter?.mAppManager?.onBack() }
 
         initMagicIndicator()
+
+        iv_clear.click {
+            et_search.setText("")
+            hideSoftInput()
+        }
+
+        et_search.maxLines = 1
+        et_search.setOnEditorActionListener { _, actionId, event ->
+            if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+                val keyword = et_search.text.toString()
+
+                hideSoftInput()
+                fragmentList.forEach {
+                    it.search(keyword)
+                }
+            }
+            event.keyCode == KeyEvent.KEYCODE_ENTER
+
+        }
 
     }
 
@@ -110,7 +136,7 @@ class LawyerArticleActivity: BaseSupportActivity<LawyerArticlePresenter>(),
                 linePagerIndicator.mode = LinePagerIndicator.MODE_EXACTLY
                 linePagerIndicator.lineWidth = ArmsUtils.dip2px(mContext, 53f) * 1f
                 linePagerIndicator.lineHeight = ArmsUtils.dip2px(mContext, 2f) * 1f
-                linePagerIndicator.setColors(Color.BLUE)
+                linePagerIndicator.setColors(ContextCompat.getColor(mContext, R.color.app_font_blue))
                 return linePagerIndicator
             }
         }

@@ -1,10 +1,8 @@
 package com.wl.lawyer.di.module
 
 import com.jess.arms.di.scope.ActivityScope
-import com.wl.lawyer.mvp.contract.PopularizationArticleContract
 import com.wl.lawyer.mvp.contract.PopularizationArticleDetailContract
-import com.wl.lawyer.mvp.model.ArticleDetailModule
-import com.wl.lawyer.mvp.model.PopularizationArticleModule
+import com.wl.lawyer.mvp.model.ArticleDetailModel
 import dagger.Module
 import dagger.Provides
 
@@ -19,7 +17,7 @@ class PopularizationArticleDetailModule(private val view: PopularizationArticleD
 
     @ActivityScope
     @Provides
-    fun providePopularizationArticleDetailModel(model: ArticleDetailModule): PopularizationArticleDetailContract.Model {
+    fun providePopularizationArticleDetailModel(model: ArticleDetailModel): PopularizationArticleDetailContract.Model {
         return model
     }
 }

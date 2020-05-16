@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.util.MultiTypeDelegate
 import com.wl.lawyer.R
+import com.wl.lawyer.app.image
 import com.wl.lawyer.app.roundedImage
 import com.wl.lawyer.mvp.model.api.Api
 import com.wl.lawyer.mvp.model.bean.GraphicAddBean
@@ -28,12 +29,17 @@ class GraphicAddAdapter: BaseQuickAdapter<GraphicAddBean, BaseViewHolder> {
 
     override fun convert(helper: BaseViewHolder, item: GraphicAddBean?) {
         when (item?.type) {
-            GraphicAddBean.TYPE_ADD -> {
-
-            }
+            GraphicAddBean.TYPE_ADD -> { }
             GraphicAddBean.TYPE_PIC -> {
-
+                helper.getView<AppCompatImageView>(R.id.iv_graphic).image(item.filePath)
+                helper.addOnClickListener(R.id.iv_clear)
             }
         }
+    }
+
+    fun addItemToLast(bean: GraphicAddBean) {
+        if (data.last().type == GraphicAddBean.TYPE_ADD) return
+        data.add(bean)
+        notifyDataSetChanged()
     }
 }

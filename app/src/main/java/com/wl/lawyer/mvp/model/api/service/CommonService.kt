@@ -77,6 +77,14 @@ interface CommonService {
     ): Observable<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>
 
     /**
+     * ******************************* 律师文章详情 *******************************
+     */
+    @GET("/api/lawyer/getArticleDetail")
+    fun getLawyerArticleDetail(
+        @Query("article_id") id: Int
+    ): Observable<BaseResponse<LawyerArticleDetailBean>>
+
+    /**
      * ******************************* 图文咨询分类 *******************************
      */
     @GET("/api/picture_text_consultation/getPTCCategories")

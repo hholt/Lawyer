@@ -13,11 +13,13 @@ interface ArticleFragmentContract {
     interface View: IView {
         fun getKeyWord(): String
         fun onLawyerArticleGet(data: BaseListBean<LawyerArticleDetailBean>)
+        fun onMoreArticleGet(data: BaseListBean<LawyerArticleDetailBean>)
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
     interface Model: IModel {
-        fun getLawyerArticle(keyWord: String, lawyerId: Int, typeId: Int) : Observable<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>
+        fun getLawyerArticle(keyword: String, lawyerId: Int, typeId: Int) : Observable<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>
+        fun getMoreArticle(page: Int,keyword: String, lawyerId: Int, typeId: Int) : Observable<BaseResponse<BaseListBean<LawyerArticleDetailBean>>>
 
     }
 }

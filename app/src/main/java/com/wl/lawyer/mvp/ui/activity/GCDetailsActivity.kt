@@ -1,6 +1,7 @@
 package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -94,8 +95,19 @@ class GCDetailsActivity : BaseSupportActivity<GCDetailsPresenter>(), GCDetailsCo
         sp().getObject<UserBean>(AppConstant.SP_USER)?.apply {
             iv_input_avatar.circleImage(Api.APP_DOMAIN + userinfo?.avatar)
         }
+
+        et_input.setOnEditorActionListener { _, actionId, event ->
+            if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+                mPresenter?.addComment()
+                et_input.setText("")
+                hideSoftInput()
+            }
+            event.keyCode == KeyEvent.KEYCODE_ENTER
+
+        }
         btn_input_submit.click {
             mPresenter?.addComment()
+            et_input.setText("")
         }
 
         initGraphicRecycleview()

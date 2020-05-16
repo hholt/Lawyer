@@ -42,7 +42,7 @@ class PopularizationCourseDetailsActivity :
     var type: String? = AppConstant.KEY_POPULARIZATION
 
     //    private val url = "http://jessehuan.fun:38080/s/stKB5gjfzxjJXcn"
-    private val url = "http://jessehuan.fun:38080/s/stKB5gjfzxjJXcn/download"
+//    private val url = "http://jessehuan.fun:38080/s/stKB5gjfzxjJXcn/download"
 
     private val adapter by lazy {
         PopularizationCourseReviewsAdapter(

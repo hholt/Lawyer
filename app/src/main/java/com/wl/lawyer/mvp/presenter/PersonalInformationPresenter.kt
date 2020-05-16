@@ -30,10 +30,13 @@ constructor(model: PersonalInformationContract.Model, rootView: PersonalInformat
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler
+
     @Inject
     lateinit var mApplication: Application
+
     @Inject
     lateinit var mImageLoader: ImageLoader
+
     @Inject
     lateinit var mAppManager: AppManager
 
@@ -67,7 +70,13 @@ constructor(model: PersonalInformationContract.Model, rootView: PersonalInformat
     // 修改用户资料
     private fun updateProfileUser(userBean: UserBean.UserinfoBean?) {
         if (userBean != null) {
-            mModel.updateProfileUser(userBean)
+            mModel.updateProfileUser(
+                userBean.avatar!!,
+                userBean.nickname!!,
+                userBean.bio!!,
+                userBean.gender!!,
+                userBean.address!!
+            )
                 .compose(RxCompose.transformer(mRootView))
                 .subscribe(object : ErrorHandleSubscriber<BaseResponse<Any>>(mErrorHandler) {
                     override fun onNext(t: BaseResponse<Any>) {
