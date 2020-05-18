@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\ic_photo.png",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\generated\\res\\pngs\\release\\drawable-ldpi\\ic_photo.png"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\ic_back.png",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\generated\\res\\pngs\\release\\drawable-ldpi\\ic_back.png"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-ldpi-v4\\ic_camera.png",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\generated\\res\\pngs\\release\\drawable-ldpi\\ic_camera.png"
+    }
+]

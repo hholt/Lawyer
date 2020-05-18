@@ -267,4 +267,11 @@ interface CommonService {
     fun getConsultOrderDetail(
         @Query("id") id: Int
     ): Observable<BaseResponse<MyConsultOrderBean>>
+
+
+    /**
+     * *******************************  获取进行中的聊天 *******************************
+     */
+    @GET("/api/user_chat/getUserChatList")
+    fun getChatList() : Observable<BaseResponse<List<ChatBean>>>
 }

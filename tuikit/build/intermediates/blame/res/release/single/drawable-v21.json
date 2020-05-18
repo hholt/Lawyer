@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\099c02f7d7ff9454a3bfb2b98ab1b451\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    }
+]

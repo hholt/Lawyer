@@ -1,0 +1,402 @@
+[
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_apply_manager_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_apply_manager_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_view.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_toolbar.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_menu_item_layout.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\pop_menu_adapter.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\pop_menu_adapter.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\item_face.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\item_face.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_info_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_info_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_apply_adpater.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_apply_adpater.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\099c02f7d7ff9454a3bfb2b98ab1b451\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\099c02f7d7ff9454a3bfb2b98ab1b451\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_content_file.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_content_file.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\pop_menu_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\pop_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_item_content.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_item_content.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_fragment_invite_members.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_fragment_invite_members.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_tooltip.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_tooltip.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_content_audio.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_content_audio.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\face_group_icon.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\face_group_icon.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_title_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\activity_camera.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\activity_camera.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\title_bar_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\title_bar_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\profile_icon_view.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\profile_icon_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\pop_dialog_adapter.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\pop_dialog_adapter.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\layout_dialog.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\layout_dialog.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\line_controller_view.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\line_controller_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_activity_chooser_view.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_up_container.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_input_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_input_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\contact_selecable_adapter_item.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\contact_selecable_adapter_item.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_del_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_del_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\099c02f7d7ff9454a3bfb2b98ab1b451\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_notice_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_notice_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_inputmore_fragment.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_inputmore_fragment.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_input_layout_actoin.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_input_layout_actoin.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\contact_list.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\contact_list.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_radio.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_fragment_del_members.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_fragment_del_members.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_content_header.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_content_header.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_select_dialog_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\layout_face_grid.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\layout_face_grid.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_item_empty.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_item_empty.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_simple.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\contact_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\contact_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\layout_ensure_dialog.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\layout_ensure_dialog.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_screen_content_include.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_multichoice_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\099c02f7d7ff9454a3bfb2b98ab1b451\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_apply_member_activity.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_apply_member_activity.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\view_dialog.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\view_dialog.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\contact_friend_profile_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\contact_friend_profile_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\selection_activity.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\selection_activity.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_action.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\099c02f7d7ff9454a3bfb2b98ab1b451\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\fragment_face.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\fragment_face.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_input_camera_view.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_input_camera_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_content_tips.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_content_tips.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_pop_menu.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_pop_menu.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_dialog_title_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\activity_photo_view.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\activity_photo_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\conversation_adapter.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\conversation_adapter.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_bar_title_item.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_info_fragment.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_info_fragment.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_invite_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_invite_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_action.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\activity_video_view.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\activity_video_view.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_content_text.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_content_text.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\conversation_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\conversation_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\conversation_custom_adapter.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\conversation_custom_adapter.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_layout.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\chat_inputmore_layout.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\chat_inputmore_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\message_adapter_content_image.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\message_adapter_content_image.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_fragment_members.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_fragment_members.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_apply_manager_activity.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_apply_manager_activity.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_list_menu_item_icon.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_expanded_menu_layout.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_del_adpater.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_del_adpater.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_member_adpater.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_member_adpater.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\group_info_activity.xml",
+        "source": "D:\\AndroidProject\\TIMDEMO\\tuikit\\src\\main\\res\\layout\\group_info_activity.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.1.aar\\d6fdf2393b822e0ad1fbfac9efd0601a\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "D:\\AndroidProject\\TIMDEMO\\tuikit\\build\\intermediates\\res\\merged\\release\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "C:\\Users\\wanlang_dev\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\a5fe838cd169445b84ea1ae31b45d8ac\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    }
+]

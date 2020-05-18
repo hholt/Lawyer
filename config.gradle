@@ -118,7 +118,7 @@ ext {
             "statusbarutil"              : "com.jaeger.statusbarutil:library:1.4.0",
             "immersionbar"               : "com.gyf.immersionbar:immersionbar:3.0.0",
             "immersionbar-components"    : "com.gyf.immersionbar:immersionbar-components:3.0.0",
-            "tencent-im"                 : "com.tencent.imsdk:tuikit:4.6.51",
+            "tencent-im"                 : "com.tencent.imsdk:tuikit:4.7.10",
             "tencent-live-sdk"           : "com.tencent.liteav:LiteAVSDK_Professional:latest.release",
             "tencent-bugly"              : "com.tencent.bugly:crashreport:latest.release",
             "tencent-bugly-native"       : "com.tencent.bugly:nativecrashreport:latest.release",

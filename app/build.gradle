@@ -103,7 +103,8 @@ dependencies {
     provided rootProject.ext.dependencies["javax.annotation"]
     kapt rootProject.ext.dependencies["dagger2-compiler"]
     // 腾讯IM
-    implementation rootProject.ext.dependencies["tencent-im"]
+    implementation project(':tuikit')
+//    implementation rootProject.ext.dependencies["tencent-im"]
     // 腾讯直播 腾讯视频通话 需要使用腾讯专业版（Professional）才可以
 //    implementation rootProject.ext.dependencies["tencent-live-sdk"]
     implementation rootProject.ext.dependencies["tencent-bugly"]
