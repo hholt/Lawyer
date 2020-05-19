@@ -11,6 +11,7 @@ import javax.inject.Inject
 import com.wl.lawyer.mvp.contract.ConsultingOrderDetailContract
 import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
+import com.wl.lawyer.mvp.model.bean.ChatBean
 import com.wl.lawyer.mvp.model.bean.MyConsultOrderBean
 import io.reactivex.Observable
 
@@ -26,4 +27,10 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
     lateinit var mApplication: Application
 
     override fun getOrderDetail(id: Int) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getConsultOrderDetail(id)
+
+    override fun addUserChat(
+        orderId: String,
+        lawyerId: Int,
+        type: Int
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).addUserChat(orderId, lawyerId, type)
 }

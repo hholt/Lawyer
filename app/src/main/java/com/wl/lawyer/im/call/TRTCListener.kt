@@ -1,4 +1,4 @@
-package com.wl.lawyer.mvp.ui.activity.call
+package com.wl.lawyer.im.call
 
 import android.os.Bundle
 import com.tencent.trtc.TRTCCloudListener

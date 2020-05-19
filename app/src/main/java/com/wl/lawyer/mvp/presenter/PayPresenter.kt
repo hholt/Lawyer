@@ -95,6 +95,23 @@ constructor(model: PayContract.Model, rootView: PayContract.View) :
             })
     }
 
+    fun addUserChat(orderId: String, lawyerId: Int, type: Int) {
+        mModel.addUserCHat(orderId, lawyerId, type)
+            .compose(RxCompose.transformer(mRootView))
+            .subscribe(object :
+                ErrorHandleSubscriber<BaseResponse<ChatBean>>(mErrorHandler) {
+                override fun onNext(t: BaseResponse<ChatBean>) {
+                    if (t.isSuccess) {
+                        t.data?.let {
+                            mRootView?.onChatAdded(it)
+                        }
+                    } else {
+                        RxView.showErrorMsg(mRootView, t.msg)
+                    }
+                }
+            })
+    }
+
 
     @Inject
     lateinit var mErrorHandler: RxErrorHandler

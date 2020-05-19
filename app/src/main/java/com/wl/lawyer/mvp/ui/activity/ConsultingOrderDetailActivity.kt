@@ -19,6 +19,7 @@ import com.wl.lawyer.di.component.DaggerConsultingOrderDetailComponent
 import com.wl.lawyer.di.module.ConsultingOrderDetailModule
 import com.wl.lawyer.mvp.contract.ConsultingOrderDetailContract
 import com.wl.lawyer.mvp.model.api.Api
+import com.wl.lawyer.mvp.model.bean.ChatBean
 import com.wl.lawyer.mvp.model.bean.CommonBean
 import com.wl.lawyer.mvp.model.bean.MyConsultOrderBean
 import com.wl.lawyer.mvp.presenter.ConsultingOrderDetailPresenter
@@ -76,6 +77,7 @@ class ConsultingOrderDetailActivity : BaseSupportActivity<ConsultingOrderDetailP
     }
 
     override fun onOrderGet(orderBean: MyConsultOrderBean) {
+        order = orderBean
         orderBean.apply {
             adapter.setNewData(arrayListOf(
                 CommonBean(
@@ -121,10 +123,24 @@ class ConsultingOrderDetailActivity : BaseSupportActivity<ConsultingOrderDetailP
                 setOnItemChildClickListener { adapter, view, position ->
                     if (view.id == R.id.btn_common) {
                         showMessage("前往沟通页")
+                        order?.let {
+                        mPresenter?.addUserChat(it.id.toString(), it.inviteLawyerId, 1)//正式使用lawyerId ，测试使用inviteawyerId
+
+                        }
                     }
                 }
                 rv_item.adapter = this
             }
+        }
+    }
+
+    override fun onChatAdded(chatBean: ChatBean) {
+        order?.let {
+            ARouter.getInstance()
+                .build(RouterPath.CHAT_ACTIVITY)
+                .withSerializable(RouterArgs.CONSULT_ORDER, it)
+                .withSerializable(RouterArgs.CHAT, chatBean)
+                .navigation()
         }
     }
 }

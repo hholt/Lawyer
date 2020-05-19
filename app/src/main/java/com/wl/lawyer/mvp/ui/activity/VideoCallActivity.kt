@@ -21,8 +21,8 @@ import com.wl.lawyer.di.component.DaggerVideoCallComponent
 import com.wl.lawyer.di.module.VideoCallModule
 import com.wl.lawyer.mvp.contract.VideoCallContract
 import com.wl.lawyer.mvp.presenter.VideoCallPresenter
-import com.wl.lawyer.mvp.ui.activity.call.CustomAVCallUIController
-import com.wl.lawyer.mvp.ui.activity.call.TRTCListener
+import com.wl.lawyer.im.call.CustomAVCallUIController
+import com.wl.lawyer.im.call.TRTCListener
 import kotlinx.android.synthetic.main.activity_video_call.*
 import java.util.*
 

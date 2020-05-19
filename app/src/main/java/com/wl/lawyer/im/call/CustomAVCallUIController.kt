@@ -1,4 +1,4 @@
-package com.wl.lawyer.mvp.ui.activity.call
+package com.wl.lawyer.im.call
 
 import android.content.Intent
 import android.os.Bundle
@@ -27,14 +27,14 @@ import com.wl.lawyer.app.global.MyApplication
 import com.wl.lawyer.app.mlog
 import com.wl.lawyer.mvp.ui.activity.ChatActivity
 import com.wl.lawyer.mvp.ui.activity.VideoCallActivity
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_3_ANDROID_IOS_TRTC
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_ACCEPTED
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_DIALING
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_HANGUP
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_LINE_BUSY
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_REJECT
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_SPONSOR_CANCEL
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.VIDEO_CALL_ACTION_SPONSOR_TIMEOUT
+import com.wl.lawyer.im.call.CustomMessage.Companion.JSON_VERSION_3_ANDROID_IOS_TRTC
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_ACCEPTED
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_DIALING
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_HANGUP
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_LINE_BUSY
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_REJECT
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_SPONSOR_CANCEL
+import com.wl.lawyer.im.call.CustomMessage.Companion.VIDEO_CALL_ACTION_SPONSOR_TIMEOUT
 import java.util.*
 
 class CustomAVCallUIController private constructor() : TRTCCloudListener() {

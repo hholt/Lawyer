@@ -95,6 +95,14 @@ public class MessageInfo {
      */
     public static final int MSG_STATUS_REVOKE = 0x113;
     /**
+     * 消息撤回状态
+     */
+    public static final int MSG_STATUS_COMFIRM = 0x114;
+    /**
+     * 消息撤回状态
+     */
+    public static final int MSG_STATUS_REJECT = 0x115;
+    /**
      * 消息正常状态
      */
     public static final int MSG_STATUS_NORMAL = 0;

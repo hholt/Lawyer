@@ -1,4 +1,4 @@
-package com.wl.lawyer.mvp.ui.activity.call
+package com.wl.lawyer.im.call
 
 import com.google.gson.Gson
 import com.tencent.imsdk.TIMConversationType
@@ -65,6 +65,7 @@ class CustomMessage {
         val JSON_VERSION_1_HELLOTIM = 1
         val JSON_VERSION_2_ONLY_IOS_TRTC = 2
         val JSON_VERSION_3_ANDROID_IOS_TRTC = 3
+        val JSON_VERSION_FEE = 11
 
         // 一个欢迎提示富文本
         val HELLO_TXT = 1

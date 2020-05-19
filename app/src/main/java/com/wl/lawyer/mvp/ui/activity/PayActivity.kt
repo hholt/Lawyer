@@ -259,6 +259,7 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
         if (payOrderBean.order.status == AppConstant.ORDER_STATUS_PAID && payOrderBean.payWay == "money") {
             showDialag("现在前往咨询页面"){
                 mlog("跳转聊天")
+                mPresenter?.addUserChat(payOrderBean.order.orderId, payOrderBean.order.lawyerId, AppConstant.SERVICE_ID_CONSULTATION)
             }
         } else {
             showMessage("打开${payOrderBean.payWay}支付")
@@ -277,4 +278,11 @@ class PayActivity : BaseSupportActivity<PayPresenter>(), PayContract.View {
         }
     }
 
+    override fun onChatAdded(chatBean: ChatBean) {
+        ARouter.getInstance()
+            .build(RouterPath.CHAT_ACTIVITY)
+            .withSerializable(RouterArgs.CHAT, chatBean)
+//            .withSerializable(RouterArgs.CONSULT_ORDER, )
+            .navigation()
+    }
 }

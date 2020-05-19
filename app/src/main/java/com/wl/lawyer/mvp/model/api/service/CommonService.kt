@@ -18,6 +18,7 @@ interface CommonService {
     @Multipart
     @POST("/api/common/upload")
     fun uploadPic(@Part file: MultipartBody.Part): Observable<BaseResponse<UploadBean>>
+
     /**
      * 上传文件
      */
@@ -273,5 +274,14 @@ interface CommonService {
      * *******************************  获取进行中的聊天 *******************************
      */
     @GET("/api/user_chat/getUserChatList")
-    fun getChatList() : Observable<BaseResponse<List<ChatBean>>>
+    fun getChatList(): Observable<BaseResponse<List<ChatBean>>>
+
+    /**
+     * *******************************  添加订单聊天记录 *******************************
+     */
+    @GET("/api/user_chat/addUserChat")
+    fun addUserChat(
+        @Query("order_id") orderId: String,
+        @Query("lawyer_id") lawyerId: Int,
+        @Query("order_type") type: Int): Observable<BaseResponse<ChatBean>>
 }

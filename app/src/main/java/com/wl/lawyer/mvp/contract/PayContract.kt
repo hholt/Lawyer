@@ -15,6 +15,7 @@ interface PayContract {
         fun onConsultOrderPay(payOrderBean: PayOrderBean<RealConsultOrderBean>)
         fun onClericalOrderPay(payOrderBean: PayOrderBean<RealClericalOrderBean>)
         fun onCooperateOrderPay(payOrderBean: PayOrderBean<RealCooperateOrderBean>)
+        fun onChatAdded(chatBean: ChatBean)
     }
 
     //Model层定义接口,外部只需关心Model返回的数据,无需关心内部细节,即是否使用缓存
@@ -23,6 +24,7 @@ interface PayContract {
         fun payConsultOrder(orderId: Int, payWay: String): Observable<BaseResponse<PayOrderBean<RealConsultOrderBean>>>
         fun payClericalOrder(orderId: Int, payWay: String): Observable<BaseResponse<PayOrderBean<RealClericalOrderBean>>>
         fun payCooperateOrder(orderId: Int, payWay: String): Observable<BaseResponse<PayOrderBean<RealCooperateOrderBean>>>
+        fun addUserCHat(orderId: String, lawyerId: Int, type: Int): Observable<BaseResponse<ChatBean>>
 
     }
 

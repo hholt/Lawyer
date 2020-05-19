@@ -4,6 +4,7 @@ class RouterArgs {
     companion object{
         const val LAWYER = "lawyer"
         const val LAWYER_ID = "lawyer_id"
+        const val LAWYER_NAME = "lawyer_name"
         const val LAWYER_SERVICE = "lawyer_service"
         const val ARTICLE = "article"
         const val LAWYER_ARTICLE = "lawyer_article"
@@ -19,5 +20,6 @@ class RouterArgs {
         const val CONSULT_ORDER = "consult_order"
         const val COOPERATE_ORDER = "cooperate_order"
         const val CONVERSATION_INFO = "conversation_info"
+        const val CHAT = "chat_bean"
     }
 }

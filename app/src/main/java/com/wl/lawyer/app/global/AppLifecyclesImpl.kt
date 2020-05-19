@@ -16,7 +16,7 @@ import com.tencent.qcloud.tim.uikit.config.GeneralConfig
 import com.tencent.rtmp.TXLiveBase
 import com.wl.lawyer.app.AppConstant
 import com.wl.lawyer.app.mlog
-import com.wl.lawyer.mvp.ui.activity.call.CustomAVCallUIController
+import com.wl.lawyer.im.call.CustomAVCallUIController
 
 
 class AppLifecyclesImpl : AppLifecycles {

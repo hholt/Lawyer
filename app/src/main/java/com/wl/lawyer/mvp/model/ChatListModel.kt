@@ -10,6 +10,7 @@ import com.wl.lawyer.mvp.model.api.BaseResponse
 import com.wl.lawyer.mvp.model.api.service.CommonService
 import com.wl.lawyer.mvp.model.api.service.TencentCloudService
 import com.wl.lawyer.mvp.model.bean.ChatBean
+import com.wl.lawyer.mvp.model.bean.UserBean
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -25,4 +26,5 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
 
     override fun getUserChatList() = mRepositoryManager.obtainRetrofitService(CommonService::class.java).getChatList()
 
+    override fun getUserProfile(id: Int) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).lawyerData(id)
 }

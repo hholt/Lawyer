@@ -1,4 +1,4 @@
-package com.wl.lawyer.mvp.ui.activity.call
+package com.wl.lawyer.im
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.lxj.androidktx.core.gone
 import com.tencent.imsdk.TIMCustomElem
 import com.tencent.qcloud.tim.uikit.modules.chat.ChatLayout
 import com.tencent.qcloud.tim.uikit.modules.chat.base.BaseInputFragment
+import com.tencent.qcloud.tim.uikit.modules.chat.base.ChatInfo
 import com.tencent.qcloud.tim.uikit.modules.chat.layout.inputmore.InputMoreActionUnit
 import com.tencent.qcloud.tim.uikit.modules.chat.layout.message.holder.ICustomMessageViewGroup
 import com.tencent.qcloud.tim.uikit.modules.chat.layout.message.holder.IOnCustomMessageDrawListener
@@ -21,28 +22,39 @@ import com.tencent.qcloud.tim.uikit.modules.message.MessageInfoUtil
 import com.tencent.qcloud.tim.uikit.utils.ToastUtil
 import com.wl.lawyer.R
 import com.wl.lawyer.app.mlog
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_1_HELLOTIM
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_2_ONLY_IOS_TRTC
-import com.wl.lawyer.mvp.ui.activity.call.CustomMessage.Companion.JSON_VERSION_3_ANDROID_IOS_TRTC
+import com.wl.lawyer.im.call.CustomAVCallUIController
+import com.wl.lawyer.im.call.CustomFeeTIMUIController
+import com.wl.lawyer.im.call.CustomMessage
+import com.wl.lawyer.im.call.CustomMessage.Companion.JSON_VERSION_1_HELLOTIM
+import com.wl.lawyer.im.call.CustomMessage.Companion.JSON_VERSION_2_ONLY_IOS_TRTC
+import com.wl.lawyer.im.call.CustomMessage.Companion.JSON_VERSION_3_ANDROID_IOS_TRTC
+import com.wl.lawyer.im.call.CustomMessage.Companion.JSON_VERSION_FEE
+import com.wl.lawyer.im.call.IFeeCallback
+import com.wl.lawyer.im.message.FeeBean
 import com.wl.lawyer.mvp.ui.widget.OrderWight
-import kotlinx.android.synthetic.main.activity_chat.*
 
 
-class ChatLayoutHelper(private val mContext: Context) {
+class ChatLayoutHelper(private val mContext: Context, private val chatInfo: ChatInfo) {
     var layoutAdded = false
+    lateinit var mWeight: OrderWight
 
-    fun customizeChatLayout(layout: ChatLayout) {
-        layout.titleBar.gone()
-
+    fun addBillTools(layout: ChatLayout) {
         if (!layoutAdded) {
+            mWeight = OrderWight(mContext)
             (layout.inputLayout.getChildAt(0) as ViewGroup).addView(
-                OrderWight(mContext), 0, ViewGroup.LayoutParams(
+                mWeight, 0, ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             )
             layoutAdded = true
         }
+    }
+
+    fun customizeChatLayout(layout: ChatLayout) {
+        layout.titleBar.gone()
+
+
 
         CustomAVCallUIController.instance.setUISender(layout)
 
@@ -61,6 +73,7 @@ class ChatLayoutHelper(private val mContext: Context) {
         //====== MessageLayout使用范例 ======//
         val messageLayout = layout.messageLayout
 
+//        聊天部分，再module中已经作了修改
         messageLayout.rightBubble = mContext.getDrawable(R.drawable.chat_bubble_myself)
         messageLayout.leftBubble = mContext.getDrawable(R.drawable.chat_other_bg)
         messageLayout.rightChatContentFontColor =
@@ -197,18 +210,21 @@ class ChatLayoutHelper(private val mContext: Context) {
         // 增加一个欢迎提示富文本
         val unit = InputMoreActionUnit()
         unit.iconResId = R.drawable.ic_custom
-        unit.titleId = R.string.test_custom_action
+        unit.titleId = R.string.order_fee
         unit.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
                 val gson = Gson()
-                val customMessage = CustomMessage()
-                val data = gson.toJson(customMessage)
+                val fee = FeeBean("经过细致审定后，我对贵方所提出服务要求和内容评定收费",
+                JSON_VERSION_FEE, "总价", "500元", "3天", "2020年4月30日",
+                "35", "1", "", "2")
+                val data = gson.toJson(fee)
                 val info = MessageInfoUtil.buildCustomMessage(data)
                 layout.sendMessage(info, false)
+
             }
         })
         inputLayout.addAction(unit)
-        val orderBill = InputMoreActionUnit()
+        /*val orderBill = InputMoreActionUnit()
         orderBill.iconResId = R.drawable.ic_more_video
         orderBill.titleId = R.string.order_bill
         orderBill.setOnClickListener {
@@ -217,7 +233,7 @@ class ChatLayoutHelper(private val mContext: Context) {
             val data = gson.toJson(customMessage)
             val info = MessageInfoUtil.buildCustomMessage(data)
             layout.sendMessage(info, false)
-        }
+        }*/
 
     }
 
@@ -275,21 +291,29 @@ class ChatLayoutHelper(private val mContext: Context) {
             }
             val elem = info.getElement() as TIMCustomElem
             // 自定义的json数据，需要解析成bean实例
-            var data: CustomMessage? = null
+            var data: FeeBean? = null
             try {
-                data = Gson().fromJson(String(elem.data), CustomMessage::class.java)
+                data = Gson().fromJson(String(elem.data), FeeBean::class.java)
             } catch (e: Exception) {
                 mlog("invalid json: " + String(elem.data) + " " + e.message)
             }
 
             if (data == null) {
                 mlog("No Custom Data: " + String(elem.data))
-            } else if (data.version == JSON_VERSION_1_HELLOTIM) {
-                CustomHelloTIMUIController.onDraw(parent, data)
-            } else if (data.version == JSON_VERSION_3_ANDROID_IOS_TRTC || data.version == JSON_VERSION_2_ONLY_IOS_TRTC) {
-                CustomAVCallUIController.instance.onDraw(parent, data)
+            } else if (data.version == JSON_VERSION_FEE) {
+                CustomFeeTIMUIController.onDraw(
+                    mContext,
+                    parent,
+                    data,
+                    info
+                )
+                return
+            }
+            val data2 = Gson().fromJson(String(elem.data), CustomMessage::class.java)
+            if (data2.version == JSON_VERSION_3_ANDROID_IOS_TRTC || data2.version == JSON_VERSION_2_ONLY_IOS_TRTC) {
+                CustomAVCallUIController.instance.onDraw(parent, data2)
             } else {
-                mlog("unsupported version: " + data.version)
+                mlog("unsupported version: " + data2.version)
             }
         }
     }

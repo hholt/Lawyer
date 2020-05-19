@@ -54,6 +54,12 @@ public class MessageTipsHolder extends MessageEmptyHolder {
                 msg.setExtra("对方撤回了一条消息");
             }
         }
+        if (msg.getStatus() == MessageInfo.MSG_STATUS_COMFIRM) {
+            msg.setExtra("用户支付了文书费用");
+        }
+        if (msg.getStatus() == MessageInfo.MSG_STATUS_REJECT) {
+            msg.setExtra("用户拒绝了费用确认单");
+        }
 
         if (msg.getStatus() == MessageInfo.MSG_STATUS_REVOKE
                 || (msg.getMsgType() >= MessageInfo.MSG_TYPE_GROUP_CREATE

@@ -2,6 +2,7 @@ package com.wl.lawyer.mvp.ui.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.gyf.immersionbar.ImmersionBar
@@ -22,8 +23,10 @@ import com.wl.lawyer.di.module.ChatListModule
 import com.wl.lawyer.im.CustomConversationManagerKit
 import com.wl.lawyer.im.CustomConversationProvider
 import com.wl.lawyer.im.adapter.CustomConversationListAdapter
+import com.wl.lawyer.im.bean.CustomChatBean
 import com.wl.lawyer.mvp.contract.ChatListContract
 import com.wl.lawyer.mvp.model.bean.ChatBean
+import com.wl.lawyer.mvp.model.bean.MyConsultOrderBean
 import com.wl.lawyer.mvp.presenter.ChatListPresenter
 import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.include.*
@@ -37,6 +40,7 @@ class ChatListActivity : BaseSupportActivity<ChatListPresenter>(), ChatListContr
             .build()
             .inject(this)
     }
+
 
     val adapter by lazy {
         CustomConversationListAdapter().apply {
@@ -92,8 +96,8 @@ class ChatListActivity : BaseSupportActivity<ChatListPresenter>(), ChatListContr
             .init()
     }
 
-    override fun onChatListGet(data: List<ChatBean>) {
-        val chatSet = data.map { it.lawyerId.toString() }.toMutableSet()
+    override fun onChatListGet(data: List<CustomChatBean>) {
+        val chatSet = data.map { it.chat.lawyerId.toString() }.toMutableSet()
         chatSet.add("29")//测试
         CustomConversationManagerKit.getInstance().loadConversation(object : IUIKitCallBack {
             override fun onSuccess(data: Any) {

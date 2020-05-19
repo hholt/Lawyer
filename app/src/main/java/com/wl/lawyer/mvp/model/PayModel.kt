@@ -42,4 +42,10 @@ constructor(repositoryManager: IRepositoryManager) : BaseModel(repositoryManager
         orderId: Int,
         payWay: String
     ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).payCooperateOrder(orderId, payWay)
+
+    override fun addUserCHat(
+        orderId: String,
+        lawyerId: Int,
+        type: Int
+    ) = mRepositoryManager.obtainRetrofitService(CommonService::class.java).addUserChat(orderId, lawyerId, type)
 }

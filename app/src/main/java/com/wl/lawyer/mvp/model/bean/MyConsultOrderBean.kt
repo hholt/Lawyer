@@ -11,6 +11,7 @@ data class MyConsultOrderBean(
     @SerializedName("pay_time_text") val payTime_text: String,
     @SerializedName("pay_amount") val payAmount: String,
     @SerializedName("lawyer_id") val lawyerId: Int,
+    @SerializedName("invite_lawyer_id") val inviteLawyerId: Int,
     @SerializedName("lawyer_name") val lawyerName: String,
     @SerializedName("lawyer_avatar") val lawyerAvatar: String,
     @SerializedName("package_name") val packageName: String,

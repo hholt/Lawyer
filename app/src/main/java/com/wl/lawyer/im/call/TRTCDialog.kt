@@ -1,4 +1,4 @@
-package com.wl.lawyer.mvp.ui.activity.call
+package com.wl.lawyer.im.call
 
 import android.content.Context
 import android.content.Intent

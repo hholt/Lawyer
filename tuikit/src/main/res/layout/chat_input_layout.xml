@@ -68,7 +68,7 @@
 
         <Button
             android:id="@+id/send_btn"
-            android:layout_width="40dp"
+            android:layout_width="60dp"
             android:layout_height="30dp"
             android:background="@drawable/message_send_border"
             android:text="@string/send"
